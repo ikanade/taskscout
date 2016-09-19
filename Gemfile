@@ -52,5 +52,7 @@ end
 group :production do 
 	gem 'pg'
 	gem 'therubyracer', platforms: :ruby
+	gem 'rails_12factor'
+	gem 'puma'
 end
 
