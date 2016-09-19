@@ -5,4 +5,8 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
   	user_path(resource)
   end
+
+  def authorize_user!
+  	redirect_to current_user unless current_user.id.to_i == params[:id].to_i
+  end
 end
