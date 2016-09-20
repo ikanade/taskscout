@@ -37,6 +37,8 @@ gem 'devise'
 # Materialize-sass gem for material design support
 gem 'materialize-sass'
 
+# For Timeline validations
+gem 'validates_timeliness', '~> 4.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
