@@ -34,6 +34,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # User authentication management using Devise
 gem 'devise'
 
+# Materialize-sass gem for material design support
+gem 'materialize-sass'
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
