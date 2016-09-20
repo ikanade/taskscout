@@ -5,7 +5,7 @@ class Project < ActiveRecord::Base
 	has_many :users , through: :project_users
 	alias_attribute :members, :users
 	before_save :add_creator_to_members, if: :user_id_changed?
-
+	has_many :posts
 	def add_creator_to_members
 		self.members << self.creator 
 	end
