@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
          :confirmable
   has_many :project_users
   has_many :projects, through: :project_users
- 	has_many :tasks, as: :taskable
+  has_many :tasks, as: :taskable
+  has_many :posts
 
 end
