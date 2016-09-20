@@ -1,4 +1,5 @@
 class Project < ActiveRecord::Base
+	has_many :tasks, as: :taskable
 	belongs_to :user
 	alias_attribute :creator, :user
 	has_many :project_users
