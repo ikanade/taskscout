@@ -4,6 +4,6 @@ class Post < ActiveRecord::Base
   has_many :comments, as: :commentable
 
   validates_associated :comments
-  validates :title,  presence: true, length: {is: 200}
-  validates :body, allow_blank: true
+  validates :title,  presence: true, length: {maximum: 200}
+  validates :body,length: {maximum: 600}, allow_blank: true
 end
