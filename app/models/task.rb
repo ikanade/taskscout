@@ -19,9 +19,9 @@ class Task < ActiveRecord::Base
 
 
   private
-	def is_valid_date?
-	  if((due_date.is_a?(Date) rescue ArgumentError) == ArgumentError)
-	    errors.add(:due_date, 'Sorry, Invalid Date.')
-	  end
-	end
+	#def is_valid_date?
+	#  if((due_date.is_a?(Date) rescue ArgumentError) == ArgumentError)
+	#    errors.add(:due_date, 'Sorry, Invalid Date.')
+	#  end
+	#end
 end
