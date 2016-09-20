@@ -4,4 +4,5 @@ class Task < ActiveRecord::Base
   belongs_to :user
 
   validates :taskable_type , presence: true, inclusion: { within: %w(Project Task) }
+  
 end
