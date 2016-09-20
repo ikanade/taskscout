@@ -16,7 +16,7 @@ class Project < ActiveRecord::Base
 	validates_format_of :status,:with => ^[A-Za-z]+$ 
 	validates :progress, presence: true, numericality: { only_integer: true }, length: {in: 1..3}
 	validate :is_valid_date?
-
+	validates_datetime :due_date, :after => :started_at 
 	private
 	  def is_valid_date?
 	    if((due_date.is_a?(Date) rescue ArgumentError) == ArgumentError)
