@@ -58,7 +58,7 @@ Projects
     id: integer
     title: string
     deadline: datetime
-    startdate: datetime
+    started_at: datetime
     status: string
     progress: integer
     archive: boolean
@@ -80,8 +80,8 @@ Tasks (Polymorphic)
     status: string
     progress: integer
     description: text
-    startdate: datetime
-    duedate: datetime
+    started_at: datetime
+    due_date: datetime
     taskable_type: string
     taskable_id: integer   foreign_key => project.id
     user_id: integer 			 foreign_key => user.id
