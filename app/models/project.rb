@@ -8,6 +8,7 @@ class Project < ActiveRecord::Base
 	before_save :add_creator_to_members, if: :user_id_changed?
 	has_many :posts
 	validates_associated :posts
+	validates_associated :tasks
 	def add_creator_to_members
 		self.members << self.creator 
 	end
