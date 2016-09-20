@@ -1,10 +1,17 @@
-<h2>Resend unlock instructions</h2>
 
+<div class="container center">
+<div class="row">
+	<div class="col s4 offset-s4">
+		<h2 class="blue-grey-text text-lighten-2">Resend unlock instructions</h2>
+	</div>
+</div>
+<div class="row">
+<div class="col s6 offset-s3">
 <%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
+  <div class="input-field">
+    <%= f.label :email %>
     <%= f.email_field :email, autofocus: true %>
   </div>
 
@@ -12,5 +19,7 @@
     <%= f.submit "Resend unlock instructions" %>
   </div>
 <% end %>
-
+</div>
+</div>
 <%= render "devise/shared/links" %>
+</div>

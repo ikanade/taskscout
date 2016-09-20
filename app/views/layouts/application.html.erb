@@ -7,6 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<% unless current_page?(root_path) -%>
+	<%= render 'layouts/header' %>
+	<% end %>
  	<p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
 	
