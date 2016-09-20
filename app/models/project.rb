@@ -10,6 +10,7 @@ class Project < ActiveRecord::Base
 	
 	validates_associated :posts
 	validates_associated :tasks
+	validates_associated :project_users
 	validates :title,  presence: true, length: {is: 200}
 	validates :description, allow_blank: true
 	validates :priority, presence: true,inclusion: {in: %w(low normal high ASAP)}
