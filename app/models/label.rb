@@ -1,4 +1,4 @@
 class Label < ActiveRecord::Base
-	validates :name, presence: true
-	validates :color, presence: true
+  belongs_to :labelable, polymorphic: true
+
 end

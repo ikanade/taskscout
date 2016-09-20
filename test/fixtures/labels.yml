@@ -3,7 +3,11 @@
 one:
   name: MyString
   color: MyString
+  labelable_id: 
+  labelable_type: Labelable
 
 two:
   name: MyString
   color: MyString
+  labelable_id: 
+  labelable_type: Labelable

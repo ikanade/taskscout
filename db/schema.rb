@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160920114554) do
+ActiveRecord::Schema.define(version: 20160920135146) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "body"
@@ -28,9 +28,13 @@ ActiveRecord::Schema.define(version: 20160920114554) do
   create_table "labels", force: :cascade do |t|
     t.string   "name"
     t.string   "color"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "labelable_id"
+    t.string   "labelable_type"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
+
+  add_index "labels", ["labelable_type", "labelable_id"], name: "index_labels_on_labelable_type_and_labelable_id"
 
   create_table "posts", force: :cascade do |t|
     t.string   "title"
