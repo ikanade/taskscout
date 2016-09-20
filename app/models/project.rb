@@ -15,7 +15,7 @@ class Project < ActiveRecord::Base
 	validates :description, allow_blank: true
 	validates :priority, presence: true,inclusion: {in: %w(low normal high ASAP)}
 	validates :status, presence: true
-	validates_format_of :status,:with => ^[A-Za-z]+$ 
+	validates_format_of :status,:with => '^[A-Za-z]+$'
 	validates :progress, presence: true, numericality: { only_integer: true }, length: {in: 1..3}
 	validate :is_valid_date?
 	validates_datetime :due_date, :after => :started_at 
