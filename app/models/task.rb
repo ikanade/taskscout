@@ -9,7 +9,7 @@ class Task < ActiveRecord::Base
   validates :taskable_type , presence: true, inclusion: { within: %w(Project Task) }
   validates_datetime :due_date, after: :started_at 
   validates :title,  presence: true, length: {maximum: 200}
-  validates :description, allow_blank: true
+  #validates :description, allow_blank: true
   validates :priority, presence: true,inclusion: {in: %w(low normal high ASAP)}
   validates :status, presence: true,format: { with: /\A[a-z]+\z\/i/ }
   validates :progress, presence: true ,
