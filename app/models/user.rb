@@ -8,5 +8,10 @@ class User < ActiveRecord::Base
   has_many :projects, through: :project_users
   has_many :tasks, as: :taskable
   has_many :posts
+  has_many :comments
+  validates_associated :projects
+  validates_associated :posts
+  validates_associated :comments
+  validates_format_of :name, :with => /\A[A-Za-z ]+\Z/ , presence: true
 
 end
