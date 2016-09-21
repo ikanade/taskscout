@@ -1,5 +1,22 @@
 require 'rails_helper'
 
 RSpec.describe Label, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:subject) {Label.new(name:"jku", color: "red", labelable_type: "Task")} 
+  
+  it "is valid with name" do
+   	subject.name = "bhj"
+  	expect(subject).to be_valid
+  end
+  it "is not valid with name" do
+   	subject.name = nil
+  	expect(subject).to_not be_valid
+  end
+  it "is valid with color" do
+   	subject.color = "blue"
+  	expect(subject).to be_valid
+  end
+  it "is not valid with color" do
+   	subject.color = nil
+  	expect(subject).to_not be_valid
+  end
 end
