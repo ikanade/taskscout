@@ -1,78 +1,11 @@
 Rails.application.routes.draw do
-  get 'comments/index'
-
-  get 'comments/show'
-
-  get 'comments/new'
-
-  get 'comments/create'
-
-  get 'comments/edit'
-
-  get 'comments/update'
-
-  get 'comments/delete'
-
-  get 'posts/index'
-
-  get 'posts/show'
-
-  get 'posts/new'
-
-  get 'posts/create'
-
-  get 'posts/edit'
-
-  get 'posts/update'
-
-  get 'posts/delete'
-
-  get 'projects/index'
-
-  get 'projects/show'
-
-  get 'projects/new'
-
-  get 'projects/create'
-
-  get 'projects/edit'
-
-  get 'projects/update'
-
-  get 'projects/delete'
-
-  get 'labels/index'
-
-  get 'labels/show'
-
-  get 'labels/new'
-
-  get 'labels/create'
-
-  get 'labels/edit'
-
-  get 'labels/update'
-
-  get 'labels/delete'
-
-  get 'tasks/index'
-
-  get 'tasks/show'
-
-  get 'tasks/new'
-
-  get 'tasks/create'
-
-  get 'tasks/edit'
-
-  get 'tasks/update'
-
-  get 'tasks/delete'
 
   root to: "home#index"
   devise_for :users, module: :users
-  resources :users 
-  
+  resources :users do
+  	resources :projects
+  	resources :tasks
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
