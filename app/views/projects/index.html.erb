@@ -9,18 +9,18 @@
 		<div class="card-content">
 			<span class="card-title"><%= project.title %></span>
 			<p>Started by <%= project.creator.name %></p>
-			 <ul class="collection with-header">
-        <li class="collection-header"><b>Members</b></li>
-        <% project.members.each do |member| -%>
-					<li class="collection-item">
-						<%= member.name %>
-					</li>
+			<ul class="collection with-header">
+				<li class="collection-header"><b>Members</b></li>
+				<% project.members.each do |user| -%>
+				<li class="collection-item avatar">
+					<%= render 'users/avatar', user: user %>
+					<span><%= user.name %></span>
+				</li>
 				<% end %>
-      </ul>
+			</ul>
 		</div>
 		<div class="card-action">
-			<a href="#">This is a link</a>
-			<a href="#">This is a link</a>
+			<%= link_to 'Add member' %>
 		</div>
 	</div>
 	<% end %>
