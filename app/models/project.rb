@@ -12,13 +12,12 @@ class Project < ActiveRecord::Base
 	validates_associated :tasks
 	validates_associated :project_users
 	validates :title,  presence: true, length: {is: 200}
-	#validates :description, allow_blank: true
 	validates :priority, presence: true,inclusion: {in: %w(low normal high ASAP)}
 	validates :status, presence: true, format:{ with: /\A[a-z]+\z\/i/ }
 	validates :progress, presence: true, numericality: { only_integer: true },
 											 length: {maximum: 3}
 	#validate :is_valid_date?
-	validates_datetime :due_date, :after => :started_at 
+	validates_datetime :due_date, after: :started_at 
 	private
 	  #def is_valid_date?
 	   # if((due_date.is_a?(Date) rescue ArgumentError) == ArgumentError)
