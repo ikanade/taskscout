@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Task, type: :model do
 	let(:subject) { Task.new(title:"demo", priority: "ASAP", status: "started",
 					 progress: 12, description: "asd fgh truh uunun", started_at: Time.now, 
-					 due_date: Time.now + 5.days,taskable_type: "task")} 
+					 due_date: Time.now + 5.days,taskable_type: "Task")} 
   
   it "is valid with title" do
    	subject.title = "PIT"
