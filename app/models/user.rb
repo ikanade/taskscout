@@ -14,6 +14,6 @@ class User < ActiveRecord::Base
   validates_associated :project_users
   validates_associated :posts
   validates_associated :comments
-  validates_format_of :name, :with => /\A[a-z ]+\z\/i/ , presence: true
+  validates :name, presence: true, format:{ with: /\A[a-z ]+\z/i }
 
 end
