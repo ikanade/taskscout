@@ -7,8 +7,12 @@ RSpec.describe User, type: :model do
    	subject.name = "Sonali"
   	expect(subject).to be_valid
   end
+  it "is not valid with name" do
+   	subject.name = "123sdf"
+  	expect(subject).to_not be_valid
+  end
   it "is not valid without name" do
-   	subject.name = ""
+   	subject.name = nil
   	expect(subject).to_not be_valid
   end
 end
