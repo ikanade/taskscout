@@ -24,11 +24,8 @@ RSpec.describe Project, type: :model do
   it "is not valid format of date" do
    	subject.started_at = "asdasdasd"
    	subject.deadline = "hubhnjn nnnjnj"
-  	expect(subject).to_not be_valid
-  end
-  it "is not valid format of date" do
-   	subject.started_at = 123456
-   	subject.deadline = 98786
+    subject.started_at = 123456
+    subject.deadline = 98786
   	expect(subject).to_not be_valid
   end
   it "is valid status" do

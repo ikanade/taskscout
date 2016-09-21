@@ -5,7 +5,7 @@ class Task < ActiveRecord::Base
   has_many :comments
   has_many :labels, as: :labelable
 
-  validates_associated :posts
+ # validates_associated :posts
   validates :taskable_type , presence: true, inclusion: { within: %w(Project Task) }
   validates_datetime :due_date, after: :started_at 
   validates :title,  presence: true, length: {maximum: 200}
