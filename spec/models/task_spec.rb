@@ -21,6 +21,30 @@ RSpec.describe Task, type: :model do
    	subject.priority = 123
   	expect(subject).to_not be_valid
   end
+  it "is valid with status" do
+   	subject.status = "Assigned"
+  	expect(subject).to be_valid
+  end
+   it "is valid with status" do
+   	subject.status = 123
+  	expect(subject).to_not be_valid
+  end
+  it "is valid with progress" do
+   	subject.progress = 25
+  	expect(subject).to be_valid
+  end
+   it "is valid with progress" do
+   	subject.progress = "bhb"
+  	expect(subject).to_not be_valid
+  end
+  it "is valid with description" do
+   	subject.description = "gh gbhn bhn"
+  	expect(subject).to be_valid
+  end
+   it "is valid with description" do
+   	subject.description = nil
+  	expect(subject).to be_valid
+  end
   it "is valid with date" do
    	subject.started_at = "2016-09-21 09:42:06"
    	subject.due_date = "2016-09-26 10:01:38"
