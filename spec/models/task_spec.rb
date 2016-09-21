@@ -33,6 +33,10 @@ RSpec.describe Task, type: :model do
    	subject.progress = 25
   	expect(subject).to be_valid
   end
+  it "is valid with progress" do
+   	subject.progress = 67532467
+  	expect(subject).to_not be_valid
+  end
    it "is valid with progress" do
    	subject.progress = "bhb"
   	expect(subject).to_not be_valid
