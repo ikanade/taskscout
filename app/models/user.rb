@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  attr_accessor :initials
+  after_initialize :set_initials
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
@@ -10,10 +12,9 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :comments
 
-  validates_associated :projects
-  validates_associated :project_users
-  validates_associated :posts
-  validates_associated :comments
   validates :name, presence: true, format:{ with: /\A[a-z ]+\z/i }
 
+  def set_initials
+		self.initials = self.name.scan(/(\b[a-z])[a-z]*?/i).join.upcase
+  end
 end
