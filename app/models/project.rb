@@ -13,7 +13,7 @@ class Project < ActiveRecord::Base
 	validates_associated :project_users
 	validates :title,  presence: true, length: {is: 200}
 	validates :priority, presence: true,inclusion: {in: %w(low normal high ASAP)}
-	validates :status, presence: true, format:{ with: /\A[a-z]+\z\/i/ }
+	validates :status, presence: true, format:{ with: /\A[a-z]+\z/i }
 	validates :progress, presence: true, numericality: { only_integer: true },
 											 length: {maximum: 3}
 	#validate :is_valid_date?
