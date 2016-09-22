@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160921075104) do
+ActiveRecord::Schema.define(version: 20160922070101) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "body"
@@ -63,11 +63,12 @@ ActiveRecord::Schema.define(version: 20160921075104) do
     t.datetime "deadline"
     t.datetime "started_at"
     t.string   "status"
-    t.integer  "progress",   default: 0
+    t.integer  "progress",    default: 0
     t.boolean  "archive"
     t.integer  "user_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "description"
   end
 
   add_index "projects", ["user_id"], name: "index_projects_on_user_id"
