@@ -9,9 +9,17 @@
 <body>
 	<% unless current_page?(root_path) -%>
 	<%= render 'layouts/header' %>
+		<% flash.each do |message_type, message| %>
+			<% if message_type == 'danger' || message_type == 'notice' %>
+				<%= javascript_tag 'data-turbolinks-eval'=>false, defer: 'defer' do -%>
+					Materialize.toast("<%= message %>", 2000);
+				<% end -%>
+			<% end -%>
+		<% end %>
+		<% flash.clear if !flash.empty? -%>
 	<% end %>
- 	<p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+ 	<!--<p class="notice"><= notice %></p>%%
+  <p class="alert"><= alert %></p>-->
 	
 	<%= yield %>
 	
