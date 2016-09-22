@@ -1,0 +1,38 @@
+<h1>Create a new project</h1>
+<div class="row">
+<div class="container col s6 offset-s3">
+<%= form_for @project, url: new_user_project_path(current_user) do |f|%>
+	<div class="row">
+		<div class="input-field col s6">
+				<%= f.label :user_id, "Creator" %>
+				<%= f.text_field :user_id, value: current_user.name,class:"disable", disabled:true %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="input-field col s6">
+			<%= f.label :title, "Title" %>
+			<%= f.text_field :title %>
+		</div>
+	</div>
+	<!-- <div class="row">
+		<div class="input-field col s6">
+			< f.label :description, "Description" %>
+			< f.text_area :description %>
+		</div>
+	</div> -->
+	<div class="row">
+		<div class="input-field col s6">
+			<%= f.label :started_at, "Start date", class:"active"  %>
+			<%= f.date_field :started_at,class:"datepicker"%>
+		</div>
+	</div>
+	<div class="row">
+		<div class="input-field col s6">
+			<%= f.label :deadline, "Deadline",class:"active" %>
+			<%= f.date_field :deadline,class:"datepicker" %>
+		</div>
+	</div>
+	
+<% end %>
+</div>
+</div>
