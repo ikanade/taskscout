@@ -1,7 +1,8 @@
-$(document).ready(function(){
+$(document).on('turbolinks:load', function() {
 	$('.datepicker').pickadate({
-    selectMonths: true, // Creates a dropdown to control month
-    selectYears: 15, // Creates a dropdown of 15 years to control year
-    min: Date.now()
-  });
+		selectMonths: true,
+		selectYears: 15, 
+		min: Date.now()
+	});
+	console.log("gets in");
 });
