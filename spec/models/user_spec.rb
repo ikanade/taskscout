@@ -1,12 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  it "is invalid without name" do
-   name = User.new(name: "mech")
-  expect(name).to be_valid
+  let(:subject) {User.new(name:"ASDAS",email:"as@as.as",password:"password")} 
+  
+  it "is valid with name" do
+   	subject.name = "Sonali"
+  	expect(subject).to be_valid
   end
-  it "is invalid without email" do
-   email = User.new(name: "mech@gmail.com")
-  expect(email).to be_valid
+  it "is not valid with name" do
+   	subject.name = "123sdf"
+  	expect(subject).to_not be_valid
+  end
+  it "is not valid without name" do
+   	subject.name = nil
+  	expect(subject).to_not be_valid
   end
 end
