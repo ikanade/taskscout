@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160921075104) do
+ActiveRecord::Schema.define(version: 20160923095148) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "body"
@@ -62,7 +62,6 @@ ActiveRecord::Schema.define(version: 20160921075104) do
     t.string   "title"
     t.datetime "deadline"
     t.datetime "started_at"
-    t.string   "status"
     t.integer  "progress",   default: 0
     t.boolean  "archive"
     t.integer  "user_id"
