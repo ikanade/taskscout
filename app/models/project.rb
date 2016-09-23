@@ -15,8 +15,7 @@ class Project < ActiveRecord::Base
 										 length: {maximum: 3}
 	validates_datetime :deadline, after: :started_at, if: :deadline_changed?
 	
-	private
-	
+	private	
 		def add_creator_to_members
 			self.members << self.creator 
 		end

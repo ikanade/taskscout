@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Project, type: :model do
-  let(:subject) {Project.new(title:"demo", deadline: Time.now + 5.days, started_at: Time.now, status: "start", progress: 10)} 
+  let(:subject) {Project.new(title:"demo", deadline: Time.now + 5.days, started_at: Time.now, status: "start",
+                 progress: 10,description: "vdvgcv vsdgcbh gdcgvgvb")} 
   
   it "is valid with title" do
    	subject.title = "PIT"
@@ -31,7 +32,6 @@ RSpec.describe Project, type: :model do
     subject.deadline = 98786
     expect(subject).to_not be_valid
   end
-  
   it "is valid status" do
    	subject.status = "created" 	
   	expect(subject).to be_valid
