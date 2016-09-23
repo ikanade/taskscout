@@ -13,6 +13,13 @@ class ProjectsController < ApplicationController
   end
 
   def create
+  	@project = Project.new(project_params)
+  	if @project.save!
+  		flash[:success] = "Project Created"
+  		redirect_to user_projects_path(current_user)
+  	else
+  		render 'new'
+  	end
   end
 
   def edit
@@ -28,4 +35,12 @@ class ProjectsController < ApplicationController
   	end
   end
 
+  private 
+  def project_params
+  	data = params.require(:project).permit(:title,:description,:deadline,:started_at)
+  	deadline = data[:deadline] +" "+Time.now.strftime("%H:%M:%S %z")
+  	data.store(:deadline,deadline)
+  	data.store(:user_id,params[:user_id])
+  	data
+  end
 end
