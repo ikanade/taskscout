@@ -40,6 +40,9 @@ gem 'materialize-sass'
 # For Timeline validations
 gem 'validates_timeliness', '~> 4.0'
 
+# Push Notifications
+gem 'pusher'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
