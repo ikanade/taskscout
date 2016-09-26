@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   	resources :projects
   	resources :tasks
   end
+  resources :users do
+    resources :posts 
+    resources :comments 
+  end
   get 'projects/:id/users/new' => 'project_users#new', as: :new_project_user
   post 'projects/:id/users/:user_id' => 'project_users#create', as: :add_project_user
   # The priority is based upon order of creation: first created -> highest priority.
