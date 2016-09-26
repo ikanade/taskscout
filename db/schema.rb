@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160923112738) do
+ActiveRecord::Schema.define(version: 20160926095927) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "body"
@@ -84,17 +84,17 @@ ActiveRecord::Schema.define(version: 20160923112738) do
 
   create_table "tasks", force: :cascade do |t|
     t.string   "title"
-    t.string   "priority"
-    t.string   "status"
-    t.integer  "progress"
+    t.string   "priority",      default: "normal"
+    t.string   "status",        default: "none"
+    t.integer  "progress",      default: 0
     t.text     "description"
     t.datetime "started_at"
     t.datetime "due_date"
     t.integer  "taskable_id"
     t.string   "taskable_type"
     t.integer  "user_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   add_index "tasks", ["taskable_type", "taskable_id"], name: "index_tasks_on_taskable_type_and_taskable_id"

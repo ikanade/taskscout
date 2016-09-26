@@ -9,8 +9,8 @@ class Task < ActiveRecord::Base
   validates :taskable_type , presence: true, inclusion: { within: %w(Project Task) }
   validates_datetime :due_date, after: :started_at 
   validates :title,  presence: true, length: {maximum: 200}
-  #validates :priority, presence: true,inclusion: {in: %w(low normal high ASAP)}
-  validates :status, presence: true,format: { with: /\A[a-z]+\z/i }
+  validates :priority, presence: true,inclusion: {in: %w(low normal high ASAP)}
+  validates :status, presence: true,inclusion: { in: %w(finished active inactive none) }
   validates :progress, presence: true ,
                  numericality: { only_integer: true }, length: {maximum: 3}
   
