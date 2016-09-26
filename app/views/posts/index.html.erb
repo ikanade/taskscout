@@ -1,9 +1,25 @@
-<h1>All Posts</h1>
+
 <%= link_to 'New Post', new_project_post_path %> 
 
-  <% @posts.each do |post| %>
-  
-    <center> <bold> <%= post.title %></bold><br />
-      <%= post.body %><br /></center>
-      <% end %>
-     <%= link_to 'Back', user_project_path(current_user,@project) %> 
+	<div class="row">
+	<div class="col s12">
+		<%= current_user.name + "'s" %> Posts
+	</div>
+</div>
+<div class="container">
+	<% @posts.each do |post| %>
+	<div class="card">
+		<div class="card-content">
+			<span class="card-title"><%= post.title %></span>
+			<p><%= post.body %></p>			
+		</div>
+		<div class="card-action">
+			<%= link_to 'Add comment', new_post_comment_path(post) %>
+			
+		</div>
+	</div>
+	<% end %>
+</div>
+<%= link_to "Back", user_project_path(current_user,@project) %> 
+
+ 
