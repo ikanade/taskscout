@@ -10,12 +10,18 @@
 	<% @posts.each do |post| %>
 	<div class="card">
 		<div class="card-content">
-			<span class="card-title"><%= post.title %></span>
-			<p><%= post.body %></p>			
+			<div class="row">
+				<span class="card-title col s9"><%= post.title %></span> 
+				<div class="col s2 offset-s10" ><%= link_to 'Delete Post', project_post_path(@project, post),method: :delete, data: {confirm: "Are you sure?"} %>
+				</div>
+			</div>
+			<p><%= post.body %></p>	
+			<hr>
+
 		</div>
 		<div class="card-action">
-			<%= link_to 'Add comment', new_post_comment_path(post) %>
 			
+			<%= link_to 'Add comment', new_post_comment_path(post) %>
 		</div>
 	</div>
 	<% end %>

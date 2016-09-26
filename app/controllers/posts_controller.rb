@@ -15,7 +15,7 @@ class PostsController < ApplicationController
 
   def create
     @project = Project.find(params[:project_id])
-    @post =@project.posts.new(post_params)
+    @post = @project.posts.new(post_params)
     if @post.save!
       redirect_to project_posts_path
     else
@@ -23,11 +23,12 @@ class PostsController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
+    @project = Project.find(params[:project_id])
     @post = Post.find(params[:id])
     if @post.destroy  
-      redirect_to posts_path
-
+      redirect_to project_posts_path
+    end
   end
 private
     def post_params
