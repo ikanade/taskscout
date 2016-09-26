@@ -1,8 +1,9 @@
 <h1>All Posts</h1>
-<%= link_to 'New Post', new_user_post_path %> 
+<%= link_to 'New Post', new_project_post_path %> 
 
   <% @posts.each do |post| %>
   
     <center> <bold> <%= post.title %></bold><br />
       <%= post.body %><br /></center>
       <% end %>
+     <%= link_to 'Back', user_project_path(current_user,@project) %> 

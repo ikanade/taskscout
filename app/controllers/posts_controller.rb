@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
   def index
-    @posts=Post.all
+    @user = User.find(current_user)
+    @posts = @user.posts    
+    @project = Project.where(user_id:current_user.id)
   end
 
   def show
@@ -14,7 +16,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
-      redirect_to current_user
+      redirect_to project_posts_path
     else
       render 'new'
     end
