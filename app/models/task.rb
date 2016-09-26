@@ -4,6 +4,7 @@ class Task < ActiveRecord::Base
   belongs_to :user
   has_many :comments
   has_many :labels, as: :labelable
+  has_many :follows, as: :followable
 
   validates :taskable_type , presence: true, inclusion: { within: %w(Project Task) }
   validates_datetime :due_date, after: :started_at 

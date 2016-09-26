@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_many :tasks, as: :taskable
   has_many :posts
   has_many :comments
-
+  has_many :follows
   validates :name, presence: true, format:{ with: /\A[a-z ]+\z/i }
 
   def set_initials
