@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160921075104) do
+ActiveRecord::Schema.define(version: 20160923112738) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "body"
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 20160921075104) do
 
   add_index "comments", ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+
+  create_table "follows", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "followable_id"
+    t.string   "followable_type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "follows", ["followable_type", "followable_id"], name: "index_follows_on_followable_type_and_followable_id"
 
   create_table "labels", force: :cascade do |t|
     t.string   "name"
@@ -62,12 +72,12 @@ ActiveRecord::Schema.define(version: 20160921075104) do
     t.string   "title"
     t.datetime "deadline"
     t.datetime "started_at"
-    t.string   "status"
-    t.integer  "progress",   default: 0
+    t.integer  "progress",    default: 0
     t.boolean  "archive"
     t.integer  "user_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.text     "description"
   end
 
   add_index "projects", ["user_id"], name: "index_projects_on_user_id"
