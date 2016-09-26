@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   devise_for :users, module: :users
   resources :users do
   	resources :projects
+  end
+  resources :projects, only: [] do
   	resources :tasks
   end
   resources :users do
