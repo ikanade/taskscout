@@ -11,9 +11,14 @@ Rails.application.routes.draw do
   resources :projects, only: [] do
   	resources :tasks
   end
-  resources :users do
-    resources :posts 
-    resources :comments 
+  resources :projects, only: [] do
+    resources :posts  
+  end
+  resources :posts, only: [] do
+    resources :comments  
+  end
+  resources :tasks, only: [] do
+    resources :comments  
   end
   resources :notifications
   get 'projects/:id/users/new' => 'project_users#new', as: :new_project_user

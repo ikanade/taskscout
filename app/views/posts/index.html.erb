@@ -1,8 +1,43 @@
-<h1>All Posts</h1>
-<%= link_to 'New Post', new_user_post_path %> 
 
-  <% @posts.each do |post| %>
-  
-    <center> <bold> <%= post.title %></bold><br />
-      <%= post.body %><br /></center>
-      <% end %>
+<%= link_to 'New Post', new_project_post_path %> 
+	<div class="row">
+	<div class="col s12">
+		<%= current_user.name + "'s" %> Posts
+	</div>
+	</div>
+<div class="container">
+	
+	<% @posts.each do |post| %>
+	<div class="card">
+		<div class="card-content">
+			<div class="row">
+				<span class="card-title col s9"><%= post.title %></span> 
+				<div class="col s2 offset-s10" ><%= link_to 'Delete Post', project_post_path(@project, post),method: :delete, data: {confirm: "Are you sure?"} %>
+				</div>
+			</div>
+			<p><%= post.body %></p>	
+			<hr>
+			
+			
+			
+		</div>
+		<div class="card-action">
+		<%= form_for :comment, url: post_comments_path(post) do |f|%>
+			<div class = "row">
+				<div class = "input-field col s8 ">
+					<%= f.label :body, "Comment" %>
+					<%= f.text_field :body %>
+				</div>					
+				<div class="col s2 offset-s10" >			
+   					 <%= f.submit "Comment "%>
+				</div>
+			</div>
+		<% end %>				
+		</div>
+	</div>
+</div>
+	<% end %>
+</div>
+<%= link_to "Back", user_project_path(current_user,@project) %> 
+
+ 
