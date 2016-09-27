@@ -12,7 +12,6 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = @post.comments.new(comment_params)
     if @comment.save!
-      print session[:project_id]
       redirect_to project_posts_path(session[:project_id])
     else
       render 'new'
