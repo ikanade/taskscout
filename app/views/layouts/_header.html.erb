@@ -6,11 +6,12 @@
       <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li>
       	<a href="/notifications">
-      	<i class="material-icons material-red-text left">
-      	announcement
-      	</i>
-      	<span class="new badge light-green"></span>
-      	</a>
+      	<%= link_to(notifications_path) do %>
+      		<i class="material-icons material-red-text left">
+      		announcement
+      		</i>
+      		<span class="new badge light-green"></span>
+      	<% end %>
       </li>
        <li><%= link_to 'New Project', new_user_project_path(current_user)%></li>
        <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete%></li>

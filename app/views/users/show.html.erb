@@ -1,18 +1,7 @@
 <h1>Dashboard</h1>
-<%= form_for Notification.new do |f| %>
-	<%= f.hidden_field :recipient_id, :value => @user.id %>
-	<div>
-		<%= f.label :subject, "Subject" %>
-		<%= f.text_field :subject %>
-	</div>
-	<div>
-	<%= f.label :body, "Body" %>
-		<%= f.text_area :body %>
-	</div>
-	<div>
-		<%= f.submit 'Send a Notification' %>
-	</div>
-<% end %>
-<%= link_to 'Projects', user_projects_path(current_user) %>
-<%= link_to 'Discusions', user_posts_path(current_user) %>
-<%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+<div class="wrapper">
+<aside class="udash-side-bar">
+	<%= link_to 'Projects', user_projects_path(current_user) %>
+	<%= link_to 'Discusions', user_posts_path(current_user) %>
+</aside>
+</div>
