@@ -5,9 +5,9 @@
 		<p><%= @project.description %></p>
 		<ul class="collection with-header">
 			<li class="collection-header"><b>Tasks</b></li>
-			<% @project.tasks.each do |task| -%>
+			<% @project.tasks.each do |task| %>
 			<li class="collection-item">
-				<%= task.title %>
+				<%= link_to task.title,project_task_path(@project,task) %>
 			</li>
 			<% end %>
 		</ul>

@@ -1,4 +1,7 @@
 <h1>Dashboard</h1>
-<%= link_to 'Projects', user_projects_path(current_user) %>
-<%= link_to 'Discusions', user_posts_path(current_user) %>
-<%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+<div class="wrapper">
+<aside class="udash-side-bar">
+	<%= link_to 'Projects', user_projects_path(current_user) %>
+	<%= link_to 'Discusions', user_posts_path(current_user) %>
+</aside>
+</div>

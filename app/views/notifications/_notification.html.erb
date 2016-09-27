@@ -1,0 +1,9 @@
+<div class="card">
+<div class="card-content">
+<div class="card-title"><%= notification.subject %></div>
+
+<p>From <%= link_to notification.sender.name, notification.sender %> <%= time_ago_in_words(notification.created_at) %> ago</p>
+
+<p><%= notification.body %></p>
+</div>
+</div>

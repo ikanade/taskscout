@@ -1,0 +1,9 @@
+<div class="container">
+<h4>Notifications</h4>
+
+<% if @notifications.any? %>
+<%= render :partial => @notifications %>
+<% else %>
+<p>How sad, you have no messages.</p>
+<% end %>
+</div>
