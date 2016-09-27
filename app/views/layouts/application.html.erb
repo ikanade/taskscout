@@ -2,81 +2,28 @@
 <html>
 <head>
 	<title>Pits</title>
-	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
-	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-	<% if user_signed_in? %>
-
-	<script src="http://js.pusher.com/2.0/pusher.min.js"></script>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %> 
 	<script type="text/javascript">
-		$(function() {
-        var pusher = new Pusher('dbf15de75631516d108b');
-        var channel = pusher.subscribe('private-'+<%= current_user.id %>);
-        Pusher.log = function(message) {
-        	if (window.console && window.console.log) {
-        		window.console.log(message);
-        	}
-        };
-
-        channel.bind('new_notification', function(data) {
-        	msg = data.from + ' has sent you a notification: ' + data.subject;
-        	notify(msg);
-        });
-
-      // In DOM alert
-      function dom_notify(msg) {
-      	Materialize.toast(msg,2000);
-      }
-      function notify(msg) {
-			  if (!("Notification" in window)) {
-			  	console.log("This browser does not support desktop notification");
-			  	dom_notify(msg);
-			  }
-			  else if (Notification.permission === "granted") {
-			    var notification = new Notification(msg);
-			  }
-  			else if (
-  				Notification.permission !== 'denied' ||
-  			  Notification.permission === "default") {
-  					Notification.requestPermission(function (permission) {
-            	if (permission === "granted") {
-      						var notification = new Notification(msg);
-      				}
-				    });
-				  }
-			}
-      	// debug msgs
-      	pusher.connection.bind('connecting', function() {
-      		$('div#status').text('Connecting to Pusher...');
-      	});
-      	pusher.connection.bind('connected', function() {
-      		$('div#status').text('Connected to Pusher!');
-      	});
-      	pusher.connection.bind('failed', function() {
-      		$('div#status').text('Connection to Pusher failed :(');
-      	});
-      	channel.bind('subscription_error', function(status) {
-      		$('div#status').text('Pusher subscription_error');
-      	});
-      });
-    </script>
-    <% end %>
-    <%= csrf_meta_tags %>
+		Pusher_config.init(<%= user_signed_in? ? current_user.id : null %>);
+	</script>   
+	<%= csrf_meta_tags %>
 	
-    
+
   </head>
   <body>
   	<% unless current_page?(root_path) -%>
-  	<%= render 'layouts/header' %>
-  	<% flash.each do |message_type, message| %>
-  	<% if message_type == 'danger' || message_type == 'notice' %>
-  	<%= javascript_tag 'data-turbolinks-eval'=>false, defer: 'defer' do -%>
-  	Materialize.toast("<%= message %>", 2000);
-  	<% end -%>
-  	<% end -%>
-  	<% end %>
-  	<% flash.clear if !flash.empty? -%>
+  		<%= render 'layouts/header' %>
+  		<% flash.each do |message_type, message| %>
+  			<% if message_type == 'danger' || message_type == 'notice' %>
+  				<%= javascript_tag 'data-turbolinks-eval'=>false, defer: 'defer' do -%>
+  					Materialize.toast("<%= message %>", 2000);
+  				<% end -%>
+  			<% end -%>
+  		<% end %>
+  		<% flash.clear if !flash.empty? -%>
   	<% end %>
  	<!--<p class="notice"><= notice %></p>%%
  	<p class="alert"><= alert %></p>-->
