@@ -1,0 +1,7 @@
+<h2>Your messages</h2>
+
+<% if @notifications.any? %>
+<%= render :partial => @notifications %>
+<% else %>
+<p>How sad, you have no messages.</p>
+<% end %>

@@ -36,7 +36,6 @@ gem 'devise'
 
 # Materialize-sass gem for material design support
 gem 'materialize-sass'
-
 # For Timeline validations
 gem 'validates_timeliness', '~> 4.0'
 

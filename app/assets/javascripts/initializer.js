@@ -10,5 +10,5 @@ $(document).on('turbolinks:load', function() {
 		ending_top: '10%'
 	});
 	$('select').material_select();
-	console.log("gets in");
+	$(".button-collapse").sideNav();
 });

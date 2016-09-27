@@ -1,0 +1,8 @@
+<div class="message_item">
+<h3><%= notification.subject %></h3>
+
+<p>From <%= notification.sender.name %> <%= time_ago_in_words(notification.created_at) %> ago</p>
+
+<p><%= notification.body %></p>
+
+</div>
