@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   def index
     @project = Project.find(params[:project_id])
     @posts = @project.posts
+    session[:project_id] = params[:project_id]
     # @comments=@post.comments
   end
 

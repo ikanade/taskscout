@@ -1,2 +1,20 @@
-<h1>Tasks#show</h1>
-<p>Find me in app/views/tasks/show.html.erb</p>
+<div class="card">
+	<div class="card-content">
+		<span class="card-title"><%= link_to @task.title %></span>
+		<p> <%= @task.description %> </p>
+		<ul class="collection with-header">
+			<li class="collection-header"><b>Sub Tasks</b></li>
+			
+			<li class="collection-item">
+				
+			</li>
+			
+		</ul>
+	</div>
+	<div class="card-action">
+	<%= link_to 'Add Sub Task', new_project_task_path(@project) %>
+	<%= link_to 'Delete Task', [@project,@task],method: :delete, data: {confirm: "Are you sure?"} %>
+	
+	</div>
+</div>
+
