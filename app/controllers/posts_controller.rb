@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
   def index
-    @user = User.find(current_user)
-    @posts = @user.posts    
     @project = Project.find(params[:project_id])
+    @posts = @project.posts
+    # @comments=@post.comments
   end
 
   def show
@@ -10,14 +10,15 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post=Post.new
+     @project = Project.find(params[:project_id])
+    @post=@project.posts.new
   end
 
   def create
     @project = Project.find(params[:project_id])
     @post = @project.posts.new(post_params)
     if @post.save!
-      redirect_to project_posts_path
+      redirect_to project_posts_path(@project)
     else
       render 'new'
     end
