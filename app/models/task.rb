@@ -5,7 +5,7 @@ class Task < ActiveRecord::Base
   has_many :comments, as: :commentable
   has_many :labels, as: :labelable
   acts_as_followable
-
+  after_save :set_user_as_follower , if: :user_id_changed?
   
   validates :taskable_type , presence: true, inclusion: { within: %w(Project Task) }
   validates_datetime :due_date, after: :started_at 
@@ -14,5 +14,17 @@ class Task < ActiveRecord::Base
   validates :status, presence: true,inclusion: { in: %w(finished active inactive none) }
   validates :progress, presence: true ,
                  numericality: { only_integer: true }, length: {maximum: 3}
+
+  private
+  	def set_user_as_follower
+			followable = Follow.create(
+  			follower_id:user.id,
+  			follower_type:user.class.to_s,
+  			followable_id:self.id,
+  			followable_type:'Task');
+			print follow.inspect
+  		#val = user.follow(followable)
+  		print val.inspect
+  	end
 
 end
