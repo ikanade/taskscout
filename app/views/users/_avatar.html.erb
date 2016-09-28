@@ -1,5 +1,12 @@
-<div class="avatar-circle circle">
-	<span class= "initials" >
-		<%= user.initials -%>
-	</span>
-</div>
+<% if !user.nil? %>
+	<%= link_to user_path(user), title: user.name do %>
+	<div class="avatar-circle circle">
+		<span class= "initials" >
+			<%= user.initials -%>
+		</span>
+	</div>
+	<% end %>
+<% else %>
+	<div class="avatar-circle circle">
+	</div>
+<% end %>
