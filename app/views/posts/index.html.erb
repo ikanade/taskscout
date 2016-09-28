@@ -23,6 +23,11 @@
 				<li class="collection-item avatar">
 					<%= render 'users/avatar', user: comment.user %>
 					<span><%= comment.body %></span>
+					<%	if comment.user == current_user %>
+					
+					<%= link_to "Delete", post_comment_path(post, comment), method: :delete, data: {confirm: "Are you sure?"},  class: "right" %> 
+						<% end %>
+
 				</li>
 				<% end %>
 				<li class="collection-item">

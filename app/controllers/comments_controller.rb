@@ -29,7 +29,12 @@ class CommentsController < ApplicationController
   def update
   end
 
-  def delete
+  def destroy
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.find(params[:id])
+    if @comment.destroy  
+      redirect_to project_posts_path(session[:project_id])
+    end
   end
 
   private

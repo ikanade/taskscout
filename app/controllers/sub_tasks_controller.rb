@@ -1,8 +1,8 @@
 class SubTasksController < ApplicationController
   before_action :set_task ,only: [:show,:new,:destroy]
   def index
-    @project = Project.find(params[:project_id])
-    @task = @project.tasks.find(params[:task_id])
+   
+    @task = Task.find(params[:task_id])
     @subtasks = @task.tasks
   end
 
@@ -14,7 +14,7 @@ class SubTasksController < ApplicationController
     @task = Task.find(params[:task_id])
     @subtask = @task.tasks.new(task_params)
     if @subtask.save!
-      redirect_to user_project_path(current_user,@project)
+      redirect_to task_task_path(@task,@subtask)
     else
       render 'new'
     end
