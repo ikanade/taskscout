@@ -1,6 +1,7 @@
 GIT
   remote: https://github.com/ishan-amura/acts_as_follower.git
-  revision: 6a0a6667e4eed08a6c2c85635f0954856d466462
+  revision: d3618c972d599882ff8586974de19c7b8570419c
+  branch: master
   specs:
     acts_as_follower (0.2.1)
       activerecord (>= 4.0)

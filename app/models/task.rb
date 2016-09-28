@@ -17,14 +17,7 @@ class Task < ActiveRecord::Base
 
   private
   	def set_user_as_follower
-			followable = Follow.create(
-  			follower_id:user.id,
-  			follower_type:user.class.to_s,
-  			followable_id:self.id,
-  			followable_type:'Task');
-			print follow.inspect
-  		#val = user.follow(followable)
-  		print val.inspect
+  		user.follow(self)
   	end
 
 end

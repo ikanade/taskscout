@@ -1,9 +1,9 @@
 class Follow < ActiveRecord::Base
-	attr_accessor :followable_id, :followable_type, :follower_id, :follower_type
+
   extend ActsAsFollower::FollowerLib
   extend ActsAsFollower::FollowScopes
 
-  # NOTE: Follows belong to the "followable" interface, and also to followers
+  # NOTE: Follows belong to the "followable" and "follower" interface
   belongs_to :followable, :polymorphic => true
   belongs_to :follower,   :polymorphic => true
 
