@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :comments
   has_many :follows
+  has_many :notifications, foreign_key: :recipient_id
+
   validates :name, presence: true, format:{ with: /\A[a-z ]+\z/i }
 
   def set_initials

@@ -1,3 +1,5 @@
+require 'pusher'
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -43,4 +45,10 @@ Rails.application.configure do
 
   # default url
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  # Pusher Configuration
+	Pusher.app_id = '252472'
+	Pusher.key = 'dbf15de75631516d108b'
+	Pusher.secret = '51411fd1ed9ee6e192c8'
+
 end

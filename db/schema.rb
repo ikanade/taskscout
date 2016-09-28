@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160926095927) do
+ActiveRecord::Schema.define(version: 20160926140527) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "body"
@@ -45,6 +45,16 @@ ActiveRecord::Schema.define(version: 20160926095927) do
   end
 
   add_index "labels", ["labelable_type", "labelable_id"], name: "index_labels_on_labelable_type_and_labelable_id"
+
+  create_table "notifications", force: :cascade do |t|
+    t.string   "subject"
+    t.text     "body"
+    t.integer  "recipient_id"
+    t.integer  "sender_id"
+    t.string   "category"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "posts", force: :cascade do |t|
     t.string   "title"

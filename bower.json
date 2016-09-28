@@ -1,0 +1,20 @@
+{
+  "name": "pull-it-together",
+  "homepage": "https://github.com/ishan-amura/pull-it-together",
+  "authors": [
+    "Ishan Kanade <ishan@amuratech.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "pusher-websocket-iso": "pusher#^3.2.1"
+  }
+}
