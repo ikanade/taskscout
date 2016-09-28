@@ -3,7 +3,6 @@ class PostsController < ApplicationController
     @project = Project.find(params[:project_id])
     @posts = @project.posts
     session[:project_id] = params[:project_id]
-    # @comments=@post.comments
   end
 
   def show
@@ -18,6 +17,7 @@ class PostsController < ApplicationController
   def create
     @project = Project.find(params[:project_id])
     @post = @project.posts.new(post_params)
+    @post.user = current_user
     if @post.save!
       redirect_to project_posts_path(@project)
     else
