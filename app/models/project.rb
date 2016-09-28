@@ -7,7 +7,8 @@ class Project < ActiveRecord::Base
 	alias_attribute :members, :users
 	before_save :add_creator_to_members, if: :user_id_changed?
 	has_many :posts
-	
+  acts_as_followable
+
 
 	validates :title,  presence: true, length: {maximum: 200}
 	validates :status, presence: true, format:{ with: /\A[a-z]+\z/i }, on: :update

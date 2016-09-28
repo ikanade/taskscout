@@ -5,6 +5,8 @@ class Task < ActiveRecord::Base
   has_many :comments, as: :commentable
   has_many :labels, as: :labelable
   acts_as_followable
+
+  
   validates :taskable_type , presence: true, inclusion: { within: %w(Project Task) }
   validates_datetime :due_date, after: :started_at 
   validates :title,  presence: true, length: {maximum: 200}
@@ -12,5 +14,5 @@ class Task < ActiveRecord::Base
   validates :status, presence: true,inclusion: { in: %w(finished active inactive none) }
   validates :progress, presence: true ,
                  numericality: { only_integer: true }, length: {maximum: 3}
-  
+
 end
