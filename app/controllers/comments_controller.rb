@@ -1,8 +1,12 @@
 class CommentsController < ApplicationController
   def index
+    @post = Post.find(params[:post_id])
+   
+    @comments=@posts.comments
   end
 
   def show
+
   end
 
   def new
@@ -11,6 +15,7 @@ class CommentsController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.new(comment_params)
+    @comment.user = current_user
     if @comment.save!
       redirect_to project_posts_path(session[:project_id])
     else
