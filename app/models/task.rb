@@ -2,7 +2,7 @@ class Task < ActiveRecord::Base
   belongs_to :taskable, polymorphic: true
   has_many :tasks, as: :taskable
   belongs_to :user
-  has_many :comments
+  has_many :comments, as: :commentable
   has_many :labels, as: :labelable
   acts_as_followable
   validates :taskable_type , presence: true, inclusion: { within: %w(Project Task) }
