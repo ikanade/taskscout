@@ -11,8 +11,8 @@ class User < ActiveRecord::Base
   has_many :tasks, as: :taskable
   has_many :posts
   has_many :comments
-  has_many :follows
   has_many :notifications, foreign_key: :recipient_id
+  acts_as_follower
 
   validates :name, presence: true, format:{ with: /\A[a-z ]+\z/i }
 
