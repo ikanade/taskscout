@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  get 'task_comments/create'
+
   root to: "home#index"
   devise_for :users, module: :users
   post 'pusher/auth' => 'pusher#auth'
@@ -18,7 +20,7 @@ Rails.application.routes.draw do
     resources :comments  
   end
   resources :tasks, only: [] do
-    resources :comments  
+    resources :comments , controller: :task_comments 
   end
   resources :notifications
   get 'projects/:id/users/new' => 'project_users#new', as: :new_project_user
