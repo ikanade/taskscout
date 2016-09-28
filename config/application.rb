@@ -25,5 +25,6 @@ module Pits
 
     # Quite asset pipeline logs (uncomment to disable it)
     # config.quiet_assets = false
+
   end
 end
