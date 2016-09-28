@@ -9,6 +9,7 @@ class TasksController < ApplicationController
   end
 
   def new
+    @task = @project.tasks.new()
   	@task[:started_at] = Time.now()
   end
 

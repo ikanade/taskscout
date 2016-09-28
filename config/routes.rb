@@ -1,6 +1,20 @@
 Rails.application.routes.draw do
 
 
+  get 'sub_tasks/index'
+
+  get 'sub_tasks/create'
+
+  get 'sub_tasks/new'
+
+  get 'sub_tasks/destroy'
+
+  get 'sub_tasks/update'
+
+  get 'sub_tasks/edit'
+
+  get 'sub_tasks/show'
+
   get 'task_comments/create'
 
   root to: "home#index"
@@ -21,6 +35,9 @@ Rails.application.routes.draw do
   end
   resources :tasks, only: [] do
     resources :comments , controller: :task_comments 
+  end
+  resources :tasks, only: [] do 
+    resources :tasks, controller: :sub_tasks 
   end
   resources :notifications
   get 'projects/:id/users/new' => 'project_users#new', as: :new_project_user
