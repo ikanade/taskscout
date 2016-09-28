@@ -16,6 +16,14 @@ class TaskCommentsController < ApplicationController
     end 
   end
 
+  def destroy
+    @task = Task.find(params[:task_id])
+    @comment = @task.comments.find(params[:id])
+    if @comment.destroy  
+      redirect_to project_posts_path(session[:project_id])
+    end
+  end
+
   private
    def comment_params
       params.require(:comment).permit(:body)

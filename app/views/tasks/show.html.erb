@@ -9,6 +9,9 @@
 				<li class="collection-item avatar">
 					<%= render 'users/avatar', user: comment.user %>
 					<span><%= comment.body %></span>
+					<%	if comment.user == current_user %>
+					<%= link_to "Delete", task_comment_path(task, comment), method: :delete, data: {confirm: "Are you sure?"},  class: "right" %> 
+						<% end %>
 				</li>
 				<% end %>
 				<li class="collection-item">
@@ -28,9 +31,9 @@
 			
 	</div>
 	<div class="card-action">
-	<%= link_to 'Add Sub Task', sub_task_new_path(task) %>
-	
-	<% end %>
-	</div>
-</div>
+	<%= link_to 'Add Sub Task', new_task_task_path(task) %>
 
+	</div>
+	<% end %>
+</div>
+	

@@ -11,8 +11,7 @@
 	<div class="card">
 		<div class="card-content">
 			<div class="row">
-				<span class="card-title col s9"><%= post.title %></span> 
-						
+				<span class="card-title col s9"><%= post.title %></span> 						
 				<div class="col s2 offset-s10" >
 					<%	if post.user == current_user %>
 					<%= link_to 'Delete Post', project_post_path(@project, post),method: :delete, data: {confirm: "Are you sure?"} %>
