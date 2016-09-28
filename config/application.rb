@@ -22,5 +22,8 @@ module Pits
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # Quite asset pipeline logs (uncomment to disable it)
+     config.quiet_assets = false
   end
 end
