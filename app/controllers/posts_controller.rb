@@ -1,6 +1,9 @@
 class PostsController < ApplicationController
   def index
-    @posts=Post.all
+    @project = Project.find(params[:project_id])
+    @posts = @project.posts
+    session[:project_id] = params[:project_id]
+    # @comments=@post.comments
   end
 
   def show
@@ -8,22 +11,26 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post=Post.new
+     @project = Project.find(params[:project_id])
+    @post=@project.posts.new
   end
 
   def create
-    @post = Post.new(post_params)
-    if @post.save
-      redirect_to current_user
+    @project = Project.find(params[:project_id])
+    @post = @project.posts.new(post_params)
+    if @post.save!
+      redirect_to project_posts_path(@project)
     else
       render 'new'
     end
   end
 
-  def delete
+  def destroy
+    @project = Project.find(params[:project_id])
     @post = Post.find(params[:id])
-    @post.destroy  
-    redirect_to posts_path
+    if @post.destroy  
+      redirect_to project_posts_path
+    end
   end
 private
     def post_params

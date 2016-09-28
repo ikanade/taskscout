@@ -3,7 +3,6 @@
 <head>
 	<title>Pits</title>
 	<%= render 'layouts/includes' %>
-	
 </head>
 <body>
   <% unless current_page?(root_path) -%>
@@ -28,7 +27,11 @@
 
  	<div id="status"></div>
 
- 	<div id="notify_api"><button type="button" id="ask_notify_permission">Enable Webkit Notifications</button></div>
+ 	<div id="notify_api">
+ 		<button type="button" id="ask_notify_permission">
+ 			Enable Webkit Notifications
+ 		</button>
+ 	</div>
  	<% end %>
  </body>
  </html>

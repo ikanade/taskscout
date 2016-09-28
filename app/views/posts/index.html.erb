@@ -1,8 +1,50 @@
-<h1>All Posts</h1>
-<%= link_to 'New Post', new_user_post_path %> 
 
-  <% @posts.each do |post| %>
-  
-    <center> <bold> <%= post.title %></bold><br />
-      <%= post.body %><br /></center>
-      <% end %>
+<%= link_to 'New Post', new_project_post_path %> 
+	<div class="row">
+	<div class="col s12">
+		<%= current_user.name + "'s" %> Posts
+	</div>
+	</div>
+<div class="container">
+	
+	<% @posts.each do |post| %>
+	<div class="card">
+		<div class="card-content">
+			<div class="row">
+				<span class="card-title col s9"><%= post.title %></span> 
+				<div class="col s2 offset-s10" ><%= link_to 'Delete Post', project_post_path(@project, post),method: :delete, data: {confirm: "Are you sure?"} %>
+				</div>
+			</div>
+				
+			<p><%= post.body %></p>	
+			<ul class="collection with-header">
+				<li class="collection-header"><b>Comments</b></li>
+				<% post.comments.each do |comment| %>
+				<li class="collection-item avatar">
+					<%= render 'users/avatar', user: comment.user %>
+					<span><%= comment.body %></span>
+				</li>
+				<% end %>
+				<li class="collection-item">
+					<div>
+						<%= form_for :comment, url: post_comments_path(post) do |f|%>
+							<div class = "input-field container z-depth-0">
+								<%= f.text_field :body, placeholder:"Comment",class:"left col s4" %>
+								<%= button_tag(type: "submit", class: "no-btn right") do %>
+    						<i class="material-icons small">send</i>
+								<% end %>
+							</div>		
+						<% end %>
+					</div>
+				</li>
+
+			</ul>
+			
+		</div>
+	</div>
+</div>
+	<% end %>
+</div>
+<%= link_to "Back", user_project_path(current_user,@project) %> 
+
+ 

@@ -4,6 +4,8 @@ class TasksController < ApplicationController
   end
 
   def show
+   @project = Project.find(params[:project_id])
+    @task = @project.tasks.find(params[:id])
   end
 
   def new
@@ -26,7 +28,11 @@ class TasksController < ApplicationController
   def update
   end
 
-  def delete
+  def destroy
+    @task = Task.find_by(user_id:params[:user_id],id:params[:id])
+    if @task.destroy
+      redirect_to user_projects_path(params[:user_id])
+    end
   end
 
   private
