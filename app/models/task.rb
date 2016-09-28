@@ -2,7 +2,7 @@ class Task < ActiveRecord::Base
   belongs_to :taskable, polymorphic: true
   has_many :tasks, as: :taskable
   belongs_to :user
-  has_many :comments
+  has_many :comments, as: :commentable
   has_many :labels, as: :labelable
   has_many :follows, as: :followable
 

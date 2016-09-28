@@ -4,8 +4,8 @@ class TasksController < ApplicationController
   end
 
   def show
-   @project = Project.find(params[:project_id])
-    @task = @project.tasks.find(params[:id])
+    @project = Project.find(params[:project_id])
+    @tasks = @project.tasks
   end
 
   def new
@@ -38,7 +38,6 @@ class TasksController < ApplicationController
   private
   	def set_project_and_task
   		@project= Project.find(params[:project_id])
-  		@task = @project.tasks.new()
   	end
   	def task_params
     	data = params.require(:task).permit(:title,:description,:due_date,:started_at,:priority)

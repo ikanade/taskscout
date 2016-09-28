@@ -1,15 +1,31 @@
 <div class="card">
 	<div class="card-content">
-		<span class="card-title"><%= link_to @task.title %></span>
-		<p> <%= @task.description %> </p>
+	<% @tasks.each do |task| %>
+		<span class="card-title"><%= link_to task.title %></span>
+		<p> <%= task.description %> </p>
 		<ul class="collection with-header">
-			<li class="collection-header"><b>Sub Tasks</b></li>
-			
-			<li class="collection-item">
-				
-			</li>
-			
-		</ul>
+				<li class="collection-header"><b>Comments</b></li>
+				<% task.comments.each do |comment| %>
+				<li class="collection-item avatar">
+					<%= render 'users/avatar', user: comment.user %>
+					<span><%= comment.body %></span>
+				</li>
+				<% end %>
+				<li class="collection-item">
+					<div>
+						<%= form_for :comment, url: task_comments_path(task) do |f|%>
+							<div class = "input-field container z-depth-0">
+								<%= f.text_field :body, placeholder:"Comment",class:"left col s4" %>
+								<%= button_tag(type: "submit", class: "no-btn right") do %>
+    						<i class="material-icons small">send</i>
+								<% end %>
+							</div>		
+						<% end %>
+					</div>
+				</li>
+
+			</ul>
+			<% end %>
 	</div>
 	<div class="card-action">
 	<%= link_to 'Add Sub Task', new_project_task_path(@project) %>
