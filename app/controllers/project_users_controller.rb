@@ -7,7 +7,7 @@ class ProjectUsersController < ApplicationController
 
   def index
     @project = Project.find(params[:id])
-    @task = @project.tasks.first
+    @task = @project.tasks
     @users = @project.users
   end
 
