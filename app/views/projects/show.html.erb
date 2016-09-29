@@ -18,7 +18,7 @@
 	<%= link_to 'Add task', new_project_task_path(@project) %>
 	<%= link_to 'All task', project_tasks_path(@project) %>
 	<%	if @project.creator == current_user %>
-		<%= link_to 'Edit Project', edit_user_project_path(@project.creator,@project) %>
+		<%= link_to 'Edit Project', edit_user_project_path(current_user,@project) %>
 	<% end %>
 	<%= link_to 'Discusions', project_posts_path(@project) %>
 	</div>

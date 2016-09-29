@@ -1,11 +1,11 @@
-<h1>Create a new project</h1>
+<h1>Update project</h1>
 <div class="row">
 <div class="container col s6 offset-s3">
-<%= form_for([current_user,@project]) do |f|%>
+<%= form_for @project, url: user_project_path(current_user,@project), method: :patch do |f| %>
 	<div class="row">
 		<div class="input-field col s6">
 			<%= f.label :title, "Title" %>
-			<%= f.text_field :title %>
+			<%= f.text_field :title  %>
 		</div>
 		<div class="input-field col s6">
 				<%= f.label :user_id, "Creator",class:"active" %>
@@ -30,7 +30,7 @@
 	</div>
 	<div class="row">
 		<div class="input-field center">
-			<%= f.submit 'Create', class:"btn cyan accent-4 waves-effect waves-light" %>
+			<%= f.submit 'Update', class:"btn cyan accent-4 waves-effect waves-light" %>
 		</div>
 	</div>
 <% end %>
