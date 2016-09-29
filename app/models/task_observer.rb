@@ -1,6 +1,6 @@
 class TaskObserver < ActiveRecord::Observer
 	def after_save(task)
-		print "observer gets called for #{task.inspect}"
+		print "has changes #{task.changes}"
 		task.followers.each do |follower|
 			notification_body = 	{
 				resource_id: task.id,
@@ -11,7 +11,6 @@ class TaskObserver < ActiveRecord::Observer
 				}
 			Pusher.trigger("private-#{follower.id}" ,'new_notification',notification_body)
 			Notification.create(notification_body)
-			puts "Task pusher new_notification called as well"
 		end
 	end
 	def due_when(date)

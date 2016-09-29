@@ -6,11 +6,11 @@ function(user_id) {
 		'private-'+user_id
 	);
 
-	Pusher.log = function(message) {
+	/*Pusher.log = function(message) {
 		if (window.console && window.console.log) {
 			window.console.log(message);
 		}
-	};
+	};*/
 
 	channel.bind('new_notification', function(data){
 		notify(data);

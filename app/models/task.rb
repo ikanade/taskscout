@@ -18,8 +18,7 @@ class Task < ActiveRecord::Base
 
   private
   	def set_user_as_follower
-  		puts "gets called"
-  		user.follow(self)
+  		self.user.follow(self)
   	end
   	def set_project_creator_as_follower
   		if self.taskable_type == 'Project'

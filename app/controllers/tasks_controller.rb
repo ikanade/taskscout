@@ -27,6 +27,15 @@ class TasksController < ApplicationController
   end
 
   def update
+  	puts
+  	print params 
+  	puts
+  	@task = Task.find(params[:id])
+  	print update_params
+  	if @task.update_attributes(update_params)
+  		puts "does the update"
+  		redirect_to project_task_path(params[:project_id],@task)
+  	end
   end
 
   def destroy
@@ -45,5 +54,8 @@ class TasksController < ApplicationController
   		due_date = data[:due_date] +" "+Time.now.strftime("%H:%M:%S %z")
   		data.store(:due_date,due_date)
   		data
+		end
+		def update_params
+			params.require(:task).permit(:title,:description,:user_id,:due_date,:priority)
 		end
 end
