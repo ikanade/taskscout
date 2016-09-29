@@ -6,6 +6,7 @@ class Task < ActiveRecord::Base
   has_many :labels, as: :labelable
   acts_as_followable
   after_save :set_user_as_follower , if: :user_id_changed?
+  after_create :set_project_creator_as_follower
   
   validates :taskable_type , presence: true, inclusion: { within: %w(Project Task) }
   validates_datetime :due_date, after: :started_at 
@@ -17,7 +18,27 @@ class Task < ActiveRecord::Base
 
   private
   	def set_user_as_follower
+  		puts "gets called"
   		user.follow(self)
   	end
+  	def set_project_creator_as_follower
+  		if self.taskable_type == 'Project'
+  			project = Project.find(self.taskable_id)
+  			project.creator.follow(self)
+  		end
+  	end
+=begin 	
+ def notify_followers
+  		followers = self.followers
+  		followers.each do |user| 
+  			Pusher['private-'+user.id].trigger('new_notification',
+				 { 
+				 	from: 'Task:', 
+				 	subject: "Task: has been updated",
+				 	body: self.title })
+
+  		end
+  	end
+=end
 
 end

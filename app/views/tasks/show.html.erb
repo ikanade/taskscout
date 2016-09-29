@@ -12,7 +12,6 @@
 		</ul>
 	</div>
 	<div class="card-action">
-	<%= link_to 'Add Sub Task', new_project_task_path(@project) %>
 	<%= link_to 'Delete Task', [@project,@task],method: :delete, data: {confirm: "Are you sure?"} %>
 	
 	</div>

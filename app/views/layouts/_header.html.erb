@@ -5,12 +5,16 @@
 
       <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li>
-      	<a href="/notifications">
       	<%= link_to(notifications_path) do %>
       		<i class="material-icons material-red-text left">
       		announcement
       		</i>
+      		<% if new_notifications? %>
       		<span class="new badge light-green"></span>
+      		<% else %>
+      		<span class="new-notification"></span>
+      		<% end %>
+
       	<% end %>
       </li>
        <li><%= link_to 'New Project', new_user_project_path(current_user)%></li>

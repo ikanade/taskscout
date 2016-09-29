@@ -32,7 +32,7 @@ body .extruded {
     font-weight: normal; 
   }
 
-@mixin avatar($size) {
+@mixin avatar($size,$top,$font) {
     width: $size;
     height: $size;
     $key: random( length($avatar-colors) );
@@ -46,17 +46,17 @@ body .extruded {
 
     .initials {
       position: relative;
-      top: $size*0.25;
-      font-size: $size*0.5;
+      top: $size*$top;
+      font-size: $size*$font;
       line-height: $size*0.5;
       color: #fff;
       font-weight: bold;
     }
 }
 
-.avatar-circle      { @include avatar(45px); }
-.avatar-circle-sm   { @include avatar(25px); }
-.avatar-circle-lg   { @include avatar(250px); }
+.avatar-circle     { @include avatar(45px,0.25,0.5); }
+.avatar-circle-sm   { @include avatar(25px,0.16,0.72); }
+.avatar-circle-lg   { @include avatar(250px,0.25,0.5); }
 /* Forms */
 #error_explanation {
 	color: red;

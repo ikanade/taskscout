@@ -1,14 +1,15 @@
 class TasksController < ApplicationController
-	before_action :set_project_and_task ,only: [:edit,:update,:show,:new,:delete]
+	before_action :set_project ,only: [:edit,:update,:show,:new,:delete]
   def index
   end
 
   def show
-   @project = Project.find(params[:project_id])
+    @project = Project.find(params[:project_id])
     @task = @project.tasks.find(params[:id])
   end
 
   def new
+  	@task = @project.tasks.new()
   	@task[:started_at] = Time.now()
   end
 
@@ -36,14 +37,13 @@ class TasksController < ApplicationController
   end
 
   private
-  	def set_project_and_task
+  	def set_project
   		@project= Project.find(params[:project_id])
-  		@task = @project.tasks.new()
   	end
   	def task_params
     	data = params.require(:task).permit(:title,:description,:due_date,:started_at,:priority)
   		due_date = data[:due_date] +" "+Time.now.strftime("%H:%M:%S %z")
   		data.store(:due_date,due_date)
   		data
-  	end
+		end
 end
