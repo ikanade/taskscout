@@ -2,7 +2,7 @@
 	<div class="card-content">
 		<span class="card-title"><%= link_to @task.title, project_task_path(@project,@task) %></span>
 		<%	if @task.user == current_user %>
-					<%= link_to 'Delete Task', project_task_path(@project, @task),method: :delete, data: {confirm: "Are you sure?"},class: "right" %>
+					<%= link_to 'Delete Task', project_task_path(@project,@task),method: :delete, data: {confirm: "Are you sure?"},class: "right" %>
 					<% end %>
 		<p><%= @task.description %></p>
 		<ul class="collection with-header">
@@ -32,6 +32,7 @@
 	</div>
 	<div class="card-action">
 	<%= link_to 'Add Sub Task', new_task_task_path(@task) %>
+	<%= link_to 'Assign member', all_project_users_path(@project) %>
 	</div>
 </div>
 

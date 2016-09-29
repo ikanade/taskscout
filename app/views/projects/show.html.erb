@@ -15,6 +15,7 @@
 	<div class="card-action">
 
 	<%= link_to 'Add task', new_project_task_path(@project) %>
+	<%= link_to 'All task', project_tasks_path(@project) %>
 	<%= link_to 'Delete Project', [@project.creator,@project],method: :delete, data: {confirm: "Are you sure?"} %>
 	<%= link_to 'Discusions', project_posts_path(@project) %>
 	</div>

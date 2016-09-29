@@ -26,17 +26,21 @@ class TasksController < ApplicationController
   	end
   end
 
-  def edit
-  end
-
-  def update
+  def update     
+    @project = Project.find(params[:project_id])
+    user_id = params[:user_id]
+    task = Project.find(params[:project_id]).tasks.find(params[:id])
+    task.user_id = params[:user_id]
+    if task.save
+        redirect_to project_task_path(@project, task) 
+    end
   end
 
   def destroy
     @project = Project.find(params[:project_id])
     @task = @project.tasks.find(params[:id])
     if @task.destroy
-      redirect_to project_task_path(@project,@task)
+      redirect_to project_tasks_path(@project)
     end
   end
 
@@ -47,7 +51,13 @@ class TasksController < ApplicationController
   	def task_params
     	data = params.require(:task).permit(:title,:description,:due_date,:started_at,:priority)
   		due_date = data[:due_date] +" "+Time.now.strftime("%H:%M:%S %z")
-  		data.store(:due_date,due_date)
+      data.store(:due_date,due_date) 	
   		data
   	end
+    def task_update_params
+
+        task = Project.find(params[:project_id]).tasks.find(params[:id])
+        task.user_id = params[:user_id]
+        task.save
+    end
 end

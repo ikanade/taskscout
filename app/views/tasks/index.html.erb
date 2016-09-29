@@ -1,9 +1,10 @@
+
 <% @tasks.each do |task| %>
 <div class="card">
 	<div class="card-content">
 		<span class="card-title"><%= task.title  %></span> 	
 			<%	if task.user == current_user %>
-					<%= link_to 'Delete Post', project_task_path(@project, task),method: :delete, data: {confirm: "Are you sure?"},class: "right" %>
+					<%= link_to 'Delete Task', project_task_path(@project, task),method: :delete, data: {confirm: "Are you sure?"},class: "right" %>
 					<% end %>
 			<p> <%= task.description %> </p>
 			<ul class="collection with-header">
