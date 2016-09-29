@@ -20,8 +20,19 @@ class SubTasksController < ApplicationController
     end
   end
 
-  def update     
-   
+  def edit
+    @task = Task.find(params[:task_id])
+    @subtask = @task.tasks.find(params[:id])
+  end
+
+  def update   
+    @task = Task.find(params[:task_id])
+    @subtask = @task.tasks.find(params[:id])
+    if @subtask.update(task_params)
+        redirect_to task_tasks_path(@task)
+    else
+        render 'edit'
+    end
   end
 
   def new
