@@ -14,10 +14,14 @@ class SubTasksController < ApplicationController
     @task = Task.find(params[:task_id])
     @subtask = @task.tasks.new(task_params)
     if @subtask.save!
-      redirect_to task_task_path(@task,@subtask)
+      redirect_to task_tasks_path(@task)
     else
       render 'new'
     end
+  end
+
+  def update     
+   
   end
 
   def new
@@ -26,9 +30,10 @@ class SubTasksController < ApplicationController
   end
 
   def destroy
-    @task = Task.find_by(user_id:params[:user_id],id:params[:id])
-    if @task.destroy
-      redirect_to user_projects_path(params[:user_id])
+    @task = Task.find(params[:task_id])
+    @subtask = @task.tasks.find(params[:id])
+    if @subtask.destroy
+      redirect_to task_tasks_path(@task)
     end
   end
 
