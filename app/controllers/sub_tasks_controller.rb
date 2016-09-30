@@ -1,7 +1,6 @@
 class SubTasksController < ApplicationController
   before_action :set_task ,only: [:show,:new,:destroy]
   def index
-   
     @task = Task.find(params[:task_id])
     @subtasks = @task.tasks
   end
@@ -28,7 +27,7 @@ class SubTasksController < ApplicationController
   def update   
     @task = Task.find(params[:task_id])
     @subtask = @task.tasks.find(params[:id])
-    if @subtask.update(task_params)
+    if @subtask.update(update_params)
         redirect_to task_tasks_path(@task)
     else
         render 'edit'
@@ -53,10 +52,13 @@ class SubTasksController < ApplicationController
       @task = Task.find(params[:task_id])
     end
     def task_params
-      data = params.require(:task).permit(:title,:description,:due_date,:started_at,:priority)
+      data = params.require(:task).permit(:title,:description,:due_date,:started_at,:priority,:status,:progress)
       due_date = data[:due_date] +" "+Time.now.strftime("%H:%M:%S %z")
       data.store(:due_date,due_date)
       data
+    end
+    def update_params
+      params.require(:subtask).permit(:title,:description,:due_date,:started_at,:priority,:status,:progress)
     end
 
 end

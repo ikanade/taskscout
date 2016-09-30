@@ -3,8 +3,6 @@ class TaskCommentsController < ApplicationController
   	@tasks = Task.find(params[:task_id])  
     @comments=@tasks.comments
   end
-  def index
-  end
   def create
   	@task = Task.find(params[:task_id])
     @comment = @task.comments.new(comment_params)

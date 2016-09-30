@@ -3,16 +3,16 @@
 	<div class="card-content">
 	<div class="progress" style="height: 20px;">
       	<div class="determinate" style='width: <%= @task.progress %>%;'>
-      		<div class="green-text" style="float:right;margin-right: -20px;">
+      		<div class="green-text" style="float:right;margin-right: -30px;">
       			<% if !@task.progress.nil? %>
-      			<%= @task.progress %>%
+      					<%= @task.progress %>%
       			<% else %>
       			0%
       			<% end %>
       		</div>
       	</div>
   		</div>
-		<span class="card-title left"><%= link_to @task.title %></span>
+		<span class="card-title left"><%= link_to @task.title  %></span>
 		<button class="dropdown-button no-btn card-title right" data-activates="dropdown1">
 			<% if @task.user %>
 			<div class="chip">
@@ -52,7 +52,8 @@
 		</ul>
 	</div>
 	<div class="card-action">
-		<%= link_to 'Add Sub Task', new_task_task_path(@task) %>
+		<%= link_to 'Add SubTask', new_task_task_path(@task) %>
+		<%= link_to 'All SubTask', task_tasks_path(@task) %>
 		<%	if @task.user == current_user %>	
 		<%= link_to 'Edit Task', edit_project_task_path(@project,@task) %>	
 		<%= link_to 'Delete Task', project_task_path(@project,@task),method: :delete, data: {confirm: "Are you sure?"},class: "right" %>

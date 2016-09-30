@@ -8,7 +8,12 @@ class TasksController < ApplicationController
   def show
     @project = Project.find(params[:project_id])
     @task = @project.tasks.find(params[:id])
-     @subtask  = @task.tasks
+    @subtasks  = @task.tasks
+    @addition_progress = 0
+    @subtasks.each do |subtask|
+      @addition_progress = @addition_progress + subtask.progress 
+    end 
+     @task.progress = @addition_progress / @subtasks.count 
   end
 
   def new
