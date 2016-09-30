@@ -80,3 +80,24 @@ body .extruded {
 .clearfix {
 	clear:both;
 }
+.circular-button{
+	width:35px;
+	height:35px;
+  display: inline-block;
+}
+.dash-border {
+	border: 1px dashed color('grey','base');
+	border-radius:50%;
+	padding:5px;
+	box-sizing: border-box; 
+}
+
+.icon-hover:hover {
+	border: 2px solid color('light-blue','base');
+	color: color('light-blue','base');
+	margin-top: -1px;
+	margin-left: -1px;
+	box-sizing: border-box; 
+	cursor: pointer;
+	transition: 200ms color,200ms border-color;
+}
