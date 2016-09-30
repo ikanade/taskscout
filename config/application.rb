@@ -25,7 +25,7 @@ module Pits
 
 
     # Quiet asset pipeline logs (uncomment to disable it)
-     config.quiet_assets = false
+    # config.quiet_assets = false
 
     # By default list of parent classes includes only `[ApplicationRecord, ActiveRecord::Base]`.
 

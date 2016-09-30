@@ -32,11 +32,9 @@ class TasksController < ApplicationController
   end
 
   def update
-    @project = Project.find(params[:project_id])
-  	@task = @project.tasks.find(params[:id])
-  	print update_params
+  	@task = Task.find(params[:id])
   	if @task.update_attributes(update_params)
-  		redirect_to project_task_path(@project,@task)
+  		redirect_to project_task_path(params[:project_id],@task)
   	end
   end
 
