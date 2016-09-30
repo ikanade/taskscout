@@ -9,9 +9,17 @@
 			<% @project.tasks.each do |task| %>
 			<li class="collection-item">
 				<%= link_to task.title,project_task_path(@project,task) %>
+				<div class="secondary-content">
+					<% if !task.followers.empty?%>
+					<span class="left">Followers</span>
+					<% end %>
+					<% task.followers.each do |follower|%>
+						<span class="left" style="margin-left: 1rem;"><%= render 'users/avatar', user: follower, size: '-sm' %></span>
+					<% end %>
+ 				</div>
 			</li>
 			<% end %>
-		</ul>
+		</ul> 
 	</div>
 	<div class="card-action">
 

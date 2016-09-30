@@ -23,9 +23,14 @@ module Pits
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
-    # Quite asset pipeline logs (uncomment to disable it)
-    # config.quiet_assets = false
+
+    # Quiet asset pipeline logs (uncomment to disable it)
+     config.quiet_assets = false
+
     # By default list of parent classes includes only `[ApplicationRecord, ActiveRecord::Base]`.
+
+    # Observers 
+    config.active_record.observers = [:task_observer,:comment_observer,:post_observer]
 
   end
 end

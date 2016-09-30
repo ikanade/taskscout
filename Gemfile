@@ -46,6 +46,8 @@ gem 'acts_as_follower',
  git:'https://github.com/ishan-amura/acts_as_follower.git',
  branch: 'master'
 
+gem 'rails-observers'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

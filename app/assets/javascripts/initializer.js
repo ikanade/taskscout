@@ -1,4 +1,5 @@
 $(document).on('turbolinks:load', function() {
+	console.log("Initializing page");
 	$('.datepicker').pickadate({
 		selectMonths: true,
 		selectYears: 15, 
@@ -10,4 +11,6 @@ $(document).on('turbolinks:load', function() {
 		ending_top: '10%'
 	});
 	$('select').material_select();
+	$(".dropdown-button").dropdown();
+
 });

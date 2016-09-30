@@ -4,12 +4,13 @@ function(user_id) {
 	var pusher = new Pusher('dbf15de75631516d108b');
 	var channel = pusher.subscribe(
 		'private-'+user_id
-		);
-	Pusher.log = function(message) {
+	);
+
+	/*Pusher.log = function(message) {
 		if (window.console && window.console.log) {
 			window.console.log(message);
 		}
-	};
+	};*/
 
 	channel.bind('new_notification', function(data){
 		notify(data);
@@ -20,7 +21,8 @@ function(user_id) {
   	Materialize.toast(msg,2000);
   }
   function notify(data) {
-  msg = data.from + ' has sent you a notification: ' + data.subject;
+  $('.new-notification').replaceWith('<span class="new badge light-green"></span>')
+  msg = data.subject;
   if (!("Notification" in window)) {
   	console.log("This browser does not support desktop notification");
   	dom_notify(msg);

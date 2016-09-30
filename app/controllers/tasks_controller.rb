@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-	before_action :set_project_and_task ,only: [:edit,:update,:show,:new,:delete]
+	before_action :set_project ,only: [:edit,:update,:show,:new,:delete]
   def index
     @project = Project.find(params[:project_id])
     @tasks = @project.tasks
@@ -11,7 +11,7 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task = @project.tasks.new()
+  	@task = @project.tasks.new()
   	@task[:started_at] = Time.now()
   end
 
@@ -40,13 +40,16 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
   end
 
-  def update   
-    @task = Task.find(params[:id])
-    if @task.update(task_params)
-        redirect_to project_task_path(@project,@task)
-    else
-        render 'edit'
-    end
+  def update
+  	puts
+  	print params 
+  	puts
+  	@task = Task.find(params[:id])
+  	print update_params
+  	if @task.update_attributes(update_params)
+  		puts "does the update"
+  		redirect_to project_task_path(params[:project_id],@task)
+  	end
   end
 
   def destroy
@@ -58,7 +61,7 @@ class TasksController < ApplicationController
   end
 
   private
-  	def set_project_and_task
+  	def set_project
   		@project= Project.find(params[:project_id])
   	end
   	def task_params
@@ -66,6 +69,7 @@ class TasksController < ApplicationController
   		due_date = data[:due_date] +" "+Time.now.strftime("%H:%M:%S %z")
       data.store(:due_date,due_date) 	
   		data
+<<<<<<< HEAD
   	end
     def task_update_params
 
@@ -73,4 +77,10 @@ class TasksController < ApplicationController
         task.user_id = params[:user_id]
         task.save
     end
+=======
+		end
+		def update_params
+			params.require(:task).permit(:title,:description,:user_id,:due_date,:priority)
+		end
+>>>>>>> develop
 end
