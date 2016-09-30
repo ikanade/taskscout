@@ -25,11 +25,20 @@
 				<%= f.date_field :due_date,class:"datepicker" %>
 			</div>
 			<div class="input-field col s4">
-				<select>
+				<select name="subtask[priority]">
 					<option value="normal" selected>Normal</option>
 					<option value="low">Low</option>
 					<option value="high">High</option>
 					<option value="ASAP">ASAP</option>
+				</select>
+				<label>Priority</label>
+			</div>
+			<div class="input-field col s4">
+				<select name="subtask[status]">
+					<option value="finished" selected>Finishedl</option>
+					<option value="active">active</option>
+					<option value="inactive">Inactive</option>
+					<option value="none">None</option>
 				</select>
 				<label>Priority</label>
 			</div>

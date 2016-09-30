@@ -7,7 +7,7 @@ class SubTasksController < ApplicationController
   end
 
   def show
-    @subtasks = @task.tasks
+    @subtask = @task.tasks.find(params[:id])
   end
 
   def create

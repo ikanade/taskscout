@@ -8,6 +8,7 @@ class TasksController < ApplicationController
   def show
     @project = Project.find(params[:project_id])
     @task = @project.tasks.find(params[:id])
+     @subtask  = @task.tasks
   end
 
   def new
@@ -32,7 +33,7 @@ class TasksController < ApplicationController
 
   def update
     @project = Project.find(params[:project_id])
-  	@task = Task.find(params[:id])
+  	@task = @project.tasks.find(params[:id])
   	print update_params
   	if @task.update_attributes(update_params)
   		redirect_to project_task_path(@project,@task)

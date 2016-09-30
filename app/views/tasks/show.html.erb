@@ -18,7 +18,11 @@
 					<%= link_to "Delete", task_comment_path(@task, comment), method: :delete, data: {confirm: "Are you sure?"},  class: "right" %> 
 					<% end %>
 					<% end %>
-				</li>				
+				</li>		
+				<% @subtask.each do |subtask|		%>
+					<% @progress += subtask.progress  %>
+				<% end %>
+				<%= @progress %>
 				<li class="collection-item">
 					<div>
 						<%= form_for :comment, url: task_comments_path(@task) do |f|%>
