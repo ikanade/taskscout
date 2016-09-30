@@ -1,7 +1,6 @@
 <div class="card">
 	<div class="card-content">
-
-		<span class="card-title left"><%= link_to @task.title %></span>
+		<span class="card-title left"><%= link_to @task.title, project_task_path(@project,@task) %></span>
 		<button class="dropdown-button no-btn card-title right" data-activates="dropdown1"><div class="chip">
     <%= @task.user.name %>
  	 </div>
@@ -9,16 +8,37 @@
 		<div class="clearfix"></div>
 		<p> <%= @task.description %> </p>
 		<ul class="collection with-header">
-			<li class="collection-header"><b>Sub Tasks</b></li>
-			
-			<li class="collection-item">
-			</li>
-		</ul>
+					<li class="collection-header"><b>Comments</b></li>
+					<% @task.comments.each do |comment| %>
+					<li class="collection-item avatar">
+					<%= render 'users/avatar', user: comment.user %>
+					<span><%= comment.body %></span>
+					<%	if comment.user == current_user %>
+					<%= link_to "Delete", task_comment_path(@task, comment), method: :delete, data: {confirm: "Are you sure?"},  class: "right" %> 
+					<% end %>
+					<% end %>
+				</li>				
+				<li class="collection-item">
+					<div>
+						<%= form_for :comment, url: task_comments_path(@task) do |f|%>
+							<div class = "input-field container z-depth-0">
+								<%= f.text_field :body, placeholder:"Comment",class:"left col s4" %>
+								<%= button_tag(type: "submit", class: "no-btn right") do %>
+    						<i class="material-icons small">send</i>
+								<% end %>
+							</div>		
+						<% end %>
+					</div>
+				</li>
+			</ul>
 	</div>
 	<div class="card-action">
-	
-	<%= link_to 'Delete Task', [@project,@task],method: :delete, data: {confirm: "Are you sure?"} %>
-
+	<%= link_to 'Add Sub Task', new_task_task_path(@task) %>	
+	<%= link_to 'Edit Task', edit_project_task_path(@project,@task) %>	
+	<%= link_to 'Assign member', all_project_users_path(@project) %>
+	<%	if @task.user == current_user %>
+					<%= link_to 'Delete Task', project_task_path(@project,@task),method: :delete, data: {confirm: "Are you sure?"},class: "right" %>
+					<% end %>
 	</div>
 </div>
 

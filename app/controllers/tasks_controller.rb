@@ -69,18 +69,8 @@ class TasksController < ApplicationController
   		due_date = data[:due_date] +" "+Time.now.strftime("%H:%M:%S %z")
       data.store(:due_date,due_date) 	
   		data
-<<<<<<< HEAD
-  	end
-    def task_update_params
-
-        task = Project.find(params[:project_id]).tasks.find(params[:id])
-        task.user_id = params[:user_id]
-        task.save
-    end
-=======
 		end
 		def update_params
 			params.require(:task).permit(:title,:description,:user_id,:due_date,:priority)
 		end
->>>>>>> develop
 end
