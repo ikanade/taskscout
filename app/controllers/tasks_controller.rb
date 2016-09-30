@@ -26,29 +26,16 @@ class TasksController < ApplicationController
   	end
   end
 
-  def update     
-    @project = Project.find(params[:project_id])
-    user_id = params[:user_id]
-    task = Project.find(params[:project_id]).tasks.find(params[:id])
-    task.user_id = params[:user_id]
-    if task.save
-        redirect_to project_task_path(@project, task) 
-    end
-  end
-
   def edit
     @task = Task.find(params[:id])
   end
 
   def update
-  	puts
-  	print params 
-  	puts
+    @project = Project.find(params[:project_id])
   	@task = Task.find(params[:id])
   	print update_params
   	if @task.update_attributes(update_params)
-  		puts "does the update"
-  		redirect_to project_task_path(params[:project_id],@task)
+  		redirect_to project_task_path(@project,@task)
   	end
   end
 
@@ -71,6 +58,6 @@ class TasksController < ApplicationController
   		data
 		end
 		def update_params
-			params.require(:task).permit(:title,:description,:user_id,:due_date,:priority)
+			params.require(:task).permit(:title,:description,:user_id,:due_date,:priority,:status,:progress)
 		end
 end

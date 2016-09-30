@@ -7,14 +7,14 @@ class Project < ActiveRecord::Base
 	alias_attribute :members, :users
 	before_save :add_creator_to_members, if: :user_id_changed?
 	has_many :posts
-  acts_as_followable
+  	acts_as_followable
 
 
-	validates :title,  presence: true, length: {maximum: 200}
-	
+	validates :title,  presence: true, length: {maximum: 200}	
 	validates :progress, presence: true, numericality: { only_integer: true },
 										 length: {maximum: 3}
 	validates_datetime :deadline, after: :started_at, if: :deadline_changed?
+	validates :user_id, presence: true
 	
 	private	
 		def add_creator_to_members

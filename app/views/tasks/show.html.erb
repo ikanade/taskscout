@@ -34,11 +34,11 @@
 			</ul>
 	</div>
 	<div class="card-action">
-	<%= link_to 'Add Sub Task', new_task_task_path(@task) %>	
-	<%= link_to 'Edit Task', edit_project_task_path(@project,@task) %>	
-	<%	if @task.user == current_user %>
-					<%= link_to 'Delete Task', project_task_path(@project,@task),method: :delete, data: {confirm: "Are you sure?"},class: "right" %>
-					<% end %>
+	<%= link_to 'Add Sub Task', new_task_task_path(@task) %>
+	<%	if @task.user == current_user %>	
+		<%= link_to 'Edit Task', edit_project_task_path(@project,@task) %>	
+		<%= link_to 'Delete Task', project_task_path(@project,@task),method: :delete, data: {confirm: "Are you sure?"},class: "right" %>
+	<% end %>
 	</div>
 </div>
 
