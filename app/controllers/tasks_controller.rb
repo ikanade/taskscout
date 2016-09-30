@@ -41,13 +41,8 @@ class TasksController < ApplicationController
   end
 
   def update
-  	puts
-  	print params 
-  	puts
   	@task = Task.find(params[:id])
-  	print update_params
   	if @task.update_attributes(update_params)
-  		puts "does the update"
   		redirect_to project_task_path(params[:project_id],@task)
   	end
   end

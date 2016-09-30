@@ -54,9 +54,11 @@ body .extruded {
     }
 }
 
-.avatar-circle     { @include avatar(45px,0.25,0.5); }
+.avatar-circle     { @include avatar(35px,0.25,0.5); }
 .avatar-circle-sm   { @include avatar(25px,0.16,0.72); }
 .avatar-circle-lg   { @include avatar(250px,0.25,0.5); }
+
+
 /* Forms */
 #error_explanation {
 	color: red;
@@ -91,7 +93,6 @@ body .extruded {
 	padding:5px;
 	box-sizing: border-box; 
 }
-
 .icon-hover:hover {
 	border: 2px solid color('light-blue','base');
 	color: color('light-blue','base');
@@ -100,4 +101,11 @@ body .extruded {
 	box-sizing: border-box; 
 	cursor: pointer;
 	transition: 200ms color,200ms border-color;
+}
+.member-list li{
+	margin-right: 10px;
+}
+.user {
+	font-size: 20px;
+	padding:5px;
 }
