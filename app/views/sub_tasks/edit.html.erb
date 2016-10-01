@@ -25,13 +25,31 @@
 				<%= f.date_field :due_date,class:"datepicker" %>
 			</div>
 			<div class="input-field col s4">
-				<select>
+				<select name="subtask[priority]">
 					<option value="normal" selected>Normal</option>
 					<option value="low">Low</option>
 					<option value="high">High</option>
 					<option value="ASAP">ASAP</option>
 				</select>
 				<label>Priority</label>
+			</div>
+			<div class="input-field col s4">
+				<select name="subtask[status]">
+					<option value="finished" selected>Finishedl</option>
+					<option value="active">active</option>
+					<option value="inactive">Inactive</option>
+					<option value="none">None</option>
+				</select>
+				<label>Status</label>
+			</div>
+			<div class="input-field col s4">
+				<select name="subtask[progress]">
+					<option value="20" selected>20%</option>
+					<option value="50">50%</option>
+					<option value="70">70%</option>
+					<option value="100">100%</option>
+				</select>
+				<label>Progress</label>
 			</div>
 			<div class="input-field col s4 offset-s4">
 				<%= f.submit "update", :disable_with => 'Creating...' %>

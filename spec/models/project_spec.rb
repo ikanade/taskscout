@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Project, type: :model do
-  let(:subject) {Project.new(title:"demo", deadline: Time.now + 5.days, started_at: Time.now, status: "start",
+  let(:subject) {Project.new(title:"demo", deadline: Time.now + 5.days, started_at: Time.now,
                  progress: 10,description: "vdvgcv vsdgcbh gdcgvgvb")} 
   
   it "is valid with title" do
@@ -22,24 +22,6 @@ RSpec.describe Project, type: :model do
    	subject.deadline = "2016-09-15 10:01:38"
   	expect(subject).to_not be_valid
   end
-  it "is not valid format of date" do
-   	subject.started_at = "asdasdasd"
-   	subject.deadline = "hubhnjn nnnjnj"   
-  	expect(subject).to_not be_valid
-  end
-  it "is not valid format of date" do
-    subject.started_at = 123456
-    subject.deadline = 98786
-    expect(subject).to_not be_valid
-  end
-  it "is valid status" do
-   	subject.status = "created" 	
-  	expect(subject).to be_valid
-  end
-  it "is not valid status" do
-   	subject.status = "created at gh" 	
-  	expect(subject).to_not be_valid
-  end
   it "is valid progres" do
    	subject.progress = 20 	
   	expect(subject).to be_valid
@@ -52,4 +34,19 @@ RSpec.describe Project, type: :model do
    	subject.progress = "asdf" 	
   	expect(subject).to_not be_valid
   end  
+
+  context "Associations" do
+    it "has many tasks" do
+      assc = described_class.reflect_on_association(:tasks)
+      expect(assc.macro).to eq :has_many
+    end
+    it "has many project users" do
+      assc = described_class.reflect_on_association(:project_users)
+      expect(assc.macro).to eq :has_many
+    end
+    it "has many Posts " do
+      assc = described_class.reflect_on_association(:posts)
+      expect(assc.macro).to eq :has_many
+    end
+  end
 end

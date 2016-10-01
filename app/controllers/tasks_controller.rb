@@ -9,6 +9,13 @@ class TasksController < ApplicationController
     @project = Project.find(params[:project_id])
     @task = @project.tasks.find(params[:id])
     session[:project_id] = params[:project_id]
+    @subtasks  = @task.tasks
+    @addition_progress = 0
+    @subtasks.each do |subtask|
+      @addition_progress = @addition_progress + subtask.progress 
+    end 
+     @task.progress = @addition_progress / @subtasks.count 
+     @task.save
   end
 
   def new
@@ -25,16 +32,6 @@ class TasksController < ApplicationController
   	else
   		render 'new'
   	end
-  end
-
-  def update     
-    @project = Project.find(params[:project_id])
-    user_id = params[:user_id]
-    task = Project.find(params[:project_id]).tasks.find(params[:id])
-    task.user_id = params[:user_id]
-    if task.save
-        redirect_to project_task_path(@project, task) 
-    end
   end
 
   def edit
@@ -67,6 +64,6 @@ class TasksController < ApplicationController
   		data
 		end
 		def update_params
-			params.require(:task).permit(:title,:description,:user_id,:due_date,:priority)
+			params.require(:task).permit(:title,:description,:user_id,:due_date,:priority,:status,:progress)
 		end
 end

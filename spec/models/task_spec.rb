@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Task, type: :model do
-	let(:subject) { Task.new(title:"demo", priority: "ASAP", status: "started",
+	let(:subject) { Task.new(title:"demo", priority: "ASAP", status: "active",
 					 progress: 12, description: "asd fgh truh uunun", started_at: Time.now, 
 					 due_date: Time.now + 5.days,taskable_type: "Task")} 
   
@@ -22,7 +22,7 @@ RSpec.describe Task, type: :model do
   	expect(subject).to_not be_valid
   end
   it "is valid with status" do
-   	subject.status = "Assigned"
+   	subject.status = "finished"
   	expect(subject).to be_valid
   end
    it "is valid with status" do
@@ -60,5 +60,29 @@ RSpec.describe Task, type: :model do
    	subject.started_at = 12345	
    	subject.due_date = 23456
   	expect(subject).to_not be_valid
+  end
+
+
+  context "Associations" do
+    it "has many tasks" do
+      assc = described_class.reflect_on_association(:tasks)
+      expect(assc.macro).to eq :has_many
+    end
+    it "has many comments" do
+      assc = described_class.reflect_on_association(:comments)
+      expect(assc.macro).to eq :has_many
+    end
+    it "has many labels " do
+      assc = described_class.reflect_on_association(:labels)
+      expect(assc.macro).to eq :has_many
+    end
+    it "belongs to  usere " do
+      assc = described_class.reflect_on_association(:user)
+      expect(assc.macro).to eq :belongs_to
+    end
+    it "belongs to taskable " do
+      assc = described_class.reflect_on_association(:taskable)
+      expect(assc.macro).to eq :belongs_to
+    end
   end
 end

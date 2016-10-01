@@ -19,4 +19,11 @@ RSpec.describe Label, type: :model do
    	subject.color = nil
   	expect(subject).to_not be_valid
   end
+
+  context "Associations" do
+    it " belongs to labelable" do
+      assc = described_class.reflect_on_association(:labelable)
+      expect(assc.macro).to eq :belongs_to
+    end
+  end
 end

@@ -1,4 +1,4 @@
-<h4>Update Task</h4>
+<h4>New Task</h4>
 <div class="row">
 	<div class="col s12 m12">
 		
@@ -25,20 +25,11 @@
 				<%= f.date_field :due_date,class:"datepicker" %>
 			</div>
 			<div class="input-field col s4">
-				<select name="task[priority]">
+				<select>
 					<option value="normal" selected>Normal</option>
 					<option value="low">Low</option>
 					<option value="high">High</option>
 					<option value="ASAP">ASAP</option>
-				</select>
-				<label>Priority</label>
-			</div>
-			<div class="input-field col s4">
-				<select name="task[status]">
-					<option value="finished" selected>Finishedl</option>
-					<option value="active">active</option>
-					<option value="inactive">Inactive</option>
-					<option value="none">None</option>
 				</select>
 				<label>Priority</label>
 			</div>
