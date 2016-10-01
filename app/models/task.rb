@@ -26,18 +26,4 @@ class Task < ActiveRecord::Base
   			project.creator.follow(self)
   		end
   	end
-=begin 	
- def notify_followers
-  		followers = self.followers
-  		followers.each do |user| 
-  			Pusher['private-'+user.id].trigger('new_notification',
-				 { 
-				 	from: 'Task:', 
-				 	subject: "Task: has been updated",
-				 	body: self.title })
-
-  		end
-  	end
-=end
-
 end

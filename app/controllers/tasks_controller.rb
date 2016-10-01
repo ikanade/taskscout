@@ -8,6 +8,7 @@ class TasksController < ApplicationController
   def show
     @project = Project.find(params[:project_id])
     @task = @project.tasks.find(params[:id])
+    session[:project_id] = params[:project_id]
   end
 
   def new

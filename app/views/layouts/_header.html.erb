@@ -18,14 +18,14 @@
       	</li>
       	<li><%= link_to 'New Project', new_user_project_path(current_user)%></li>
        
-        <a class="dropdown-button no-btn card-title right" data-activates="dropdown1"><span  class="user"><%= current_user.initials %></span><i class="material-icons small right">arrow_drop_down</i></a>
+        <a class="dropdown-button no-btn card-title right" data-activates="dropdown2"><span  class="user"><%= current_user.initials %></span><i class="material-icons small right">arrow_drop_down</i></a>
       </ul>
     <% else %>
     <%= link_to 'Pull-It-Together',root_path,class:"brand-logo",style:"padding-left:1%;" %>
     <% end %>
     </div>
 </nav>
- 	<ul id="dropdown1" class="dropdown-content">
+ 	<ul id="dropdown2" class="dropdown-content">
 		<li><a href="#!">Profile</a></li>
 		<li><a href="#!">Projects</a></li>
 		<li class="divider"></li>

@@ -12,5 +12,5 @@ $(document).on('turbolinks:load', function() {
 	});
 	$('select').material_select();
 	$(".dropdown-button").dropdown();
-
+	$('.tooltipped').tooltip({delay: 50});
 });

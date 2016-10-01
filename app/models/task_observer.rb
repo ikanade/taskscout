@@ -1,7 +1,11 @@
 class TaskObserver < ActiveRecord::Observer
 	def after_save(task)
 		if task.user_id_changed? && !task.user_id_was.nil?
-			User.find(task.user_id_was).stop_following(task)
+			user = User.find(task.user_id_was)
+			if task.taskable.creator != user
+				user.stop_following(task)
+				puts "Making user #{user.name} unfollow #{task.title}"
+			end
 			task.followers.each do |follower|
 				notification_body = 	{
 					resource_id: task.id,
