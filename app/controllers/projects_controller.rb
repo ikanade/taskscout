@@ -5,6 +5,13 @@ class ProjectsController < ApplicationController
 
   def show
   	@project = Project.find(params[:id])
+    @tasks = @project.tasks
+    @addition_progress = 0
+    @tasks.each do |task|
+      @addition_progress = @addition_progress + task.progress 
+    end 
+     @project.progress = @addition_progress / @tasks.count 
+     @project.save
   end
 
   def new

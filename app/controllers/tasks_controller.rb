@@ -14,6 +14,7 @@ class TasksController < ApplicationController
       @addition_progress = @addition_progress + subtask.progress 
     end 
      @task.progress = @addition_progress / @subtasks.count 
+     @task.save
   end
 
   def new
