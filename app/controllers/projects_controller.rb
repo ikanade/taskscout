@@ -11,7 +11,6 @@ class ProjectsController < ApplicationController
       @addition_progress = @addition_progress + task.progress 
     end 
      @project.progress = @addition_progress / @tasks.count 
-     @project.save
   end
 
   def new
