@@ -12,9 +12,13 @@ class TasksController < ApplicationController
     @subtasks  = @task.tasks
     @addition_progress = 0
     @subtasks.each do |subtask|
-      @addition_progress = @addition_progress + subtask.progress 
-    end 
-     @task.progress = @addition_progress / @subtasks.count  
+       if subtask.progress == 0
+          @task.progress = 0
+        else
+          @addition_progress = @addition_progress + subtask.progress 
+          @task.progress = @addition_progress / @subtasks.count  
+        end
+     end      
      @task.save
   end
 
