@@ -56,6 +56,8 @@ group :development, :test do
 	# RSpec for tdd
 	gem 'rspec-rails', '>= 3.1'
   
+  gem 'factory_girl_rails'
+  gem 'faker'
 end
 
 group :development do
