@@ -1,7 +1,6 @@
 class SubTasksController < ApplicationController
-  before_action :set_task ,only: [:show,:new,:destroy]
+  before_action :set_task ,only: [:show,:new,:destroy,:index,:create,:edit,:update]
   def index
-    @task = Task.find(params[:task_id])
     @subtasks = @task.tasks
   end
 
@@ -10,8 +9,8 @@ class SubTasksController < ApplicationController
   end
 
   def create
-    @task = Task.find(params[:task_id])
     @subtask = @task.tasks.new(task_params)
+    @subtask.user = current_user
     if @subtask.save!
       redirect_to task_tasks_path(@task)
     else
@@ -20,12 +19,10 @@ class SubTasksController < ApplicationController
   end
 
   def edit
-    @task = Task.find(params[:task_id])
     @subtask = @task.tasks.find(params[:id])
   end
 
   def update   
-    @task = Task.find(params[:task_id])
     @subtask = @task.tasks.find(params[:id])
     if @subtask.update(update_params)
         redirect_to task_tasks_path(@task)
@@ -40,7 +37,6 @@ class SubTasksController < ApplicationController
   end
 
   def destroy
-    @task = Task.find(params[:task_id])
     @subtask = @task.tasks.find(params[:id])
     if @subtask.destroy
       redirect_to task_tasks_path(@task)
