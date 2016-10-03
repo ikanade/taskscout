@@ -9,17 +9,6 @@ class TasksController < ApplicationController
     @project = Project.find(params[:project_id])
     @task = @project.tasks.find(params[:id])
     session[:project_id] = params[:project_id]
-    @subtasks  = @task.tasks
-    @addition_progress = 0
-    @subtasks.each do |subtask|
-       if subtask.progress == 0
-          @task.progress = 0
-        else
-          @addition_progress = @addition_progress + subtask.progress 
-          @task.progress = @addition_progress / @subtasks.count  
-        end
-     end      
-     @task.save
   end
 
   def new

@@ -19,4 +19,7 @@ class User < ActiveRecord::Base
   def set_initials
 		self.initials = self.name.scan(/(\b[a-z])[a-z]*?/i).join.upcase
   end
+  def tasks
+  	Task.where('user_id = ? AND due_date >= ?',id,Time.now)
+  end
 end

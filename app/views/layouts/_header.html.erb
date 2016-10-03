@@ -2,7 +2,6 @@
     <div class="nav-wrapper  cyan darken-2">
     <% if user_signed_in? -%>
     <%= link_to 'Pull-It-Together',user_path(current_user),class:"brand-logo",style:"padding-left:1%;" %>
-
       <ul id="nav-mobile" class="right hide-on-med-and-down">
       	<li>
       		<%= link_to(notifications_path) do %>
