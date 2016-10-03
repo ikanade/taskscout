@@ -23,8 +23,10 @@
 			</ul>
 		</div>
 		<div class="card-action">
+		<% if project.creator == current_user %>
 			<%= link_to 'Add member', new_project_user_path(project) %>
 			<%= link_to 'Delete Project', [project.creator,project],method: :delete, data: {confirm: "Are you sure?"} %>
+		<% end %>
 		</div>
 	</div>
 	<% end %>
