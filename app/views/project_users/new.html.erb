@@ -1,4 +1,10 @@
+
 <% @users.each do |user|%>
-	<p>Name <%= user.name %></p>
-	<%= link_to 'AddUser', add_project_user_path(@project,user),method: :post%>
+<div class="row">
+	<div class="card container col s2 offset-s5">
+	<div class="card-title">
+	<%= link_to user.name, add_project_user_path(@project,user),method: :post%>
+	</div>
+	</div>
+	</div>
 <% end %>

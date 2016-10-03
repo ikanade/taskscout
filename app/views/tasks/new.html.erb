@@ -1,2 +1,45 @@
-<h1>Tasks#new</h1>
-<p>Find me in app/views/tasks/new.html.erb</p>
+<h4>New Task</h4>
+<div class="row">
+	<div class="col s12 m12">
+		<%= form_for([@project,@task]) do |f| %>
+		<div class="row">
+			<div class="input-field col s12">
+				<%= f.label :title, "Title" %>
+				<%= f.text_field :title %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s12">
+				<%= f.label :description, "Description" %>
+				<%= f.text_area :description,class:"materialize-textarea" %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s4">
+				<%= f.label :started_at, "Start Date" %>
+				<%= f.date_field :started_at,class:"datepicker" %>
+			</div>
+			<div class="col s4">
+				<%= f.label :due_date, "Due Date" %>
+				<%= f.date_field :due_date,class:"datepicker" %>
+			</div>
+			<div class="input-field col s4">
+				
+				<select>
+					<option value="normal" selected>Normal</option>
+					<option value="low">Low</option>
+					<option value="high">High</option>
+					<option value="ASAP">ASAP</option>
+				</select>
+				<label>Priority</label>
+			</div>
+			<div class="input-field col s4 offset-s4">
+				<%= f.submit "Create", :disable_with => 'Creating...' %>
+			</div>
+		</div>
+		<% end %>
+
+	</div>
+
+</div>
+

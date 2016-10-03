@@ -11,10 +11,16 @@ class User < ActiveRecord::Base
   has_many :tasks, as: :taskable
   has_many :posts
   has_many :comments
-  has_many :follows
+  has_many :notifications, foreign_key: :recipient_id
+  acts_as_follower
+
   validates :name, presence: true, format:{ with: /\A[a-z ]+\z/i }
 
   def set_initials
 		self.initials = self.name.scan(/(\b[a-z])[a-z]*?/i).join.upcase
+  end
+  def tasks
+  	Task.where('user_id = ? AND due_date >= ?',id,Time.now)
+  	.where.not(status:"complete").order(:due_date)
   end
 end

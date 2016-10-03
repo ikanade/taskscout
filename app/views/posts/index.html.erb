@@ -1,2 +1,34 @@
-<h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
+
+<%= link_to 'New Post', new_project_post_path %> 
+	<div class="row">
+		<div class="col s12">
+			<%= current_user.name + "'s" %> Posts
+		</div>
+	</div>
+<div class="container">	
+	<% @posts.each do |post| %>
+	<div class="card">
+		<div class="card-content">
+			<div class="row">
+				<div class="card-title col s9"><%= post.title %></div> 			
+				<div class="card-title right" >
+				 	<%= link_to(follow_post_path(current_user,post),method: :post) do%>
+						<i class="material-icons">notifications</i>
+					<% end %>
+					<%	if post.user == current_user %>
+					<%= link_to(project_post_path(@project, post),method: :delete, data: {confirm: "Are you sure?"}) do  %>
+						<i class="material-icons">delete</i>
+					<% end %>
+					<% end %>
+				</div>
+			</div>				
+			<p><%= post.body %></p>	
+			<%= render 'comments/index', post:post%>		
+		</div>
+	</div>
+	<% end %>
+</div>
+</div>
+<%= link_to "Back", user_project_path(current_user,@project) %> 
+
+ 

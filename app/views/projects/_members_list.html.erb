@@ -1,0 +1,14 @@
+<ul class="member-list right">
+	<% project.members.each do |user| -%>
+	<li class="collection-item avatar left">
+		<%= render 'users/avatar', user: user %>
+	</li>
+	<% end %>
+	<% if current_user == project.creator %>
+	<li class="left">
+		<%= link_to(new_project_user_path(project),class:"circular-button grey-text",title:"Add new member") do %>
+		<i class="material-icons icon-hover dash-border">person_add</i>
+		<% end %>
+	</li>
+	<% end %>
+</ul>

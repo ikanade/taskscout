@@ -1,9 +1,21 @@
 class ProjectsController < ApplicationController
   def index
-  	@projects = Project.where(user_id:current_user.id)
+  	@projects = current_user.projects
   end
 
   def show
+  	@project = Project.find(params[:id])
+    @tasks = @project.tasks
+    @addition_progress = 0
+    @tasks.each do |task|
+      if task.progress == 0
+        @project.progress = 0
+      else
+        @addition_progress = @addition_progress + task.progress 
+        @project.progress = @addition_progress / @tasks.count 
+      end
+    end 
+     
   end
 
   def new
@@ -23,9 +35,16 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    @project = Project.find(params[:id])
   end
 
-  def update
+  def update   
+    @project = Project.find(params[:id])
+    if @project.update(project_params)
+        redirect_to user_project_path(current_user,@project)
+    else
+        render 'edit'
+    end
   end
 
   def destroy

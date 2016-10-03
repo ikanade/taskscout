@@ -11,4 +11,14 @@ RSpec.describe Comment, type: :model do
    	subject.body = nil
   	expect(subject).to_not be_valid
   end
+  context "Associations" do
+    it " belongs to user" do
+      assc = described_class.reflect_on_association(:user)
+      expect(assc.macro).to eq :belongs_to
+    end
+    it " belongs to commentable" do
+      assc = described_class.reflect_on_association(:commentable)
+      expect(assc.macro).to eq :belongs_to
+    end
+  end
 end

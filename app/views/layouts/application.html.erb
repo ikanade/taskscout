@@ -1,28 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Pits</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+	<title>Pits</title>
+	<%= render 'layouts/includes' %>
 </head>
 <body>
-	<% unless current_page?(root_path) -%>
-	<%= render 'layouts/header' %>
-		<% flash.each do |message_type, message| %>
-			<% if message_type == 'danger' || message_type == 'notice' %>
-				<%= javascript_tag 'data-turbolinks-eval'=>false, defer: 'defer' do -%>
-					Materialize.toast("<%= message %>", 2000);
-				<% end -%>
-			<% end -%>
-		<% end %>
-		<% flash.clear if !flash.empty? -%>
-	<% end %>
+  <% unless current_page?(root_path) -%>
+  	<%= render 'layouts/header' %>
+  	<% flash.each do |message_type, message| %>
+  		<% if message_type == 'danger' || message_type == 'notice' %>
+  			<%= javascript_tag 'data-turbolinks-eval'=>false, defer: 'defer' do -%>
+  				Materialize.toast("<%= message %>", 2000);
+  			<% end -%>
+  		<% end -%>
+  	<% end %>
+  	<% flash.clear if !flash.empty? -%>
+  <% end %>
  	<!--<p class="notice"><= notice %></p>%%
-  <p class="alert"><= alert %></p>-->
-	
-	<%= yield %>
-	
-	<%= debug(params) if Rails.env.development? %>
-</body>
-</html>
+ 	<p class="alert"><= alert %></p>-->
+ 
+ 	<%= yield %>
+
+ 	<%= debug(params) if Rails.env.development? %>
+ 	<% if user_signed_in? %>
+ 	<div id="notify"></div>
+
+ 	<div id="status"></div>
+
+ 	<div id="notify_api">
+ 		<button type="button" id="ask_notify_permission">
+ 			Enable Webkit Notifications
+ 		</button>
+ 	</div>
+ 	<% end %>
+ </body>
+ </html>

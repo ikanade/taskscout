@@ -36,9 +36,17 @@ gem 'devise'
 
 # Materialize-sass gem for material design support
 gem 'materialize-sass'
-
 # For Timeline validations
 gem 'validates_timeliness', '~> 4.0'
+
+# Push Notifications
+gem 'pusher'
+
+gem 'acts_as_follower',
+ git:'https://github.com/ishan-amura/acts_as_follower.git',
+ branch: 'master'
+
+gem 'rails-observers'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -47,15 +55,18 @@ group :development, :test do
 	gem 'sqlite3'
 	# RSpec for tdd
 	gem 'rspec-rails', '>= 3.1'
+  
+  gem 'factory_girl_rails'
+  gem 'faker'
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
-
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'awesome_print', :require => 'ap'
+  gem 'quiet_assets'
 end
 
 group :production do 

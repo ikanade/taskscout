@@ -1,0 +1,18 @@
+<div class="card">
+	<div class="card-content">
+	<% @subtasks.each do |subtask| %>
+		<span class="card-title"><%= link_to subtask.title %></span>
+		<% if subtask.user == current_user %>
+		<%= link_to 'Delete SubTask', task_task_path(@task,subtask),method: :delete, data: {confirm: "Are you sure?"},class: "right" %>
+		<%= link_to 'Edit SubTask', edit_task_task_path(@task,subtask) %>
+		<% end %>
+		<%= subtask.progress %>
+
+		<p> <%= subtask.description %> </p>
+	</div>
+	<div class="card-action">
+	
+	<% end %>
+	</div>
+</div>
+

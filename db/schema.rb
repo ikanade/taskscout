@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160923112738) do
+ActiveRecord::Schema.define(version: 20160929093650) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "body"
@@ -26,14 +26,17 @@ ActiveRecord::Schema.define(version: 20160923112738) do
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "follows", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "followable_id"
-    t.string   "followable_type"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.integer  "followable_id",                   null: false
+    t.string   "followable_type",                 null: false
+    t.integer  "follower_id",                     null: false
+    t.string   "follower_type",                   null: false
+    t.boolean  "blocked",         default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "follows", ["followable_type", "followable_id"], name: "index_follows_on_followable_type_and_followable_id"
+  add_index "follows", ["followable_id", "followable_type"], name: "fk_followables"
+  add_index "follows", ["follower_id", "follower_type"], name: "fk_follows"
 
   create_table "labels", force: :cascade do |t|
     t.string   "name"
@@ -45,6 +48,16 @@ ActiveRecord::Schema.define(version: 20160923112738) do
   end
 
   add_index "labels", ["labelable_type", "labelable_id"], name: "index_labels_on_labelable_type_and_labelable_id"
+
+  create_table "notifications", force: :cascade do |t|
+    t.string   "subject"
+    t.text     "body"
+    t.integer  "recipient_id"
+    t.string   "category"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "resource_id"
+  end
 
   create_table "posts", force: :cascade do |t|
     t.string   "title"
@@ -84,17 +97,17 @@ ActiveRecord::Schema.define(version: 20160923112738) do
 
   create_table "tasks", force: :cascade do |t|
     t.string   "title"
-    t.string   "priority"
-    t.string   "status"
-    t.integer  "progress"
+    t.string   "priority",      default: "normal"
+    t.string   "status",        default: "none"
+    t.integer  "progress",      default: 0
     t.text     "description"
     t.datetime "started_at"
     t.datetime "due_date"
     t.integer  "taskable_id"
     t.string   "taskable_type"
     t.integer  "user_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   add_index "tasks", ["taskable_type", "taskable_id"], name: "index_tasks_on_taskable_type_and_taskable_id"

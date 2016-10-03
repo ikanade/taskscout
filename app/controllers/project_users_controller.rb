@@ -1,8 +1,13 @@
 class ProjectUsersController < ApplicationController
   def new
-  	print flash.inspect
-  	@users = User.all
   	@project = Project.find(params[:id])
+  	@users = User.all - @project.members
+  end
+
+  def index
+    @project = Project.find(params[:id])
+    @task = @project.tasks
+    @users = @project.users
   end
 
   def create
@@ -13,7 +18,6 @@ class ProjectUsersController < ApplicationController
   		@project_user.save!
   		redirect_to user_projects_path(current_user)
   	rescue Exception => e
-  		#flash[:danger] = "User already exists in the project"
   		if e.message.match('Validation failed')
   			flash[:notice] = "User is already a part of the project"
   		end

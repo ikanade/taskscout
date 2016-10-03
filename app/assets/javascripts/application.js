@@ -13,6 +13,8 @@
 //= require jquery
 //= require materialize-sprockets
 //= require initializer
+//= require pusher-websocket-iso/dist/web/pusher
+//= require pusher_config
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .

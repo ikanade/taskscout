@@ -1,3 +1,33 @@
-<h1>Dashboard</h1>
-<%= link_to 'Projects', user_projects_path(current_user) %>
-<%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+<div class="row">
+	<div class="col s12">
+		<%= current_user.name + "'s" %> Projects
+	</div>
+</div>
+<div class="">
+	<div class="row">
+	<div class="col s3 ">
+			<ul class="collection">
+				<a class="collection-item" onclick="toggle('projects')">Projects</a>
+				<a class="collection-item" onclick="toggle('tasks')">Tasks</a>
+			</ul>
+	</div>
+	<div class="col s9" id="projects">
+		<%= render 'users/projects', projects: @projects %>
+	</div>
+	<div class="col s8 hide" id="tasks">
+		<% current_user.tasks.each do |task| %>
+			<div class="card">
+			<div class="card-content">
+				<div class="card-title">
+					<%= link_to task.title, project_task_path(task.taskable,task) %>
+				</div>
+				<p>Due <%= due_when(task.due_date) %></p>
+				<p>Project: <%= link_to task.taskable.title, user_project_path(current_user,task.taskable) %></p>
+				<%= task.description %>
+			</div>
+			<div class="card-actions">
+			</div>
+			</div>
+		<% end %>
+	</div>
+</div>

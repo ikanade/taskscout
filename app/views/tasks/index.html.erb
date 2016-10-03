@@ -1,2 +1,41 @@
-<h1>Tasks#index</h1>
-<p>Find me in app/views/tasks/index.html.erb</p>
+
+<% @tasks.each do |task| %>
+<div class="card">
+	<div class="card-content">
+		<span class="card-title"><%= task.title  %></span> 	
+			<%	if task.user == current_user %>
+					<%= link_to 'Delete Task', project_task_path(@project, task),method: :delete, data: {confirm: "Are you sure?"},class: "right" %>
+					<% end %>
+			<p> <%= task.description %> </p>
+			<ul class="collection with-header">
+					<li class="collection-header"><b>Comments</b></li>
+					<% task.comments.each do |comment| %>
+					<li class="collection-item avatar">
+					<%= render 'users/avatar', user: comment.user %>
+					<span><%= comment.body %></span>
+					<%	if comment.user == current_user %>
+					<%= link_to "Delete", task_comment_path(task, comment), method: :delete, data: {confirm: "Are you sure?"},  class: "right" %> 
+					<% end %>
+					<% end %>
+				</li>
+				
+				<li class="collection-item">
+					<div>
+						<%= form_for :comment, url: task_comments_path(task) do |f|%>
+							<div class = "input-field container z-depth-0">
+								<%= f.text_field :body, placeholder:"Comment",class:"left col s4" %>
+								<%= button_tag(type: "submit", class: "no-btn right") do %>
+    						<i class="material-icons small">send</i>
+								<% end %>
+							</div>		
+						<% end %>
+					</div>
+				</li>
+			</ul>
+							
+	</div>
+	<div class="card-action">
+	<%= link_to 'Add Sub Task', new_task_task_path(task) %>
+	</div>
+</div>
+<% end %>	

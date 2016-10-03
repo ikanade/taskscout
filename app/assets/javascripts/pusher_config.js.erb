@@ -1,0 +1,63 @@
+var Pusher_config = {
+init:
+function(user_id) {
+	var pusher = new Pusher('dbf15de75631516d108b');
+	var channel = pusher.subscribe(
+		'private-'+user_id
+	);
+
+	/*Pusher.log = function(message) {
+		if (window.console && window.console.log) {
+			window.console.log(message);
+		}
+	};*/
+
+	channel.bind('new_notification', function(data){
+		notify(data);
+	});
+
+  // In DOM alert
+  function dom_notify(msg) {
+  	Materialize.toast(msg,2000);
+  }
+  function notify(data) {
+  $('.new-notification').replaceWith('<span class="new badge light-green"></span>')
+  msg = data.subject;
+  if (!("Notification" in window)) {
+  	console.log("This browser does not support desktop notification");
+  	dom_notify(msg);
+  }
+  else if (Notification.permission === "granted") {
+  	build_notification(msg,data);
+  }
+  else if (
+  	Notification.permission !== 'denied' ||
+  	Notification.permission === "default") {
+  		Notification.requestPermission(function (permission) {
+  			if (permission === "granted") {
+  				build_notification(msg,data);
+  			}
+  		});
+    }
+  }
+  function build_notification(msg,data){
+  	var options = {
+  		body: data.body  		
+  	}
+  	var notification = new Notification(msg,options);
+  }
+  // debug msgs
+  pusher.connection.bind('connecting', function() {
+  	$('div#status').text('Connecting to Pusher...');
+  });
+  pusher.connection.bind('connected', function() {
+  	$('div#status').text('Connected to Pusher!');
+  });
+  pusher.connection.bind('failed', function() {
+  	$('div#status').text('Connection to Pusher failed :(');
+  });
+  channel.bind('subscription_error', function(status) {
+  	$('div#status').text('Pusher subscription_error');
+  });
+}   
+}

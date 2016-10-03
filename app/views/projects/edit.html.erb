@@ -1,2 +1,38 @@
-<h1>Projects#edit</h1>
-<p>Find me in app/views/projects/edit.html.erb</p>
+<h1>Update project</h1>
+<div class="row">
+<div class="container col s6 offset-s3">
+<%= form_for @project, url: user_project_path(current_user,@project), method: :patch do |f| %>
+	<div class="row">
+		<div class="input-field col s6">
+			<%= f.label :title, "Title" %>
+			<%= f.text_field :title  %>
+		</div>
+		<div class="input-field col s6">
+				<%= f.label :user_id, "Creator",class:"active" %>
+				<%= f.text_field :user_id, value: current_user.name,class:"disable", disabled:true %>
+		</div>
+	</div>
+	 <div class="row">
+		<div class="input-field col s12">
+			<%= f.label :description, "Description" %>
+			<%= f.text_area :description,class:"materialize-textarea" %>
+		</div>
+	</div> 
+	<div class="row">
+		<div class="input-field col s6">
+			<%= f.label :started_at, "Start date", class:"active"  %>
+			<%= f.date_field :started_at,class:"datepicker"%>
+		</div>
+		<div class="input-field col s6">
+			<%= f.label :deadline, "Deadline" %>
+			<%= f.date_field :deadline,class:"datepicker" %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="input-field center">
+			<%= f.submit 'Update', class:"btn cyan accent-4 waves-effect waves-light" %>
+		</div>
+	</div>
+<% end %>
+</div>
+</div>

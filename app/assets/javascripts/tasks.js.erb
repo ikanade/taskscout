@@ -1,0 +1,37 @@
+$(document).on('turbolinks:load', function() {
+	$('.assign-member').click(function(){
+		//console.log("goes here =>",$(this).children(':first').data('id'));
+		var data_element = $(this).children(':first'); 
+		var user_id = data_element.data('id');
+		var project_id = data_element.data('project-id');
+		var task_id = data_element.data('task-id');
+		var project_task_url = data_element.data('path').toString(); 
+		$.ajax({
+			url : project_task_url,
+			type: 'PATCH',
+			data : JSON.stringify({ 'user_id':user_id}),
+    	contentType : 'application/json',
+    	success: function(success){
+    		Materialize.toast("Task Re-assigned",2000);
+    	},
+    	error: function(error){
+    		console.log(error);
+    	}
+		});
+	
+	});
+});
+
+/*
+xhr: function() {
+    	    return window.XMLHttpRequest == null || new window.XMLHttpRequest().addEventListener == null 
+    	        ? new window.ActiveXObject("Microsoft.XMLHTTP")
+    	        : $.ajaxSettings.xhr();
+    	}*/
+    		/*$.ajax({
+			url : project_task_url,
+			type: 'PATCH',
+			data : JSON.stringify({ 'user_id':user_id}),
+    	contentType : 'application/json'
+    	
+		});*/

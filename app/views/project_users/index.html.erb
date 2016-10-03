@@ -1,0 +1,13 @@
+
+<% @users.each do |user|%>
+	<div class="card">
+		<div class="card-content"></div>
+		<div class="card-title">Name <%= user.name %></div>	
+		<%= form_tag  project_task_path(@project,@task,user_id: user.id), method: :patch do %>	
+	  
+		<%= submit_tag 'AddMember' %>
+		<% end %>
+	</div>
+<% end %>
+	
+

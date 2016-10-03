@@ -1,0 +1,15 @@
+<ul id="dropdown3" class="dropdown-content full-width">
+	<% project.members.each do |member| %>
+	<li class="padding assign-member">
+		<% #puts "Task Value during render #{task.id}"%>
+		<p class="details" style="display: none;"
+		data-id="<%= member.id%>"
+		data-project-id="<%= task.taskable.id %>"
+		data-task-id="<%= task.id %>"
+		data-path="<%= project_task_url(task.taskable,task.id)%>" ></p>
+		<p><%= member.name %></p>
+		<p class="grey-text"><%= member.email %></p>
+	</li>
+	<li class="divider"></li>
+	<% end %>
+</ul>

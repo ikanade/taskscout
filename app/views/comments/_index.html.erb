@@ -1,0 +1,26 @@
+<ul class="collection with-header">
+	<li class="collection-header">
+		<b>Comments</b>
+	</li>
+	<% post.comments.each do |comment| %>
+	<li class="collection-item avatar">
+		<%= render 'users/avatar', user: comment.user %>
+		<span><%= comment.body %></span>
+		<%	if comment.user == current_user %>
+		<%= link_to "Delete", post_comment_path(post, comment), method: :delete, data: {confirm: "Are you sure?"},  class: "right" %> 
+		<% end %>
+	</li>
+	<% end %>
+	<li class="collection-item">
+		<div>
+			<%= form_for :comment, url: post_comments_path(post) do |f|%>
+			<div class = "input-field z-depth-0">
+			<%= f.text_field :body, placeholder:"Comment",class:"left" %>
+				<%= button_tag(type: "submit", class: "no-btn right") do %>
+				<i class="material-icons green-text small">send</i>
+				<% end %>
+			</div>		
+			<% end %>
+		</div>
+	</li>
+</ul>	

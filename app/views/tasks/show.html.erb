@@ -1,2 +1,81 @@
-<h1>Tasks#show</h1>
-<p>Find me in app/views/tasks/show.html.erb</p>
+<div class="card">
+	
+	<div class="card-content">
+	<div class="progress" style="height: 20px;">
+	<div class="determinate" style='width: <%= @task.progress || 0 %>%'>
+		<div class="green-text text-darken-4" style="position:relative;left:100%;">
+			<% if @task.progress %>
+      	<%= @task.progress %>%
+      <% else %>
+      	0%
+      <% end %>
+		</div>
+	</div>
+</div>
+		<div class="card-title left"><%= link_to @task.title  %></div>
+		<button class="dropdown-button no-btn card-title right" data-activates="dropdown1">
+			<% if @task.user %>
+			<div class="chip">
+				<%= @task.user.name %>
+			</div>
+			<% else %>
+			<div class="circular-button">
+				<i class="material-icons icon-hover dash-border">person_add</i>
+			</div>
+			<% end %>
+		</button>
+
+		<div class="clearfix"></div>
+		<p> <%= @task.description %> </p>
+		<ul class="collection with-header">
+			<li class="collection-header"><b>Comments</b></li>
+			<% @task.comments.each do |comment| %>
+			<li class="collection-item avatar">
+				<%= render 'users/avatar', user: comment.user %>
+				<span><%= comment.body %></span>
+				<%	if comment.user == current_user %>
+				<%= link_to "Delete", task_comment_path(@task, comment), method: :delete, data: {confirm: "Are you sure?"},  class: "right" %> 
+				<% end %>
+				<% end %>
+			</li>				
+			<li class="collection-item">
+				<div>
+				<%= form_for :comment, url: task_comments_path(@task) do |f|%>
+
+					<div class = "input-field container z-depth-0">
+						<%= f.text_field :body, placeholder:"Comment",class:"left col s4" %>
+						<%= button_tag(type: "submit", class: "no-btn right") do %>
+						<i class="material-icons small">send</i>
+						<% end %>
+					</div>		
+					<% end %>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div class="card-action">
+		<%= link_to 'Follow',follow_task_path(@task),method: :post%>
+		<%= link_to 'Add SubTask', new_task_task_path(@task) %>
+		<%= link_to 'All SubTask', task_tasks_path(@task) %>
+		<%	if @task.user == current_user %>	
+		<%= link_to 'Edit Task', edit_project_task_path(@project,@task) %>	
+		<%= link_to 'Delete Task', project_task_path(@project,@task),method: :delete, data: {confirm: "Are you sure?"},class: "right" %>
+		<% end %>
+	</div>
+</div>
+
+<ul id="dropdown1" class="dropdown-content full-width">
+	<% @project.members.each do |member|%>
+	<li class="padding assign-member">
+		<p class="details" style="display: none;"
+		data-id="<%= member.id%>"
+		data-project-id="<%= params[:project_id] %>"
+		data-task-id="<%= params[:id] %>"
+		data-path="<%= project_task_url(@project,@task)%>" ></p>
+		<p><%= member.name %></p>
+		<p class="grey-text"><%= member.email %></p>
+	</li>
+	<li class="divider"></li>
+	<% end %>
+</ul>
+

@@ -1,2 +1,36 @@
-<h1>Projects#show</h1>
-<p>Find me in app/views/projects/show.html.erb</p>
+<div class="card">
+	<div class="card-content">
+		<%= render 'projects/progress', project: @project%>
+		<span class="card-title"><%= link_to @project.title, user_project_path(current_user,@project) %></span>
+		<center><%= @project.deadline %></center>
+		<p class="grey-text">Started by <%= @project.creator.name %></p>
+		<p><%= @project.description %></p>
+		<ul class="collection with-header">
+			<li class="collection-header"><b>Tasks</b></li>
+			<% @project.tasks.each do |task| %>
+			<li class="collection-item">
+				<%= link_to task.title,project_task_path(@project,task) %>
+				<div class="secondary-content">
+					<% if !task.followers.empty?%>
+					<span class="left">Followers</span>
+					<% end %>
+					<% task.followers.each do |follower|%>
+						<span class="left" style="margin-left: 1rem;"><%= render 'users/avatar', user: follower, size: '-sm' %></span>
+					<% end %>
+ 				</div>
+			</li>
+			<% end %>
+		</ul> 
+	</div>
+	<div class="card-action">
+	
+		<%= link_to 'Add task', new_project_task_path(@project) %>
+		<%= link_to 'All task', project_tasks_path(@project) %>
+		<%	if @project.creator == current_user %>
+			<%= link_to 'Edit Project', edit_user_project_path(current_user,@project) %>
+		<% end %>
+		<%= link_to 'Discusions', project_posts_path(@project) %>
+	
+	</div>
+</div>
+
