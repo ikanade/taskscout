@@ -1,22 +1,5 @@
 Rails.application.routes.draw do
 
-
-  get 'sub_tasks/index'
-
-  get 'sub_tasks/create'
-
-  get 'sub_tasks/new'
-
-  get 'sub_tasks/destroy'
-
-  get 'sub_tasks/update'
-
-  get 'sub_tasks/edit'
-
-  get 'sub_tasks/show'
-
-  get 'task_comments/create'
-
   root to: "home#index"
   devise_for :users, module: :users
   post 'pusher/auth' => 'pusher#auth'
