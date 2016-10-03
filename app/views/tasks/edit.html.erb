@@ -35,12 +35,12 @@
 			</div>
 			<div class="input-field col s4">
 				<select name="task[status]">
-					<option value="finished" selected>Finishedl</option>
+					<option value="complete">Complete</option>
 					<option value="active">active</option>
 					<option value="inactive">Inactive</option>
-					<option value="none">None</option>
+					<option value="none" selected>None</option>
 				</select>
-				<label>Priority</label>
+				<label>Status</label>
 			</div>
 			<div class="input-field col s4 offset-s4">
 				<%= f.submit "update", :disable_with => 'Creating...' %>

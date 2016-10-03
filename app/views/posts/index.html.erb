@@ -10,40 +10,20 @@
 	<div class="card">
 		<div class="card-content">
 			<div class="row">
-				<span class="card-title col s9"><%= post.title %></span> 			
-				<div class="col s2 offset-s10" >
+				<div class="card-title col s9"><%= post.title %></div> 			
+				<div class="card-title right" >
+				 	<%= link_to(follow_post_path(current_user,post),method: :post) do%>
+						<i class="material-icons">notifications</i>
+					<% end %>
 					<%	if post.user == current_user %>
-					<%= link_to 'Delete Post', project_post_path(@project, post),method: :delete, data: {confirm: "Are you sure?"} %>
+					<%= link_to(project_post_path(@project, post),method: :delete, data: {confirm: "Are you sure?"}) do  %>
+						<i class="material-icons">delete</i>
+					<% end %>
 					<% end %>
 				</div>
 			</div>				
 			<p><%= post.body %></p>	
-			<ul class="collection with-header">
-				<li class="collection-header">
-					<b>Comments</b>
-				</li>
-				<% post.comments.each do |comment| %>
-						<li class="collection-item avatar">
-							<%= render 'users/avatar', user: comment.user %>
-							<span><%= comment.body %></span>
-							<%	if comment.user == current_user %>
-								<%= link_to "Delete", post_comment_path(post, comment), method: :delete, data: {confirm: "Are you sure?"},  class: "right" %> 
-							<% end %>
-						</li>
-				<% end %>
-				<li class="collection-item">
-					<div>
-						<%= form_for :comment, url: post_comments_path(post) do |f|%>
-							<div class = "input-field container z-depth-0">
-								<%= f.text_field :body, placeholder:"Comment",class:"left col s4" %>
-								<%= button_tag(type: "submit", class: "no-btn right") do %>
-    							<i class="material-icons small">send</i>
-								<% end %>
-							</div>		
-						<% end %>
-					</div>
-				</li>
-			</ul>			
+			<%= render 'comments/index', post:post%>		
 		</div>
 	</div>
 	<% end %>

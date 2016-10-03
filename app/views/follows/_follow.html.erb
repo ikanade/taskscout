@@ -1,0 +1,18 @@
+<div class="card">
+	<div class="card-content">
+		<div class="card-title">
+		 	<%= follow.followable.title %>
+	  </div>
+	  Following this	
+	  <b><%= follow.followable.class.name %></b>
+	   Since <%= time_ago_in_words(follow.created_at)%>
+
+	</div>
+	 <div class="card-action">
+	 <% if follow.followable.class.name == "Task"%>
+	 	<%= link_to 'Unfollow', unfollow_task_path(follow.followable.id),method: :delete %>
+	 <% else %>
+	 	<%= link_to 'Unfollow', unfollow_post_path(follow.followable.id),method: :delete %>
+	 <% end %>
+	</div>
+</div>

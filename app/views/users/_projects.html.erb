@@ -10,8 +10,11 @@
 			<p class="grey-text">Started by <%= project.creator.name %></p>
 			<p><%= project.description %></p>
 			<div class="row">
-				<div class="col s12">
+				<div class="col s6">
 					<%= render 'projects/tasks', project: project %>
+				</div>
+				<div class="col s6">
+					<%= render 'posts/post', project: project%>
 				</div>
 			</div>
 		</div>

@@ -13,7 +13,7 @@ class Task < ActiveRecord::Base
 	validates_datetime :due_date, after: :started_at 
 	validates :title,  presence: true, length: {maximum: 200}
 	validates :priority, presence: true,inclusion: {in: %w(low normal high ASAP)}
-	validates :status, presence: true,inclusion: { in: %w(finished active inactive none) }
+	validates :status, presence: true, inclusion: { in: %w(complete active inactive none) }
 	validates :progress, presence: true ,
 	numericality: { only_integer: true }, length: {maximum: 3}
 

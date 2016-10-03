@@ -2,19 +2,19 @@
 	<li class="collection-header"><b>Tasks</b></li>
 	<% project.tasks.each do |task| %>
 	<li class="collection-item">
-		<%= task.title %>
+		<%= link_to task.title, project_task_path(task.taskable,task) %>
 		<div class="secondary-content">
-				<% if task.user %>
-					<%= render 'users/avatar', user: task.user, size: '-sm' %>
-				<% else %>
-				<button class="no-btn dropdown-button" data-activates="dropdown3">
-					<div class="circular-button-small">
-						<i class="material-icons icon-hover dash-border">person_add</i>
-					</div>
-				</button>
+			<% if task.user %>
+				<%= render 'users/avatar', user: task.user, size: '-sm' %>
+			<% else %>
+				<%= link_to(project_task_path(task.taskable,task)) do %>
+				<div class="circular-button-small">
+					<i class="material-icons icon-hover dash-border">person_add</i>
+				</div>
 				<% end %>
+			<% end %>
 		</div>
 	</li>
-	<%= render 'projects/members_dropdown', project: project, task:task %>
 	<% end %>
+	<%=link_to 'Add Task',new_project_task_path(project),class:"collection-item" %>
 </ul>

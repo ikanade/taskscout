@@ -10,14 +10,14 @@ class PostsController < ApplicationController
   end
 
   def new
-     @project = Project.find(params[:project_id])
-    @post=@project.posts.new
+  	 @project = Project.find(params[:project_id])
+     @post = current_user.posts.new(project_id: @project.id)
   end
 
   def create
+  	print "calls create"
     @project = Project.find(params[:project_id])
-    @post = @project.posts.new(post_params)
-    @post.user = current_user
+    @post = Post.new(post_params)
     if @post.save!
       redirect_to project_posts_path(@project)
     else
@@ -29,12 +29,15 @@ class PostsController < ApplicationController
     @project = Project.find(params[:project_id])
     @post = Post.find(params[:id])
     if @post.destroy  
-      redirect_to project_posts_path
+      redirect_to project_posts_path(@project)
     end
   end
 private
     def post_params
-        params.require(:post).permit(:title, :body)
+        data = params.require(:post).permit(:title, :body)
+        data.store(:user_id,current_user.id)
+        data.store(:project_id,params[:project_id])
+        data
      end
   
 end

@@ -21,5 +21,6 @@ class User < ActiveRecord::Base
   end
   def tasks
   	Task.where('user_id = ? AND due_date >= ?',id,Time.now)
+  	.where.not(status:"complete").order(:due_date)
   end
 end

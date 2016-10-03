@@ -2,17 +2,17 @@
 	
 	<div class="card-content">
 	<div class="progress" style="height: 20px;">
-      	<div class="determinate" style='width: <%= @task.progress %>%;'>
-      		<div class="green-text" style="float:right;margin-right: -30px;">
-      			<% if !@task.progress.nil? %>
-      					<%= @task.progress %>%
-      			<% else %>
-      			0%
-      			<% end %>
-      		</div>
-      	</div>
-  		</div>
-		<span class="card-title left"><%= link_to @task.title  %></span>
+	<div class="determinate" style='width: <%= @task.progress || 0 %>%'>
+		<div class="green-text text-darken-4" style="position:relative;left:100%;">
+			<% if @task.progress %>
+      	<%= @task.progress %>%
+      <% else %>
+      	0%
+      <% end %>
+		</div>
+	</div>
+</div>
+		<div class="card-title left"><%= link_to @task.title  %></div>
 		<button class="dropdown-button no-btn card-title right" data-activates="dropdown1">
 			<% if @task.user %>
 			<div class="chip">
@@ -24,6 +24,7 @@
 			</div>
 			<% end %>
 		</button>
+
 		<div class="clearfix"></div>
 		<p> <%= @task.description %> </p>
 		<ul class="collection with-header">
@@ -53,7 +54,7 @@
 		</ul>
 	</div>
 	<div class="card-action">
-
+		<%= link_to 'Follow',follow_task_path(@task),method: :post%>
 		<%= link_to 'Add SubTask', new_task_task_path(@task) %>
 		<%= link_to 'All SubTask', task_tasks_path(@task) %>
 		<%	if @task.user == current_user %>	
