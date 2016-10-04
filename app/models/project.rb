@@ -1,10 +1,8 @@
 class Project < ActiveRecord::Base
 	has_many :tasks, as: :taskable
-	belongs_to :user
-	alias_attribute :creator, :user
+	belongs_to :creator, class_name:'User', foreign_key: :user_id
 	has_many :project_users
-	has_many :users, through: :project_users
-	alias_attribute :members, :users
+	has_many :members, source: :user, through: :project_users
 	has_many :posts
     acts_as_followable
   	after_find :set_progress
@@ -16,7 +14,7 @@ class Project < ActiveRecord::Base
 	validates :user_id, presence: true
 	
 	def add_creator_to_members
-		self.members << self.user
+		self.members << self.creator
 	end
 	def set_progress 
     	addition = 0
