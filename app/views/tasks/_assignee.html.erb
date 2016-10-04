@@ -1,0 +1,9 @@
+<% if @task.user %>
+<div class="chip">
+	<%= @task.user.name %>
+</div>
+<% else %>
+<div class="circular-button">
+	<i class="material-icons icon-hover dash-border">person_add</i>
+</div>
+<% end %>

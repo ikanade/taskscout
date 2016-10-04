@@ -3,17 +3,13 @@
 	<div class="card-content">
 		<%= render 'shared/progress', resource: @task%>
 		<div class="card-title left"><%= link_to @task.title  %></div>
+		<% if current_user == @task.taskable.creator || current_user == @task.user %>
 		<button class="dropdown-button no-btn card-title right" data-activates="dropdown1">
-			<% if @task.user %>
-			<div class="chip">
-				<%= @task.user.name %>
-			</div>
-			<% else %>
-			<div class="circular-button">
-				<i class="material-icons icon-hover dash-border">person_add</i>
-			</div>
-			<% end %>
+			<%= render 'tasks/assignee' %>
 		</button>
+		<% else %>
+		<%= render 'tasks/assignee' %>
+		<% end %>
 		<div class="card-title right">
 			<div class="chip">
 				<%= due_when(@task.due_date)%>

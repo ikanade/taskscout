@@ -2,11 +2,14 @@
 	<div class="card">
 		<div class="card-content">
 			<%= render 'shared/progress', resource: project %>
-			<span class="card-title left">
+			<div class="card-title left">
 				<%= link_to project.title, user_project_path(current_user,project) %>
-			</span>
+			</div>
 			<%= render 'projects/members_list', project: project %>
 			<div class="clearfix"></div>
+			<div class="chip">
+					<%= due_when(project.deadline)%>
+				</div>
 			<p class="grey-text">Started by <%= project.creator.name %></p>
 			<p><%= project.description %></p>
 			<div class="row">
