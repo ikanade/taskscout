@@ -1,5 +1,5 @@
 FactoryGirl.define do
-factory :project do |f|
+factory :task do |f|
   f.title { Faker::Name.name }
   f.description { Faker::Lorem.paragraph }
   f.progress {Faker::Number.between(0,100)}
