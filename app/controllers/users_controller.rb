@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
 	def show
-		@projects = @user.projects
+		@projects = current_user.projects
 	end
 
 	private 

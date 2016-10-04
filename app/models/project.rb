@@ -5,7 +5,7 @@ class Project < ActiveRecord::Base
 	has_many :project_users
 	has_many :users, through: :project_users
 	alias_attribute :members, :users
-	
+	before_save :add_creator_to_members, if: :user_id_changed?
 	has_many :posts
   	acts_as_followable
 
@@ -15,6 +15,9 @@ class Project < ActiveRecord::Base
 										 length: {maximum: 3}
 	validates_datetime :deadline, after: :started_at, if: :deadline_changed?
 	validates :user_id, presence: true
-	
+	private	
+ 		def add_creator_to_members
+ 			self.members << self.creator 
+ 		end
 	
 end

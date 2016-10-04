@@ -28,7 +28,7 @@ class ProjectsController < ApplicationController
   	@project = Project.new(project_params)
   	if @project.save!
   		flash[:success] = "Project Created"
-  		redirect_to user_projects_path(current_user)
+  		redirect_to user_project_path(current_user,@project)
   	else
   		render 'new'
   	end
