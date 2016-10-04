@@ -1,17 +1,7 @@
 <div class="card">
 	
 	<div class="card-content">
-	<div class="progress" style="height: 20px;">
-	<div class="determinate" style='width: <%= @task.progress || 0 %>%'>
-		<div class="green-text text-darken-4" style="position:relative;left:100%;">
-			<% if @task.progress %>
-      	<%= @task.progress %>%
-      <% else %>
-      	0%
-      <% end %>
-		</div>
-	</div>
-</div>
+		<%= render 'shared/progress', resource: @task%>
 		<div class="card-title left"><%= link_to @task.title  %></div>
 		<button class="dropdown-button no-btn card-title right" data-activates="dropdown1">
 			<% if @task.user %>

@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-	before_action :set_project ,only: [:edit,:update,:show,:new,:destroy,:index]
+	before_action :set_project ,only: [:index,:create,:update,:show,:new,:destroy]
   def index
     @tasks = @project.tasks
   end
@@ -15,7 +15,6 @@ class TasksController < ApplicationController
   end
 
   def create
-  	@project = Project.find(params[:project_id])
   	@task = @project.tasks.new(task_params)
     @task.user = current_user
   	if @task.save!
@@ -32,12 +31,11 @@ class TasksController < ApplicationController
   def update
   	@task = Task.find(params[:id])
   	if @task.update_attributes(update_params)
-  		redirect_to project_task_path(params[:project_id],@task)
+  		redirect_to project_task_path(@project,@task)
   	end
   end
 
   def destroy
-
     @task = @project.tasks.find(params[:id])
     if @task.destroy
       redirect_to project_tasks_path(@project)

@@ -1,8 +1,8 @@
 <div class="progress" style="height: 20px;">
-	<div class="determinate" style='width: <%= project.progress || 0 %>%'>
+	<div class="determinate" style='width: <%= resource.progress || 0 %>%'>
 		<div class="green-text text-darken-4" style="position:relative;left:100%;">
-			<% if project.progress %>
-      	<%= project.progress %>%
+			<% if resource.progress %>
+      	<%= resource.progress %>%
       <% else %>
       	0%
       <% end %>

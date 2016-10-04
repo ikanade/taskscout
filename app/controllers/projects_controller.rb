@@ -4,18 +4,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-  	@project = Project.find(params[:id])
-    @tasks = @project.tasks
-    @addition_progress = 0
-    @tasks.each do |task|
-      if task.progress == 0
-        @project.progress = 0
-      else
-        @addition_progress = @addition_progress + task.progress 
-        @project.progress = @addition_progress / @tasks.count 
-      end
-    end 
-     
+  	@project = Project.find(params[:id])   
   end
 
   def new
@@ -26,6 +15,7 @@ class ProjectsController < ApplicationController
 
   def create
   	@project = Project.new(project_params)
+  	@project.creator = current_user
   	if @project.save!
   		flash[:success] = "Project Created"
   		redirect_to user_project_path(current_user,@project)
@@ -60,6 +50,7 @@ class ProjectsController < ApplicationController
   	deadline = data[:deadline] +" "+Time.now.strftime("%H:%M:%S %z")
   	data.store(:deadline,deadline)
   	data.store(:user_id,params[:user_id])
+  	print data
   	data
   end
 end
