@@ -2,12 +2,10 @@ class PostsController < ApplicationController
   def index
     @project = Project.find(params[:project_id])
     @posts = @project.posts
-    session[:project_id] = params[:project_id]
   end
 
   def show
     @post = Post.find(params[:id])
-    session[:project_id] = params[:project_id]
   end
 
   def new

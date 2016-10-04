@@ -6,7 +6,6 @@ class TasksController < ApplicationController
 
   def show
     @task = @project.tasks.find(params[:id])
-    session[:project_id] = params[:project_id]
   end
 
   def new
