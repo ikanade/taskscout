@@ -8,8 +8,8 @@
 			<%= f.text_field :title %>
 		</div>
 		<div class="input-field col s6">
-				<%= f.label :user_id, "Creator",class:"active" %>
-				<%= f.text_field :user_id, value: current_user.name,class:"disable", disabled:true %>
+				<%= f.label :user, "Creator",class:"active" %>
+				<%= f.text_field :user, value: current_user.name,class:"disable", disabled:true %>
 		</div>
 	</div>
 	 <div class="row">

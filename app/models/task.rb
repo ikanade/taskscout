@@ -8,7 +8,7 @@ class Task < ActiveRecord::Base
 	after_save :set_user_as_follower , if: :user_id_changed?
 	after_create :set_project_creator_as_follower
 	after_find :set_progress
-
+	after_save :set_progess_on_status_change, if: :status_changed?
 	validates :taskable_type , presence: true, inclusion: { within: %w(Project Task) }
 	validates_datetime :due_date, after: :started_at 
 	validates :title,  presence: true, length: {maximum: 200}
@@ -38,5 +38,9 @@ class Task < ActiveRecord::Base
 				end
 			end
 		end 
+	end
+
+	def set_progess_on_status_change
+
 	end
 end

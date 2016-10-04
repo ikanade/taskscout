@@ -24,6 +24,7 @@
     <% end %>
     </div>
 </nav>
+<% if user_signed_in? %>
  	<ul id="dropdown2" class="dropdown-content">
 		<li><%= link_to 'Projects', user_projects_path(current_user)%></li>
 		<li class="divider"></li>
@@ -31,3 +32,4 @@
 		<%= link_to 'Sign out', destroy_user_session_path, method: :delete%>
 		</li>
 	</ul>
+<% end %>
