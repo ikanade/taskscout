@@ -14,7 +14,7 @@ module ApplicationHelper
 		elsif date.to_date == Date.tomorrow
 			"Tomorrow"
 		elsif date.to_date == (Date.tomorrow + 1.days)
-			"Day after tomorrow"
+			"Day after Tomorrow"
 		else
 			date.to_date
 		end	
