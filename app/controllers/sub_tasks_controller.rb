@@ -5,6 +5,7 @@ class SubTasksController < ApplicationController
   end
 
   def show
+    @project = Project.find(session[:project_id])
     @subtask = @task.tasks.find(params[:id])
   end
 
