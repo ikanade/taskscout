@@ -2,6 +2,7 @@
 	<li class="collection-header">
 		<b>Comments</b>
 	</li>
+	<% if post.comments %>
 	<% post.comments.each do |comment| %>
 	<li class="collection-item avatar">
 		<%= render 'users/avatar', user: comment.user %>
@@ -10,6 +11,7 @@
 		<%= link_to "Delete", post_comment_path(post, comment), method: :delete, data: {confirm: "Are you sure?"},  class: "right" %> 
 		<% end %>
 	</li>
+	<% end %>
 	<% end %>
 	<li class="collection-item">
 		<div>
