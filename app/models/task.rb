@@ -17,6 +17,17 @@ class Task < ActiveRecord::Base
 	validates :progress, presence: true ,
 	numericality: { only_integer: true }, length: {maximum: 3}
 
+
+	def get_parent_project(obj)
+		if obj.taskable.class.name == 'Project'
+			return obj.taskable 
+		else
+			get_parent_project(obj.taskable)
+		end
+	end
+	def parent_project
+		get_parent_project(self)
+	end
 	private
 	def set_user_as_follower
 		self.user.follow(self)
@@ -39,7 +50,6 @@ class Task < ActiveRecord::Base
 			end
 		end 
 	end
-
 	def set_progess_on_status_change
 
 	end

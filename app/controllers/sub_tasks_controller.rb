@@ -1,11 +1,12 @@
 class SubTasksController < ApplicationController
-  before_action :set_task ,only: [:show,:new,:destroy,:index,:create,:edit,:update]
+  before_action :set_task
   def index
     @subtasks = @task.tasks
   end
 
   def show
     @subtask = @task.tasks.find(params[:id])
+    @project = @subtask.parent_project()
   end
 
   def create
@@ -54,7 +55,11 @@ class SubTasksController < ApplicationController
       data
     end
     def update_params
-      params.require(:subtask).permit(:title,:description,:due_date,:started_at,:priority,:status,:progress)
+    	if params[:sub_task]
+      	params.require(:sub_task).permit(:title,:user_id,:description,:due_date,:started_at,:priority,:status,:progress)
+    	elsif params[:task]
+    		params.require(:task).permit(:title,:user_id,:description,:due_date,:started_at,:priority,:status,:progress)
+    	end	
     end
 
 end

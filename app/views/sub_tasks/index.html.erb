@@ -3,7 +3,7 @@
 		<div class="card-content">
 			<% @subtasks.each do |subtask| %>
 			<%= render 'shared/progress', resource: subtask%>
-			<div class="card-title"><%= link_to subtask.title %></div>
+			<div class="card-title"><%= link_to subtask.title, task_task_path(subtask.taskable,subtask) %></div>
 			<p> <%= subtask.description %> </p>
 		</div>
 		<div class="card-action">

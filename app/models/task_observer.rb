@@ -3,7 +3,7 @@ class TaskObserver < ActiveRecord::Observer
 		if task.user_id_changed? && task.user_id_was
 			puts" after save gets called for user"
 			user = User.find(task.user_id_was)
-			if task.taskable.creator != user
+			if task.parent_project.creator != user
 				user.stop_following(task)
 				puts "#{user.name} is gettin unfollowed"
 			end

@@ -1,6 +1,5 @@
 $(document).on('turbolinks:load', function() {
 	$('.assign-member').click(function(){
-		//console.log("goes here =>",$(this).children(':first').data('id'));
 		var data_element = $(this).children(':first'); 
 		var user_id = data_element.data('id');
 		var project_id = data_element.data('project-id');
