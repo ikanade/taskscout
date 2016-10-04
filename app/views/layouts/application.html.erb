@@ -22,16 +22,5 @@
  	<%= yield %>
 
  	<%= debug(params) if Rails.env.development? %>
- 	<% if user_signed_in? %>
- 	<div id="notify"></div>
-
- 	<div id="status"></div>
-
- 	<div id="notify_api">
- 		<button type="button" id="ask_notify_permission">
- 			Enable Webkit Notifications
- 		</button>
- 	</div>
- 	<% end %>
  </body>
  </html>
