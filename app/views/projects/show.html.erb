@@ -2,7 +2,6 @@
 	<div class="card-content">
 		<%= render 'projects/progress', project: @project%>
 		<span class="card-title"><%= link_to @project.title, user_project_path(current_user,@project) %></span>
-		<center><%= @project.deadline %></center>
 		<p class="grey-text">Started by <%= @project.creator.name %></p>
 		<p><%= @project.description %></p>
 		<ul class="collection with-header">

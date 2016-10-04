@@ -1,12 +1,10 @@
 class TasksController < ApplicationController
-	before_action :set_project ,only: [:edit,:update,:show,:new,:delete]
+	before_action :set_project ,only: [:edit,:update,:show,:new,:destroy,:index]
   def index
-    @project = Project.find(params[:project_id])
     @tasks = @project.tasks
   end
 
   def show
-    @project = Project.find(params[:project_id])
     @task = @project.tasks.find(params[:id])
     session[:project_id] = params[:project_id]
   end
@@ -39,7 +37,7 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @project = Project.find(params[:project_id])
+
     @task = @project.tasks.find(params[:id])
     if @task.destroy
       redirect_to project_tasks_path(@project)
