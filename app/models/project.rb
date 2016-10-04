@@ -4,9 +4,9 @@ class Project < ActiveRecord::Base
 	has_many :project_users
 	has_many :members, source: :user, through: :project_users
 	has_many :posts
-  acts_as_followable
-  after_find :set_progress
-  before_save :add_creator_to_members, if: :user_id_changed?
+  	acts_as_followable
+  	after_find :set_progress
+  	before_save :add_creator_to_members, if: :user_id_changed?
 	validates :title,  presence: true, length: {maximum: 200}	
 	validates :progress, presence: true, numericality: { only_integer: true },
 										 length: {maximum: 3}
