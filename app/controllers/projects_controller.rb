@@ -40,7 +40,7 @@ class ProjectsController < ApplicationController
   def destroy
   	@project = Project.find_by(user_id:params[:user_id],id:params[:id])
   	if @project.destroy
-  		redirect_to user_projects_path(params[:user_id])
+  		redirect_to user_path(params[:user_id])
   	end
   end
 

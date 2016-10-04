@@ -11,7 +11,7 @@ class Project < ActiveRecord::Base
 	validates :progress, presence: true, numericality: { only_integer: true },
 										 length: {maximum: 3}
 	validates_datetime :deadline, after: :started_at, if: :deadline_changed?
-	validates :user_id, presence: true
+	validates :creator, presence: true
 	
 	def add_creator_to_members
 		self.members << self.creator

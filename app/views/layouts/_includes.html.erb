@@ -1,6 +1,8 @@
 <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
 	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %> 
 	<script type="text/javascript">
-		Pusher_config.init(<%= user_signed_in? ? current_user.id : nil %>);
+		Pusher_config.init(
+			<%= user_signed_in? ? current_user.id : nil %>,
+			<%= Pusher.key %>);
 	</script>   
 	<%= csrf_meta_tags %>
