@@ -24,7 +24,11 @@
 			</div>
 			<% end %>
 		</button>
-
+		<div class="card-title right">
+			<div class="chip">
+				<%= due_when(@task.due_date)%>
+			</div>
+			</div>
 		<div class="clearfix"></div>
 		<p> <%= @task.description %> </p>
 		<ul class="collection with-header">

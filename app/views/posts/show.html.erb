@@ -2,7 +2,7 @@
 <div class="card">
 		<div class="card-content">
 			<div class="card-title right">
-				<%= @post.user.name %>
+				<%= @post.user.name if @post.user %>
 			</div>
 			<div class="card-title">
 				<%= @post.title %>

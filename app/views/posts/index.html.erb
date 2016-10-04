@@ -11,7 +11,7 @@
 			<div class="row">
 				<div class="card-title col s9"><%= post.title %></div> 			
 				<div class="card-title right" >
-				 	<%= link_to(follow_post_path(current_user,post),method: :post) do%>
+				 	<%= link_to(follow_post_path(post),method: :post) do%>
 						<i class="material-icons">notifications</i>
 					<% end %>
 					<%	if post.user == current_user %>
