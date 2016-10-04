@@ -1,7 +1,7 @@
 <% if !user.nil? %>
 	<%= link_to user_path(user) do %>
-	<div class="avatar-circle<%= size||= nil %> circle">
-		<span class= "initials tooltipped" data-position="top" data-delay="50" data-tooltip="<%= user.name %>" >
+	<div class="avatar-circle<%= size||= nil %> circle  tooltipped"  data-position="top" data-delay="50" data-tooltip="<%= user.name %>">
+		<span class= "initials" >
 			<%= user.initials -%>
 		</span>
 	</div>
