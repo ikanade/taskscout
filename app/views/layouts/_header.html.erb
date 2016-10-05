@@ -1,17 +1,18 @@
 <nav>
-    <div class="nav-wrapper  cyan darken-2">
+    <div class="nav-wrapper cyan darken-2">
     <% if user_signed_in? -%>
     <%= link_to 'Pull-It-Together',user_path(current_user),class:"brand-logo",style:"padding-left:1%;" %>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
       	<li>
       		<%= link_to(notifications_path) do %>
+      			<% if new_notifications? %>
+      			<i class="material-icons light-green-text text-accent-3">
+      			announcement
+      			</i>
+      			<% else %>
       			<i class="material-icons material-red-text left">
       			announcement
       			</i>
-      			<% if new_notifications? %>
-      			<span class="new badge light-green"></span>
-      			<% else %>
-      			<span class="new-notification"></span>
       			<% end %>
 					<% end %>
       	</li>
