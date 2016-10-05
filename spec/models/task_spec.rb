@@ -79,5 +79,13 @@ describe Task do
       end
   end
 
+  context "Test functions Task model" do 
+    it "returns a Parent project" do
+      project = FactoryGirl.build(:project)
+      task = FactoryGirl.build(:task, :project)
+      task.get_parent_project.should == 'Project'
+    end   
+  end
+
  
 end

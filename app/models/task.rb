@@ -18,15 +18,15 @@ class Task < ActiveRecord::Base
 	numericality: { only_integer: true }, length: {maximum: 3}
 
 
-	def get_parent_project(obj)
-		if obj.taskable.class.name == 'Project'
-			return obj.taskable 
+	def get_parent_project#(obj)
+		if self.taskable.class.name == 'Project'
+			 self.taskable 
 		else
-			get_parent_project(obj.taskable)
+			self.taskable.get_parent_project
 		end
 	end
 	def parent_project
-		get_parent_project(self)
+		get_parent_project
 	end
 	private
 	def set_user_as_follower
