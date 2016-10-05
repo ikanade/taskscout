@@ -26,5 +26,12 @@ require 'rails_helper'
 	   		FactoryGirl.build(:project, deadline: "564787").should_not be_valid  	
   		end
     end
-
+    context "Progress validation checks Project model" do
+    	it "is valid with progress" do
+   			FactoryGirl.build(:project, progress: 25 ).should be_valid  
+ 		end
+  		it "is not valid with progress" do
+   			FactoryGirl.build(:project, progress: 19867 ).should_not be_valid  
+ 		end
+ 	end
   end
