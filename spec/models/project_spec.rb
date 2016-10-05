@@ -38,8 +38,6 @@ require 'rails_helper'
  		end
  	end
 
-
-
  	context "Associations " do
 	    it "has many tasks" do
 	      assc = described_class.reflect_on_association(:tasks)

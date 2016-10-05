@@ -4,10 +4,4 @@ FactoryGirl.define do
 	  f.email { Faker::Internet.email}
 	  f.password { Faker::Internet.password }  
 	end
-
-	factory :post do
-  # ...
-  association :author, factory: :user, strategy: :build
-end
-
 end

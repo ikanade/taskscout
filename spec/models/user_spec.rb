@@ -44,10 +44,11 @@ describe User do
       user = FactoryGirl.build(:user, name: "John Doe")
       user.set_initials.should == "JD"
     end
-    it "returns a " do
-      user1 = FactoryGirl.build(:user, user_id: 23, due_date: >= 2016-09-17 10:01:38, status: != 'complete' )
-      user2 = FactoryGirl.build(:user, user_id: 23, due_date: >= 2016-09-15 10:01:38, status: != 'complete' )
-      user.tasks.should == ""
+    it "returns a task by due dates" do    
+       user = FactoryGirl.create(:user)
+       task1 = FactoryGirl.create(:task, user: user, due_date: "2016-10-17 10:01:38")
+       task2 = FactoryGirl.create(:task, user: user, due_date: "2016-10-15 10:01:38")
+       user.tasks.should == [task2, task1]
     end
   end
 end
