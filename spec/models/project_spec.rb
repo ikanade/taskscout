@@ -33,5 +33,30 @@ require 'rails_helper'
   		it "is not valid with progress" do
    			FactoryGirl.build(:project, progress: 19867 ).should_not be_valid  
  		end
+ 		it "is valid with progress" do 
+ 			FactoryGirl.build(:project, progress: "bhbhbh" ).should_not be_valid
+ 		end
  	end
+
+
+
+ 	context "Associations " do
+	    it "has many tasks" do
+	      assc = described_class.reflect_on_association(:tasks)
+	      expect(assc.macro).to eq :has_many
+	    end
+	    it "has many members " do
+	      assc = described_class.reflect_on_association(:project_users)
+	      expect(assc.macro).to eq :has_many
+	    end
+	    it "belongs to user" do
+	      assc = described_class.reflect_on_association(:creator)
+	      expect(assc.macro).to eq :belongs_to
+	    end
+	    it "has many posts " do
+	      assc = described_class.reflect_on_association(:posts)
+	      expect(assc.macro).to eq :has_many
+	    end
+  	end
+
   end

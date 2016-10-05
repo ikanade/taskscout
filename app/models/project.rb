@@ -7,6 +7,7 @@ class Project < ActiveRecord::Base
   	acts_as_followable
   	after_find :set_progress
   	before_save :add_creator_to_members, if: :user_id_changed?
+	
 	validates :title,  presence: true, length: {maximum: 200}	
 	validates :progress, presence: true, numericality: { only_integer: true },
 										 inclusion: {in: 0..100}
