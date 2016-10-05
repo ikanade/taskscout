@@ -19,7 +19,20 @@ module ApplicationHelper
 			date.to_date
 		end	
 	end
-	def available_members(project)
-		User.all - project.members
+	def available_members(resource)
+		case resource.class.name
+		when "Project"
+			User.all - resource.members
+		when "Task"
+			resource.parent_project.members - [resource.user]
+		end
+	end
+	def belongs_to_url(resource)
+		case resource.taskable.class.name
+		when "Project"
+			url_for([current_user,resource.taskable])
+		when "Task"
+			url_for([resource.taskable.taskable,resource.taskable])
+		end
 	end
 end

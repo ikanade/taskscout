@@ -1,1 +1,1 @@
-$("<%= escape_javascript(render @comment) %>").appendTo("#users");
+$("<%= escape_javascript(render 'comments/comment', comment: @comment) %>").insertBefore(".collection.with-header.comments .collection-item:last");

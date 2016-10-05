@@ -1,10 +1,17 @@
-<div class="card-content">
 <ul class="collection with-header">
-	<li class="collection-header">Sub-tasks</li>
+	<li class="collection-header"><b>Sub-tasks</b>
+	<%= link_to(new_task_task_path(task),class:"btn-floating secondary-content tooltipped",data:{
+		position:"left",
+		delay:50,
+		tooltip:"New Sub-task"
+		}) do%>
+		<i class="material-icons">add</i>
+	<% end %>
+	<div class="clearfix"></div>
+	</li>
 	<% task.tasks.each do |subtask|%>
 		<li class="collection-item"><%= link_to subtask.title, [task,subtask] %><span class="secondary-content">
 			<%= render 'tasks/assignee', task:subtask%>
 		</span></li>
 	<% end %>
 </ul>
-</div>

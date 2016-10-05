@@ -15,14 +15,14 @@
 		<%= render 'users/projects', projects: @projects %>
 	</div>
 	<div class="col s8 offset-s2 hide" id="tasks">
-		<% current_user.tasks.each do |task| %>
+		<% @tasks.each do |task| %>
 			<div class="card">
 			<div class="card-content">
 				<div class="card-title">
 					<%= link_to task.title, project_task_path(task.taskable,task) %>
 				</div>
 				<p>Due <%= due_when(task.due_date) %></p>
-				<p>Project: <%= link_to task.taskable.title, user_project_path(current_user,task.taskable) %></p>
+				<p><%= (task.taskable.class.name == 'Project') ? "Project" : "Task" %>:  <%= link_to task.taskable.title, user_project_path(current_user,task.taskable) %></p>
 				<%= task.description %>
 			</div>
 			<div class="card-actions">

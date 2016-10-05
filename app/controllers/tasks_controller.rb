@@ -6,6 +6,7 @@ class TasksController < ApplicationController
 
   def show
     @task = @project.tasks.find(params[:id])
+    @available_members = @project.members - [@task.user]
   end
 
   def new

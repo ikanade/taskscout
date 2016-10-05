@@ -19,10 +19,10 @@ class TaskCommentsController < ApplicationController
   end
 
   def destroy
-    @task = Task.find(params[:task_id])
-    @comment = @task.comments.find(params[:id])
+  	@task = Task.find(params[:task_id])
+    @comment = Comment.find(params[:id])
     if @comment.destroy  
-      redirect_to project_task_path(session[:project_id],@task)
+      redirect_to project_task_path(@task.parent_project(),@task)
     end
   end
 

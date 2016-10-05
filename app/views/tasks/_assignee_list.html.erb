@@ -1,0 +1,14 @@
+<ul id="dropdown-task-members" class="dropdown-content full-width">
+	<% available_members(task).each do |member|%>
+	<li class="padding assign-member">
+		<p class="details" style="display: none;"
+		data-id="<%= member.id%>"
+		data-project-id="<%= params[:project_id] %>"
+		data-task-id="<%= params[:id] %>"
+		data-path="<%= url_for([task.taskable,task])%>" ></p>
+		<p><%= member.name %></p>
+		<p class="grey-text"><%= member.email %></p>
+	</li>
+	<li class="divider"></li>
+	<% end %>
+</ul>
