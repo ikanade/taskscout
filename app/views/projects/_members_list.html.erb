@@ -1,14 +1,29 @@
+<% if project %>
 <ul class="member-list right">
 	<% project.members.each do |user| -%>
-	<li class="collection-item avatar left">
+	<li class="left">
 		<%= render 'users/avatar', user: user %>
 	</li>
 	<% end %>
 	<% if current_user == project.creator %>
 	<li class="left">
-		<%= link_to(new_project_user_path(project),class:"circular-button grey-text",title:"Add new member") do %>
-		<i class="material-icons icon-hover dash-border">person_add</i>
-		<% end %>
+		<button class="dropdown-button no-btn card-title right" data-activates="dropdown-users-<%= project.id %>">
+			<div class="circular-button">
+				<i class="material-icons icon-hover dash-border">person_add</i>
+			</div>
+		</button>
+		<ul id="dropdown-users-<%= project.id %>" class="dropdown-content high-z-index full-width">
+			<% available_members(project).each do |member| %>
+			<li class="padding assign-project-member">
+				<%= link_to([:add,project,member], method: :post) do%>
+				<p><%= member.name %></p>
+				<p class="grey-text"><%= member.email %></p>
+				<% end %>
+			</li>
+			<li class="divider"></li>
+			<% end %>
+		</ul>
 	</li>
 	<% end %>
 </ul>
+<% end %>

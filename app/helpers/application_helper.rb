@@ -19,4 +19,7 @@ module ApplicationHelper
 			date.to_date
 		end	
 	end
+	def available_members(project)
+		User.all - project.members
+	end
 end
