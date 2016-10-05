@@ -2,7 +2,7 @@
 		<%= render 'shared/progress', resource: task%>
 		<div class="card-title left"><%= link_to task.title  %></div>
 		<% if current_user == task.parent_project.creator || current_user == task.user %>
-		<button class="dropdown-button no-btn card-title right" data-activates="dropdown1">
+		<button class="dropdown-button no-btn card-title right" data-activates="dropdown-task-members">
 			<%= render 'tasks/assignee', task: task %>
 		</button>
 		<% else %>

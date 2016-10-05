@@ -3,7 +3,8 @@
 		<div class="card">
 		<div class="card-content">
 		<div class="card-title">Update: <%= task.title %></div>
-		<%= form_for task, url: [task.taskable,task], method: :patch do |f| %>
+		<%= form_for task, url: [task.taskable,task],
+		 method: :patch do |f| %>
 		<div class="row">
 			<div class="input-field col s12">
 				<%= f.label :title, "Title",class:"active" %>
@@ -45,10 +46,12 @@
 				</select>
 				<label>Status</label>
 			</div>
+			<% unless task.tasks %>
 			<div class="input-field col s4">
 				<%= f.label :progress, "Progress",class:"active" %>
 				<%= f.number_field :progress %>
 			</div>
+			<% end %>
 			<div class="input-field col s4">
 				<%= f.submit "update", :disable_with => 'Creating...',class:"btn waves-effect waves-light" %>
 			</div>
