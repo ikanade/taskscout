@@ -12,8 +12,8 @@
 	</div>
 </div>
 
-<ul id="dropdown1" class="dropdown-content full-width">
-	<% @project.members.each do |member|%>
+<ul id="dropdown-task-members" class="dropdown-content full-width">
+	<% @available_members.each do |member|%>
 	<li class="padding assign-member">
 		<p class="details" style="display: none;"
 		data-id="<%= member.id%>"

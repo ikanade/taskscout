@@ -22,9 +22,11 @@ class Project < ActiveRecord::Base
 	def set_progress 
     addition = 0
     self.tasks.each do |task|
-      unless task.progress == 0
-					addition += task.progress 
-					self.progress = addition / self.tasks.count  
+    	if task.progress
+      	unless task.progress == 0
+						addition += task.progress 
+						self.progress = addition / self.tasks.count  
+				end
 			end
     end
 	end

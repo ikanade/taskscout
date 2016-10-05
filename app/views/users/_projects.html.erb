@@ -4,8 +4,8 @@
 			<%= render 'shared/progress', resource: project %> 
 			<div class="card-title left">
 				<%= link_to project.title, user_project_path(current_user,project) %>
-			</div>					<!-- gives list contains members of prject -->
-			<%= render 'projects/members_list', project: project %>
+			</div>  <!-- gives list contains members of prject -->
+			<%= render 'projects/members_list', project: project%>
 			<div class="clearfix"></div>
 			<div class="chip">       <!-- due date convert date in words -->
 					<%= due_when(project.deadline)%>

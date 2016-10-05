@@ -7,6 +7,11 @@ class SubTasksController < ApplicationController
   def show
     @subtask = @task.tasks.find(params[:id])
     @project = @subtask.parent_project()
+    if @subtask.user
+    	@available_members = @project.members - [@subtask.user]
+    else
+    	@available_members ||= @project.members
+  	end
   end
 
   def create
@@ -26,7 +31,7 @@ class SubTasksController < ApplicationController
   def update   
     @subtask = @task.tasks.find(params[:id])
     if @subtask.update(update_params)
-        redirect_to task_tasks_path(@task)
+        redirect_to task_task_path(@task,@subtask)
     else
         render 'edit'
     end
