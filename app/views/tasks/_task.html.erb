@@ -1,6 +1,7 @@
 <div class="card-content">
-		<%= render 'shared/progress', resource: task%>
+		<%= render 'shared/progress', resource: task%> <!-- display progress -->
 		<div class="card-title left"><%= link_to task.title  %></div>
+		<!-- task can be asssigned by project creator and task user only -->
 		<% if current_user == task.parent_project.creator || current_user == task.user %>
 		<button class="dropdown-button no-btn card-title right" data-activates="dropdown1">
 			<%= render 'tasks/assignee', task: task %>
@@ -17,17 +18,17 @@
 		<p> <%= task.description %> </p>
 		<ul class="collection with-header">
 			<li class="collection-header"><b>Comments</b></li>
-			<% task.comments.each do |comment| %>
+			<% task.comments.each do |comment| %> <!-- task comments display -->
 			<li class="collection-item avatar">
-				<%= render 'users/avatar', user: comment.user %>
+				<%= render 'users/avatar', user: comment.user %> <!-- user initial display -->
 				<span><%= comment.body %></span>
-				<%	if comment.user == current_user %>
+				<%	if comment.user == current_user %> <!--comment deleted only who commented it -->
 				<%= link_to "Delete", task_comment_path(task, comment), method: :delete, data: {confirm: "Are you sure?"},  class: "right" %> 
 				<% end %>
 				<% end %>
 			</li>				
 			<li class="collection-item">
-				<div>
+				<div>							<!-- create comment -->
 				<%= form_for :comment, url: task_comments_path(task) do |f|%>
 
 					<div class = "input-field container z-depth-0">

@@ -40,7 +40,7 @@ class Task < ActiveRecord::Base
 	end
 	def set_progress
 		if self.tasks
-			subtasks  = self.tasks
+			subtasks = self.tasks
 			addition = 0
 			subtasks.each do |subtask|
 				unless subtask.progress == 0

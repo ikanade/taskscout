@@ -8,7 +8,7 @@ class TaskObserver < ActiveRecord::Observer
 				puts "#{user.name} is gettin unfollowed"
 			end
 			task.followers.each do |follower|
-				puts"notigication gets called for #{follower.name}"
+				puts"notification gets called for #{follower.name}"
 				notification_body = 	{
 					resource_id: task.id,
 					recipient_id: follower.id,

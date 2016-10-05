@@ -1,5 +1,5 @@
 module ApplicationHelper
-	def new_notifications?
+	def new_notifications?   # new notifications displays
 		if user_signed_in?
 			notifications = Notification.where(
 				recipient_id: current_user.id,
@@ -7,7 +7,7 @@ module ApplicationHelper
 			return true unless notifications.empty?
 		end
 		false
-	end
+	end            # due date of project and task convert to string
 	def due_when(date)
 		if date.to_date.today?
 			"Today"

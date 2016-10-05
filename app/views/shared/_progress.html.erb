@@ -1,7 +1,7 @@
-<div class="progress" style="height: 20px;">
+<div class="progress" style="height: 20px;"> <!-- progress bar is used to show progress-->
 	<div class="determinate" style='width: <%= resource.progress || 0 %>%'>
 		<div class="green-text text-darken-4" style="position:relative;left:100%;">
-			<% if resource.progress %>
+			<% if resource.progress %> <!--resourse contain progress type(project/task/subtask)-->
       	<%= resource.progress %>%
       <% else %>
       	0%
