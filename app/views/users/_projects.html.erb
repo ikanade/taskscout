@@ -5,7 +5,7 @@
 			<div class="card-title left">
 				<%= link_to project.title, user_project_path(current_user,project) %>
 			</div>
-			<%= render 'projects/members_list', project: project %>
+			<%= render 'projects/members_list', project: project%>
 			<div class="clearfix"></div>
 			<div class="chip">
 					<%= due_when(project.deadline)%>

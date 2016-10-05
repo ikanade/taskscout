@@ -1,20 +1,35 @@
-<ul class="collection with-header">
+<ul class="collection with-header allow-overflow">
 	<li class="collection-header"><b>Tasks</b></li>
 	<% project.tasks.each do |task| %>
 	<li class="collection-item">
 		<%= link_to task.title, project_task_path(task.taskable,task) %>
 		<div class="secondary-content">
 			<% if task.user %>
-				<%= render 'users/avatar', user: task.user, size: '-sm' %>
+			<%= render 'users/avatar', user: task.user, size: '-sm' %>
 			<% else %>
-				<%= link_to(project_task_path(task.taskable,task)) do %>
+			<a class="dropdown-button black-text" data-activates="dropdown-users-task-<%= task.id %>">
 				<div class="circular-button-small">
 					<i class="material-icons icon-hover dash-border">person_add</i>
 				</div>
-				<% end %>
+			</a>
 			<% end %>
 		</div>
 	</li>
+	<ul id="dropdown-users-task-<%= task.id %>" class="dropdown-content full-width">
+				<% project.members.each do |member| %>
+				<li class="padding assign-member">
+					<% #puts "Task Value during render #{task.id}"%>
+					<p class="details" style="display: none;"
+					data-id="<%= member.id%>"
+					data-project-id="<%= project.id %>"
+					data-task-id="<%= task.id %>"
+					data-path="<%= url_for([project,task])%>" ></p>
+					<p><%= member.name %></p>
+					<p class="grey-text"><%= member.email %></p>
+				</li>
+				<li class="divider"></li>
+				<% end %>
+			</ul>
 	<% end %>
 	<%=link_to 'Add Task',new_project_task_path(project),class:"collection-item" %>
 </ul>
