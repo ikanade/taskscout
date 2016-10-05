@@ -26,7 +26,11 @@ class Task < ActiveRecord::Base
 		end
 	end
 	def parent_project
-		get_parent_project
+		if self.taskable.class.name == 'Project'
+			 self.taskable 
+		else
+			self.taskable.get_parent_project
+		end
 	end
 	private
 	def set_user_as_follower

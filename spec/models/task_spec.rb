@@ -81,9 +81,10 @@ describe Task do
 
   context "Test functions Task model" do 
     it "returns a Parent project" do
-      project = FactoryGirl.build(:project)
-      task = FactoryGirl.build(:task, :project)
-      task.get_parent_project.should == 'Project'
+      task = FactoryGirl.build(:task)
+      parent_task = FactoryGirl.build(:task)
+      task.taskable = parent_task
+      task.parent_project.should == parent_task.taskable
     end   
   end
 
