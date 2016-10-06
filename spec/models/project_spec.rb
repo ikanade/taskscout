@@ -48,13 +48,14 @@ require 'rails_helper'
 	      expect(assc.macro).to eq :has_many
 	    end
 	    it "belongs to user" do
-	    	project = FactoryGirl.create(:project)
-			project.new_record?       
-			project.creator.new_record? 
+  	    project = FactoryGirl.create(:project)
+  			project.new_record?       
+  			project.creator.new_record? 
 	    end
 	    it "has many posts " do
-	      assc = described_class.reflect_on_association(:posts)
-	      expect(assc.macro).to eq :has_many
+	      FactoryGirl.create(:project).posts.length # 0
+        FactoryGirl.create(:project_with_posts).posts.length # 5
+        FactoryGirl.create(:project_with_posts, posts_count: 15).posts.length 
 	    end
 	    
   	end

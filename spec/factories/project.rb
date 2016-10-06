@@ -9,6 +9,14 @@ FactoryGirl.define do
 	  f.user_id {Faker::Number.number(2)}
  	  association :creator, factory: :user, strategy: :build
 
+ 	  factory :project_with_posts do	  		#has_many relation  	
+	  	transient do
+        	posts_count 5
+      	end	  
+	  	after(:create) do |project, evaluator|
+       		 create_list(:post, evaluator.posts_count, project: project)
+    	end
+      end 
  	  
 	end
 end
