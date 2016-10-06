@@ -86,8 +86,11 @@ RSpec.describe Task, type: :model do
       task.taskable = parent_task
       task.parent_project.should == parent_task.taskable
     end  
-    
+    it "returns project creator as follower" do
+      task = FactoryGirl.build(:task)
+      project = FactoryGirl.create(:project) 
+      follow = FactoryGirl.build(:follow)
+      expect(follow.follower_id) == project.creator.id
+    end 
   end
-
- 
 end
