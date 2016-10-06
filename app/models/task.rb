@@ -22,7 +22,7 @@ class Task < ActiveRecord::Base
 		if self.taskable.class.name == 'Project'
 			 self.taskable 
 		else
-			self.taskable.get_parent_project
+			self.taskable.parent_project
 		end
 	end
 	private

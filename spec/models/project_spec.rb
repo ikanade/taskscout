@@ -56,13 +56,7 @@ require 'rails_helper'
 	      assc = described_class.reflect_on_association(:posts)
 	      expect(assc.macro).to eq :has_many
 	    end
-	    it " if project destroy then task should be destroy" do
-	    	project = FactoryGirl.build(:project)
-  			taskable = project.taskable
-  			lambda { 
-   					 project.destroy
- 				 }.should change(Task, :count).by(-1)
-	    end
+	    
   	end
 
   end
