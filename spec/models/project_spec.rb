@@ -1,5 +1,5 @@
 require 'rails_helper'
-  describe Project do
+  RSpec.describe Project, type: :model do
    context " Title validation check Project Model" do
 	    it "is invalid without a title" do
 	      FactoryGirl.build(:project, title: nil).should_not be_valid
@@ -48,12 +48,20 @@ require 'rails_helper'
 	      expect(assc.macro).to eq :has_many
 	    end
 	    it "belongs to user" do
-	      assc = described_class.reflect_on_association(:creator)
-	      expect(assc.macro).to eq :belongs_to
+	    	project = FactoryGirl.create(:project)
+			project.new_record?       
+			project.creator.new_record? 
 	    end
 	    it "has many posts " do
 	      assc = described_class.reflect_on_association(:posts)
 	      expect(assc.macro).to eq :has_many
+	    end
+	    it " if project destroy then task should be destroy" do
+	    	project = FactoryGirl.build(:project)
+  			taskable = project.taskable
+  			lambda { 
+   					 project.destroy
+ 				 }.should change(Task, :count).by(-1)
 	    end
   	end
 

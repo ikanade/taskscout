@@ -8,5 +8,7 @@ FactoryGirl.define do
 	  f.started_at { Date.today} 
 	  f.user_id {Faker::Number.number(2)}
  	  association :creator, factory: :user, strategy: :build
+
+ 	  project.after_create {|p| Factory(:task, taskable: :p)}
 	end
 end

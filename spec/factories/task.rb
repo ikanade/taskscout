@@ -12,5 +12,6 @@ factory :task do |f|
   association :user_id, factory: :user, strategy: :build
   association :taskable, factory: :project, strategy: :build
  
+  task.after_create {|t| Factory(:task, taskable: :t)}
 end
 end

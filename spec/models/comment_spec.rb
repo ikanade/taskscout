@@ -1,15 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
-  let(:subject) { Comment.new(body:"demo bhbh njnjn njnjn", commentable_type: "Post")} 
   
   it "is valid with body" do
-   	subject.body = "PIT bdhh nnjn jdncjn"
-  	expect(subject).to be_valid
+    FactoryGirl.build(:comment, body: "PIT bdhh nnjn jdncjn").should be_valid
   end
   it "is not valid with body" do
-   	subject.body = nil
-  	expect(subject).to_not be_valid
+    FactoryGirl.build(:comment, body: nil).should be_valid
   end
   context "Associations" do
     it " belongs to user" do

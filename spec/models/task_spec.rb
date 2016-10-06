@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Task do 
+RSpec.describe Task, type: :model do
   context "Validate title " do
       it "is valid with title" do
        	FactoryGirl.build(:task, title: "PIT").should be_valid
@@ -85,7 +85,8 @@ describe Task do
       parent_task = FactoryGirl.build(:task)
       task.taskable = parent_task
       task.parent_project.should == parent_task.taskable
-    end   
+    end  
+    
   end
 
  

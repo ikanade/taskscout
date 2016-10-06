@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Post do
+RSpec.describe Post, type: :model do
   context "validation checks " do
     it "is valid with title" do
       FactoryGirl.build(:post, title: "gh jk jn").should be_valid

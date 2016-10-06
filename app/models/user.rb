@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   has_many :notifications, foreign_key: :recipient_id
   acts_as_follower
 
-  validates :name, presence: true, format:{ with: /\A[a-z ]+\z/i }
+  validates :name, presence: true
 
   def set_initials
 		self.initials = self.name.scan(/(\b[a-z])[a-z]*?/i).join.upcase
