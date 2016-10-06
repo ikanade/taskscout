@@ -40,8 +40,9 @@ require 'rails_helper'
 
  	context "Associations " do
 	    it "has many tasks" do
-	      assc = described_class.reflect_on_association(:tasks)
-	      expect(assc.macro).to eq :has_many
+	      FactoryGirl.create(:project).tasks.length # 0
+        FactoryGirl.create(:project_with_tasks).tasks.length # 5
+        FactoryGirl.create(:project_with_tasks, tasks_count: 15).tasks.length 
 	    end
 	    it "has many members " do
 	      assc = described_class.reflect_on_association(:project_users)
@@ -56,8 +57,7 @@ require 'rails_helper'
 	      FactoryGirl.create(:project).posts.length # 0
         FactoryGirl.create(:project_with_posts).posts.length # 5
         FactoryGirl.create(:project_with_posts, posts_count: 15).posts.length 
-	    end
-	    
+	    end	    
   	end
 
   end

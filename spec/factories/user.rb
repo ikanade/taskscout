@@ -4,7 +4,7 @@ FactoryGirl.define do
 	  f.email { Faker::Internet.email}
 	  f.password { Faker::Internet.password }
 
-	  factory :user_with_posts do	  		  	
+	  factory :user_with_posts do	 #has_many relation 		  	
 	  	transient do
         	posts_count 5
       	end	  
