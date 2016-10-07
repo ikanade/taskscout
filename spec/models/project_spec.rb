@@ -15,7 +15,7 @@ require 'rails_helper'
 	   end
 	   it "is valid with date" do
 		   	FactoryGirl.build(:project, started_at: "2016-10-05 10:01:38")
-		   	FactoryGirl.build(:project, deadline: "2016-10-6 10:01:38").should be_valid
+		   	FactoryGirl.build(:project, deadline: "2016-10-15 10:01:38").should be_valid
 	   end
 	   it "is not valid format of date" do
 	   		FactoryGirl.build(:project, started_at: "asdasdasd")
@@ -58,6 +58,13 @@ require 'rails_helper'
         FactoryGirl.create(:project_with_posts).posts.length # 5
         FactoryGirl.create(:project_with_posts, posts_count: 15).posts.length 
 	    end	    
+  	end
+
+  	context "Test instance methods project model" do
+  		it "check creator to member of project " do
+  			project = FactoryGirl.create(:project)
+  			expect(project.members.include? (project.creator))
+  		end
   	end
 
   end

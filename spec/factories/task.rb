@@ -10,8 +10,12 @@ factory :task do |f|
   f.started_at { Date.today} 
   f.taskable_type {["Task","Project"][rand(2)]}
   association :user_id, factory: :user, strategy: :build
+
   association :taskable, factory: :project, strategy: :build
- 
+
+  factory :task_taskable do
+    association :taskable, factory: :task, strategy: :build
+  end
  
 end
 end
