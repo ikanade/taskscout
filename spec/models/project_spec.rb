@@ -65,6 +65,11 @@ require 'rails_helper'
   			project = FactoryGirl.create(:project)
   			expect(project.members.include? (project.creator))
   		end
+  		it "returns task progress" do
+		      project = FactoryGirl.build(:project)
+		      project.save!
+		      expect(project.progress) 
+    	end 
   	end
 
   end

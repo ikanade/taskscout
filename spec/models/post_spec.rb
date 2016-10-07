@@ -27,13 +27,14 @@ RSpec.describe Post, type: :model do
     end
   end
 
-  context " Test instance methods " do
-    it " set creator as follower " do     
+  context " Test instance methods " do  
+    it "returns user as follower" do
       post = FactoryGirl.create(:post)
-      user = FactoryGirl.create(:user)
+      user = FactoryGirl.create(:user, id: 13)
+      user.posts << post
       follow = FactoryGirl.build(:follow)
-      expect(follow.follower_id) == post.user.id
-    end
+      expect(follow.follower_id) == post.user_id
+    end 
   end  
 end
 

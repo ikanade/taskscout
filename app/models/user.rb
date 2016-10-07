@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   validates :name, presence: true
 
   def set_initials
-		self.initials = self.name.scan(/(\b[a-z])[a-z]*?/i).join.upcase
+		self.initials = self.name.split(' ').first[0] + self.name.split(' ').last[0]
   end
   def tasks
   	Task.where('user_id = ? AND due_date >= ?',id,Time.now)

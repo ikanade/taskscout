@@ -39,9 +39,14 @@ RSpec.describe User, type: :model do
 
   context "Test Instance methods" do
     it "returns a user's name initials" do
-      user = FactoryGirl.build(:user, name: "John Doe")
+      user = FactoryGirl.build(:user, name: "John poee Doe")
       user.set_initials.should == "JD"
     end
-   
+    it "returns a task by due dates" do    
+       user = FactoryGirl.create(:user)
+       task1 = FactoryGirl.create(:task, user: user, due_date: "2016-10-17 10:01:38",status: "none")
+       task2 = FactoryGirl.create(:task, user: user, due_date: "2016-10-15 10:01:38",status: "active")
+       user.tasks.should == [task2, task1]
+    end
   end
 end

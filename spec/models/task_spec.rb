@@ -79,7 +79,7 @@ RSpec.describe Task, type: :model do
       end
   end
 
-  context "Test functions Task model" do 
+  context "Test instance methods Task model" do 
     it "returns a Parent project" do
       task = FactoryGirl.build(:task)
       parent_task = FactoryGirl.build(:task)

@@ -5,6 +5,6 @@ FactoryGirl.define do
 	 
 	  association :follower, factory: :user, strategy: :build
 	 
-	  	association :followable, factory: :post, strategy: :build
+	  association :followable, factory: :post, strategy: :build
 	end
 end
