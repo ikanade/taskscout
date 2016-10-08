@@ -38,12 +38,12 @@ RSpec.describe Task, type: :model do
   end
   context "Date validation checks Task Model" do
      it "is not valid with date" do
-        FactoryGirl.build(:task, started_at: "2016-09-15 10:01:38")
-        FactoryGirl.build(:task, due_date: "2016-09-14 10:01:38").should_not be_valid
+        FactoryGirl.build(:task, started_at: "2016-10-15 10:01:38")
+        FactoryGirl.build(:task, due_date: "2016-09-12 10:01:38").should_not be_valid
      end
      it "is valid with date" do
-        FactoryGirl.build(:task, started_at: "2016-10-05 10:01:38")
-        FactoryGirl.build(:task, due_date: "2016-10-18 10:01:38").should be_valid
+        FactoryGirl.build(:task)
+        FactoryGirl.build(:task).should be_valid
      end
      it "is not valid format of date" do
         FactoryGirl.build(:task, started_at: "asdasdasd")

@@ -10,12 +10,12 @@ require 'rails_helper'
 	end
 	context "Date validation checks Project Model" do
 	   it "is not valid with date" do
-		   	FactoryGirl.build(:project, started_at: "2016-09-15 10:01:38")
-		   	FactoryGirl.build(:project, deadline: "2016-09-14 10:01:38").should_not be_valid
+		   	FactoryGirl.build(:project, started_at: "2016-10-15 10:01:38")
+        FactoryGirl.build(:project, deadline: "2016-09-12 10:01:38").should_not be_valid
 	   end
 	   it "is valid with date" do
-		   	FactoryGirl.build(:project, started_at: "2016-10-05 10:01:38")
-		   	FactoryGirl.build(:project, deadline: "2016-10-15 10:01:38").should be_valid
+		   	FactoryGirl.build(:project)
+		   	FactoryGirl.build(:project).should be_valid
 	   end
 	   it "is not valid format of date" do
 	   		FactoryGirl.build(:project, started_at: "asdasdasd")

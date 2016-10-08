@@ -1,4 +1,3 @@
-
 class TaskObserver < ActiveRecord::Observer
 	def after_save(task)
 		if task.user_id_changed? && task.user_id_was
@@ -18,11 +17,11 @@ class TaskObserver < ActiveRecord::Observer
 					category: 'Task'
 				}
 				
-			 			if Rails.env != "testing"
-							Pusher.trigger("private-#{follower.id}",
-								'new_notification',notification_body)									
-						end
-						Notification.create(notification_body)
+ 			if Rails.env != "testing"
+				Pusher.trigger("private-#{follower.id}",
+					'new_notification',notification_body)									
+			end
+			Notification.create(notification_body)
 			
 			end
 			notification_body = {
@@ -32,11 +31,11 @@ class TaskObserver < ActiveRecord::Observer
 					body: "Details - #{task.title}",
 					category: 'Task'
 				}
-				if Rails.env != "testing"
-					Pusher.trigger("private-#{task.user_id}",
-					'new_notification',notification_body)
-			  end
-				Notification.create(notification_body)
+			if Rails.env != "testing"
+				Pusher.trigger("private-#{task.user_id}",
+				'new_notification',notification_body)
+		 	 end
+			Notification.create(notification_body)
 		end
 		if task.status_changed? && task.status_was
 				task.followers.each do |follower|
@@ -55,7 +54,7 @@ class TaskObserver < ActiveRecord::Observer
 				end
 			end
 
-			 require "pusher-fake/support/base"
+			 
 	end
 
 	def due_when(date)

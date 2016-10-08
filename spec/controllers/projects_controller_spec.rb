@@ -7,11 +7,10 @@ RSpec.describe ProjectsController, type: :controller do
      @project.user_id = @user
      @project.save
    end
-  it "populates an array of projects" do
-
-    get user_projects_path(@user)
-    
-  end
   
+  it "redirects to the home page upon save" do
+	  get :new, project: FactoryGirl.attributes_for(:project)
+	  response.should redirect_to user_projects_path(@user)
+  end
 
 end
