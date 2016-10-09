@@ -1,8 +1,6 @@
 class CommentObserver < ActiveRecord::Observer
 	def after_save(comment)
-		puts "gets called comment observer"
 		comment.commentable.followers.each do |follower|
-				puts "goes inside for #{follower}"
 				notification_body = 	{
 					resource_id: comment.commentable.id,
 					recipient_id: follower.id,
