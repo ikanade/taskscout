@@ -3,7 +3,7 @@
 		<div class="card">
 			<div class="card-content container">
 				<%= form_for task, url: [task.taskable,task],
-				method: :patch do |f| %>
+				method: :post do |f| %>
 				<div class="row">
 					<div class="input-field col s6">
 						<%= f.label :title, "Title",class:"active" %>
