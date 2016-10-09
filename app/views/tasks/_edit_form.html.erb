@@ -2,21 +2,15 @@
 	<div class="col s12 m12">
 		<div class="card">
 			<div class="card-content container">
-				<%= form_for task, url: [task.taskable,task],
-				method: :patch do |f| %>
+				<%= form_for task, url: [task.taskable,task] do |f| %>
 				<div class="row">
 					<div class="input-field col s6">
 						<%= f.label :title, "Title",class:"active" %>
 						<%= f.text_field :title %>
 					</div>
 					<div class="input-field col s6">
-						<select name="task[status]">
-							<option value="complete">Complete</option>
-							<option value="active">active</option>
-							<option value="inactive">Inactive</option>
-							<option value="none" selected>None</option>
-						</select>
-						<label>Status</label>
+						<%= f.select(:status,options_for_select([['Complete', 'complete'], ['active', 'active'],['Inactive','inactive'],['None','none']],task.status)) %>
+						<%= f.label :status, "Status" %>
 					</div>
 				</div>
 				<div class="row">
@@ -45,7 +39,7 @@
 					</div>
 				</div>
 				<div class="row">
-					<% unless !task.tasks.empty? %>
+					<% if task.tasks.empty? && task.persisted? %>
 					<div class="range-field col s4 offset-s4">
 						<%= f.label :progress, "Progress",class:"active" %>
 						<%= f.range_field :progress %>

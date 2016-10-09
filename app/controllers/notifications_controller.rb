@@ -2,6 +2,7 @@ class NotificationsController < ApplicationController
 	before_filter :authenticate_user!
   
   def index
+  	session[:last_checked] = Time.now
     @notifications = current_user.notifications.order("created_at desc")
   end
   

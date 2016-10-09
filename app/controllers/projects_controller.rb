@@ -5,6 +5,7 @@ class ProjectsController < ApplicationController
 
   def show
   	@project = Project.find(params[:id]) 
+  	@posts = @project.posts.order(created_at: :desc)
   end
 
   def new

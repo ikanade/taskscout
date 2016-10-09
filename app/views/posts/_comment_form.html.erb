@@ -1,0 +1,15 @@
+<li class="collection-item">
+	<div class="row">
+	<%= form_for :comment, url: post_comments_path(post),remote:true do |f|%>
+
+		<div class = "input-field col s6 offset-s3 z-depth-0 comments-field">
+			<%= f.text_area :body,class:"materialize-textarea comment-input" %>
+			<%= f.label :body, "Comment" %>
+			<%= button_tag(type: "submit", class: "btn-floating right comment-button") do %>
+			<i class="material-icons">send</i>
+			<% end %>
+		</div>		
+		<% end %>
+		<div class="clearfix"></div>
+	</div>
+</li>

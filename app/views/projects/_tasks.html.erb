@@ -2,7 +2,7 @@
 	<li class="collection-header"><b>Tasks</b></li>
 	<% project.tasks.each do |task| %>
 	<li class="collection-item">
-		<%= link_to task.title, project_task_path(task.taskable,task) %>
+		<%= link_to task.title, project_task_path(task.taskable,task), class:"#{task.status}" %>
 		<div class="secondary-content">
 			<% if task.user %>
 			<%= render 'users/avatar', user: task.user, size: '-sm' %>
@@ -18,7 +18,6 @@
 	<ul id="dropdown-users-task-<%= task.id %>" class="dropdown-content full-width">
 				<% project.members.each do |member| %>
 				<li class="padding assign-member">
-					<% #puts "Task Value during render #{task.id}"%>
 					<p class="details" style="display: none;"
 					data-id="<%= member.id%>"
 					data-project-id="<%= project.id %>"

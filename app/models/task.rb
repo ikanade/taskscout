@@ -1,6 +1,6 @@
 class Task < ActiveRecord::Base
 	belongs_to :taskable, polymorphic: true
-	has_many :tasks, as: :taskable
+	has_many :tasks, as: :taskable, dependent: :destroy
 	belongs_to :user
 	has_many :comments, as: :commentable
 	has_many :labels, as: :labelable
@@ -8,7 +8,7 @@ class Task < ActiveRecord::Base
 	after_save :set_user_as_follower , if: :user_id_changed?
 	after_create :set_project_creator_as_follower
 	after_find :set_progress
-	after_save :set_progess_on_status_change, if: :status_changed?
+	after_find :set_progess_on_status_change
 	validates :taskable_type , presence: true, inclusion: { within: %w(Project Task) }
 	validates_datetime :due_date, after: :started_at 
 	validates :title,  presence: true, length: {maximum: 200}
@@ -46,6 +46,8 @@ class Task < ActiveRecord::Base
 		end 
 	end
 	def set_progess_on_status_change
-
+		if self.status == 'complete'
+			self.progress = 100 
+		end
 	end
 end

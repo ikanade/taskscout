@@ -16,8 +16,12 @@ class CommentsController < ApplicationController
     @comment = @post.comments.new(comment_params)
     @comment.user = current_user
     if @comment.save!
-      redirect_to project_posts_path(@post.project)
+      respond_to do |format|
+      	format.html { redirect_to([current_user,@post.project]) }
+      	format.js { render 'task_comments/create'}
+      end
     else
+    
       render 'new'
     end 
   end

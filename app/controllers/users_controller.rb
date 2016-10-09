@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
 	def show
 		@projects = current_user.projects.order(:deadline)
-		@tasks = Task.where('user_id = ? AND due_date >= ?',@user,Time.now).order(:due_date)
+		@tasks = Task.where('user_id = ?',@user).where.not(status:'complete').order(:due_date)
 	end
 
 	private 

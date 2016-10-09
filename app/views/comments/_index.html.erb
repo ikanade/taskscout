@@ -14,15 +14,18 @@
 	<% end %>
 	<% end %>
 	<li class="collection-item">
-		<div>
-			<%= form_for :comment, url: post_comments_path(post) do |f|%>
-			<div class = "input-field z-depth-0">
-			<%= f.text_field :body, placeholder:"Comment",class:"left" %>
-				<%= button_tag(type: "submit", class: "no-btn right") do %>
-				<i class="material-icons green-text small">send</i>
-				<% end %>
-			</div>		
+	<div class="row">
+	<%= form_for :comment, url: post_comments_path(post),remote:true do |f|%>
+
+		<div class = "input-field col s6 offset-s3 z-depth-0 comments-field">
+			<%= f.text_area :body,class:"materialize-textarea comment-input" %>
+			<%= f.label :body, "Comment" %>
+			<%= button_tag(type: "submit", class: "btn-floating right comment-button") do %>
+			<i class="material-icons">send</i>
 			<% end %>
-		</div>
-	</li>
+		</div>		
+		<% end %>
+		<div class="clearfix"></div>
+	</div>
+</li>
 </ul>	

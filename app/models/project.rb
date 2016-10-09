@@ -1,9 +1,9 @@
 class Project < ActiveRecord::Base
-	has_many :tasks, as: :taskable
+	has_many :tasks, as: :taskable,dependent: :destroy
 	belongs_to :creator, class_name:'User', foreign_key: :user_id
 	has_many :project_users
 	has_many :members, source: :user, through: :project_users
-	has_many :posts
+	has_many :posts, dependent: :destroy
   acts_as_followable
   after_find :set_progress
   before_save :add_creator_to_members, if: :user_id_changed?

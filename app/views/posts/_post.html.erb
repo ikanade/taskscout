@@ -1,6 +1,6 @@
 <ul class="collection with-header">
 	<li class="collection-header"><b>Posts</b></li>
-	<% project.posts.each do|post|%>
+	<% project.posts.order(created_at: :desc).each do|post|%>
 	<div class="collection-item">
 		<div class="card-content">
 			<div class="card-title">

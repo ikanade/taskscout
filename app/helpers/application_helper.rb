@@ -1,9 +1,11 @@
 module ApplicationHelper
 	def new_notifications?
 		if user_signed_in?
+			last_checked = session[:last_checked]
+			last_checked ||= current_user.current_sign_in_at 
 			notifications = Notification.where(
 				recipient_id: current_user.id,
-				created_at:current_user.updated_at..Time.now)
+				created_at:last_checked..Time.now)
 			return true unless notifications.empty?
 		end
 		false

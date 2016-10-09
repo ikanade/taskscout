@@ -18,6 +18,7 @@
 	Belongs to the <%= task.taskable.class.name %>  
 	<%= link_to task.taskable.title, belongs_to_url(task)%>
 	</p>
+	<p>Status: <%= task.status %></p>
 	<p> <%= task.description %></p>
 	<div class="row">
 		<div class="col s6">

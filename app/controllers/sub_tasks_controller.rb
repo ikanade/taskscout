@@ -18,7 +18,7 @@ class SubTasksController < ApplicationController
     @subtask = @task.tasks.new(task_params)
     @subtask.user = current_user
     if @subtask.save!
-      redirect_to task_tasks_path(@task)
+      redirect_to task_task_path(@task,@subtask)
     else
       render 'new'
     end
@@ -45,7 +45,7 @@ class SubTasksController < ApplicationController
   def destroy
     @subtask = @task.tasks.find(params[:id])
     if @subtask.destroy
-      redirect_to task_tasks_path(@task)
+      redirect_to ([@task.taskable,@task])
     end
   end
 
