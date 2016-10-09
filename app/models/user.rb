@@ -14,10 +14,10 @@ class User < ActiveRecord::Base
   has_many :notifications, foreign_key: :recipient_id
   acts_as_follower
 
-  validates :name, presence: true, format:{ with: /\A[a-z ]+\z/i }
+  validates :name, presence: true
 
   def set_initials
-		self.initials = self.name.scan(/(\b[a-z])[a-z]*?/i).join.upcase
+		self.initials = self.name.split(' ').first[0] + self.name.split(' ').last[0]
   end
   def tasks
   	Task.where('user_id = ? AND due_date >= ?',id,Time.now)

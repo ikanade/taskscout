@@ -1,64 +1,19 @@
 <div class="card">
 	
-	<div class="card-content">
-		<%= render 'shared/progress', resource: @task%>
-		<div class="card-title left"><%= link_to @task.title  %></div>
-		<button class="dropdown-button no-btn card-title right" data-activates="dropdown1">
-			<% if @task.user %>
-			<div class="chip">
-				<%= @task.user.name %>
-			</div>
-			<% else %>
-			<div class="circular-button">
-				<i class="material-icons icon-hover dash-border">person_add</i>
-			</div>
-			<% end %>
-		</button>
-		<div class="card-title right">
-			<div class="chip">
-				<%= due_when(@task.due_date)%>
-			</div>
-			</div>
-		<div class="clearfix"></div>
-		<p> <%= @task.description %> </p>
-		<ul class="collection with-header">
-			<li class="collection-header"><b>Comments</b></li>
-			<% @task.comments.each do |comment| %>
-			<li class="collection-item avatar">
-				<%= render 'users/avatar', user: comment.user %>
-				<span><%= comment.body %></span>
-				<%	if comment.user == current_user %>
-				<%= link_to "Delete", task_comment_path(@task, comment), method: :delete, data: {confirm: "Are you sure?"},  class: "right" %> 
-				<% end %>
-				<% end %>
-			</li>				
-			<li class="collection-item">
-				<div>
-				<%= form_for :comment, url: task_comments_path(@task) do |f|%>
-
-					<div class = "input-field container z-depth-0">
-						<%= f.text_field :body, placeholder:"Comment",class:"left col s4" %>
-						<%= button_tag(type: "submit", class: "no-btn right") do %>
-						<i class="material-icons small">send</i>
-						<% end %>
-					</div>		
-					<% end %>
-				</div>
-			</li>
-		</ul>
-	</div>
+	<%= render 'tasks/task', task: @task%>
+	<%= render 'tasks/subtasks', task: @task %>
 	<div class="card-action">
 		<%= link_to 'Follow',follow_task_path(@task),method: :post%>
 		<%= link_to 'Add SubTask', new_task_task_path(@task) %>
 		<%= link_to 'All SubTask', task_tasks_path(@task) %>
-		<%	if @task.user == current_user %>	
-		<%= link_to 'Edit Task', edit_project_task_path(@project,@task) %>	
+		<%	if @task.user == current_user || current_user == @task.parent_project.creator %>	
+		<%= link_to 'Edit '+@task.class.name, edit_project_task_path(@project,@task) %>	
 		<%= link_to 'Delete Task', project_task_path(@project,@task),method: :delete, data: {confirm: "Are you sure?"},class: "right" %>
 		<% end %>
 	</div>
 </div>
 
-<ul id="dropdown1" class="dropdown-content full-width">
+<ul id="dropdown-task-members" class="dropdown-content full-width">
 	<% @project.members.each do |member|%>
 	<li class="padding assign-member">
 		<p class="details" style="display: none;"

@@ -3,12 +3,12 @@ class TaskObserver < ActiveRecord::Observer
 		if task.user_id_changed? && task.user_id_was
 			puts" after save gets called for user"
 			user = User.find(task.user_id_was)
-			if task.taskable.creator != user
+			if task.parent_project.creator != user
 				user.stop_following(task)
 				puts "#{user.name} is gettin unfollowed"
 			end
 			task.followers.each do |follower|
-				puts"notigication gets called for #{follower.name}"
+				puts"notification gets called for #{follower.name}"
 				notification_body = 	{
 					resource_id: task.id,
 					recipient_id: follower.id,
@@ -16,10 +16,13 @@ class TaskObserver < ActiveRecord::Observer
 					body: "#{task.user.name} got assigned to task: #{task.title}",
 					category: 'Task'
 				}
+				
+ 			if Rails.env != "testing"
 				Pusher.trigger("private-#{follower.id}",
-					'new_notification',notification_body)
-
-				Notification.create(notification_body)
+					'new_notification',notification_body)									
+			end
+			Notification.create(notification_body)
+			
 			end
 			notification_body = {
 					resource_id: task.id,
@@ -28,10 +31,11 @@ class TaskObserver < ActiveRecord::Observer
 					body: "Details - #{task.title}",
 					category: 'Task'
 				}
+			if Rails.env != "testing"
 				Pusher.trigger("private-#{task.user_id}",
-					'new_notification',notification_body)
-
-				Notification.create(notification_body)
+				'new_notification',notification_body)
+		 	 end
+			Notification.create(notification_body)
 		end
 		if task.status_changed? && task.status_was
 				task.followers.each do |follower|
@@ -42,12 +46,15 @@ class TaskObserver < ActiveRecord::Observer
 					body: "task: #{task.title} now has status #{task.status}",
 					category: 'Task'
 				}
-				Pusher.trigger("private-#{follower.id}",
-					'new_notification',notification_body)
-
+				if Rails.env != "testing"
+					Pusher.trigger("private-#{follower.id}",
+						'new_notification',notification_body)
+				end
 				Notification.create(notification_body)	
 				end
 			end
+
+			 
 	end
 
 	def due_when(date)

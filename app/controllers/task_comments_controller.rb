@@ -10,7 +10,7 @@ class TaskCommentsController < ApplicationController
     @comment.user = current_user
     if @comment.save!
       respond_to do |format|
-      	format.html { redirect_to project_task_path(session[:project_id],@task) }
+      	format.html { redirect_to([@task.taskable,@task]) }
       	format.js {}
       end
     else

@@ -7,7 +7,7 @@ class Task < ActiveRecord::Base
 	acts_as_followable
 	after_save :set_user_as_follower , if: :user_id_changed?
 	after_create :set_project_creator_as_follower
-	after_find :set_progress
+	after_update :set_progress, if: :status_changed?
 	after_save :set_progess_on_status_change, if: :status_changed?
 	validates :taskable_type , presence: true, inclusion: { within: %w(Project Task) }
 	validates_datetime :due_date, after: :started_at 
@@ -17,6 +17,14 @@ class Task < ActiveRecord::Base
 	validates :progress, presence: true ,
 	numericality: { only_integer: true }, length: {maximum: 3}
 
+
+	def parent_project
+		if self.taskable.class.name == 'Project'
+			 self.taskable 
+		else
+			self.taskable.parent_project
+		end
+	end
 	private
 	def set_user_as_follower
 		self.user.follow(self)
@@ -29,7 +37,7 @@ class Task < ActiveRecord::Base
 	end
 	def set_progress
 		if self.tasks
-			subtasks  = self.tasks
+			subtasks = self.tasks
 			addition = 0
 			subtasks.each do |subtask|
 				unless subtask.progress == 0
@@ -39,7 +47,6 @@ class Task < ActiveRecord::Base
 			end
 		end 
 	end
-
 	def set_progess_on_status_change
 
 	end

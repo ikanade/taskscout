@@ -16,7 +16,7 @@ class ProjectUsersController < ApplicationController
   	@project_user.user_id = params[:user_id]
   	begin 
   		@project_user.save!
-  		redirect_to user_projects_path(current_user)
+  		redirect_to user_project_path(current_user,params[:id])
   	rescue Exception => e
   		if e.message.match('Validation failed')
   			flash[:notice] = "User is already a part of the project"

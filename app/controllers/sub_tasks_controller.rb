@@ -1,5 +1,5 @@
 class SubTasksController < ApplicationController
-  before_action :set_task ,only: [:show,:new,:destroy,:index,:create,:edit,:update]
+  before_action :set_task
   def index
     @subtasks = @task.tasks
   end
@@ -7,6 +7,12 @@ class SubTasksController < ApplicationController
   def show
     @project = Project.find(session[:project_id])
     @subtask = @task.tasks.find(params[:id])
+    @project = @subtask.parent_project()
+    if @subtask.user
+    	@available_members = @project.members - [@subtask.user]
+    else
+    	@available_members ||= @project.members
+  	end
   end
 
   def create
@@ -26,7 +32,7 @@ class SubTasksController < ApplicationController
   def update   
     @subtask = @task.tasks.find(params[:id])
     if @subtask.update(update_params)
-        redirect_to task_tasks_path(@task)
+        redirect_to task_task_path(@task,@subtask)
     else
         render 'edit'
     end
@@ -55,7 +61,11 @@ class SubTasksController < ApplicationController
       data
     end
     def update_params
-      params.require(:subtask).permit(:title,:description,:due_date,:started_at,:priority,:status,:progress)
+    	if params[:sub_task]
+      	params.require(:sub_task).permit(:title,:user_id,:description,:due_date,:started_at,:priority,:status,:progress)
+    	elsif params[:task]
+    		params.require(:task).permit(:title,:user_id,:description,:due_date,:started_at,:priority,:status,:progress)
+    	end	
     end
 
 end

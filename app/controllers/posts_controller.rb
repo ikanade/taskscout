@@ -2,7 +2,6 @@ class PostsController < ApplicationController
   def index
     @project = Project.find(params[:project_id])
     @posts = @project.posts
-    session[:project_id] = params[:project_id]
   end
 
   def show
@@ -15,7 +14,6 @@ class PostsController < ApplicationController
   end
 
   def create
-  	print "calls create"
     @project = Project.find(params[:project_id])
     @post = Post.new(post_params)
     if @post.save!

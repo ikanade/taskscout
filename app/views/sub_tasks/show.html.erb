@@ -1,42 +1,26 @@
-<div class="card">	
-	<div class="card-content">		
-		<div class="card-title left"><%= link_to @subtask.title  %></div>
-		<button class="dropdown-button no-btn card-title right" data-activates="dropdown1">
-			<% if @subtask.user %>
-			<div class="chip">
-				<%= @subtask.user.name %>
-			</div>
-			<% else %>
-			<div class="circular-button">
-				<i class="material-icons icon-hover dash-border">person_add</i>
-			</div>
-			<% end %>
-		</button>
-		<div class="card-title right">
-			<div class="chip">
-				<%= due_when(@subtask.due_date)%>
-			</div>
-			</div>
-		<div class="clearfix"></div>
-		<p> <%= @subtask.description %> </p>
-		
-	</div>
+<div class="card">
+	
+	<%= render 'tasks/task', task: @subtask %>
 	<div class="card-action">
-		<% if @subtask.user == current_user %>
-			<%= link_to 'Delete SubTask', task_task_path(@task,@subtask),method: :delete, data: {confirm: "Are you sure?"},class: "right" %>
-			<%= link_to 'Edit SubTask', edit_task_task_path(@task,@subtask) %>
-			<% end %>
+		<%= link_to 'Follow',follow_task_path(@subtask),method: :post%>
+		<%= link_to 'Add SubTask', new_task_task_path(@subtask) %>
+		<%= link_to 'All SubTask', task_tasks_path(@subtask) %>
+		<%	if @subtask.user == current_user %>	
+		<%= link_to 'Edit Task', edit_task_task_path(@subtask.taskable,@subtask) %>	
+		<%= link_to 'Delete Task', task_task_path(@subtask.taskable,@subtask),method: :delete, data: {confirm: "Are you sure?"},class: "right" %>
+		<% end %>
 	</div>
 </div>
 
-<ul id="dropdown1" class="dropdown-content full-width">
-	<% @project.members.each do |member|%>
+<ul id="dropdown-task-members" class="dropdown-content full-width">
+	<% @available_members.each do |member|%>
 	<li class="padding assign-member">
 		<p class="details" style="display: none;"
 		data-id="<%= member.id%>"
-		data-task-id="<%= params[:task_id] %>"
-		data-subtask-id="<%= params[:id] %>"
-		data-path="<%= task_task_url(@task,@subtask)%>" ></p>
+		data-project-id="<%= params[:project_id] %>"
+		data-task-id="<%= params[:id] %>"
+		data-path="<%= task_task_url(@subtask.taskable,@subtask)%>" ></p>
+
 		<p><%= member.name %></p>
 		<p class="grey-text"><%= member.email %></p>
 	</li>
