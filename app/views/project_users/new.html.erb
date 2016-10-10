@@ -1,10 +1,15 @@
-
-<% @users.each do |user|%>
 <div class="row">
-	<div class="card container col s2 offset-s5">
-	<div class="card-title">
-	<%= link_to user.name, add_project_user_path(@project,user),method: :post%>
-	</div>
-	</div>
-	</div>
-<% end %>
+	<ul class="collection col s6 offset-s3">
+		<% @users.each do |user|%>
+		<%= link_to(add_project_user_path(@project,user),method: :post) do%>
+		<li class="collection-item">
+		<span class="secondary-content">
+			<i class="material-icons">add</i>
+		</span>
+			<h5 class="teal-text"><%= user.name %></h5>
+			<p class="grey-text"><%= user.email %></p>
+		</li>
+		<% end %>
+		<% end %>
+	</ul>
+</div>
