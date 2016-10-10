@@ -37,7 +37,7 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = @post.comments.find(params[:id])
     if @comment.destroy  
-      redirect_to project_posts_path(@post.project)
+      redirect_to project_post_path(@post.project,@post)
     end
   end
 
