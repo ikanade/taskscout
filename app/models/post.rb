@@ -6,7 +6,7 @@ class Post < ActiveRecord::Base
   after_save :set_creator_as_follower, if: :user_id_changed?
   validates :title,  presence: true, length: {maximum: 200}
   validates :body,length: {maximum: 600}, allow_blank: true
-
+  validates :user, presence: true
 
   def set_creator_as_follower
   	self.user.follow(self)

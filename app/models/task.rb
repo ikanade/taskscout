@@ -16,7 +16,7 @@ class Task < ActiveRecord::Base
 	validates :status, presence: true, inclusion: { in: %w(complete active inactive none) }
 	validates :progress, presence: true ,
 	numericality: { only_integer: true }, length: {maximum: 3}
-
+	validates :user, presence: true
 
 	def parent_project
 		return self.taskable if self.taskable.class.name == 'Project'
