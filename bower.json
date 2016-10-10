@@ -15,6 +15,7 @@
     "tests"
   ],
   "dependencies": {
-    "pusher-websocket-iso": "pusher#^3.2.1"
+    "pusher-websocket-iso": "pusher#^3.2.1",
+    "list.js": "^1.2.0"
   }
 }

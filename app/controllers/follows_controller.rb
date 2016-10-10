@@ -1,4 +1,5 @@
 class FollowsController < ApplicationController
+	before_action :authenticate_user!
 	def index 
 		@follows = current_user.follows.order(created_at: :desc)
 	end

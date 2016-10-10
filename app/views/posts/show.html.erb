@@ -16,6 +16,7 @@
 			<%= link_to(follow_post_path(@post),method: :post) do%>
 						follow
 			<% end %>
+			<%= link_to 'Delete',  project_post_path(@post.project,@post), method: :delete %>
 		</div>
 </div>
 </div>

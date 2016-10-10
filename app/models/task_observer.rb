@@ -9,8 +9,8 @@ class TaskObserver < ActiveRecord::Observer
 				notification_body = 	{
 					resource_id: task.id,
 					recipient_id: follower.id,
-					subject: "Assignee changed for task due #{due_when(task.due_date)}",
-					body: "#{task.user.name} got assigned to task: #{task.title}",
+					subject: "Assignee changed for \"#{task.title}\" due #{due_when(task.due_date)}",
+					body: "#{task.user.name} got assigned",
 					category: 'Task'
 				}
 				
@@ -40,7 +40,7 @@ class TaskObserver < ActiveRecord::Observer
 					resource_id: task.id,
 					recipient_id: follower.id,
 					subject: "Status changed for task due #{due_when(task.due_date)}",
-					body: "task: #{task.title} now has status #{task.status}",
+					body: "\"#{task.title}\" now has status #{task.status}",
 					category: 'Task'
 				}
 				unless Rails.env.test?

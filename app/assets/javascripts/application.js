@@ -16,6 +16,7 @@
 //= require pusher-websocket-iso/dist/web/pusher
 //= require pusher_config
 //= require jquery_ujs
+//= require list.js/dist/list.min
 //= require turbolinks
 //= require_tree .
 

@@ -1,4 +1,5 @@
 class ProjectUsersController < ApplicationController
+    before_action :authenticate_user!
   def new
   	@project = Project.find(params[:id])
   	@users = User.all - @project.members

@@ -11,7 +11,7 @@
 					<%= due_when(project.deadline)%>
 				</div>
 			<p class="grey-text">Started by <%= project.creator.name %></p>
-			<p><%= project.description %></p>
+			<p class="card-description"><%= project.description %></p>
 			<div class="row">
 				<div class="col s6">    <!-- list of tasks in project -->
 					<%= render 'projects/tasks', project: project %>

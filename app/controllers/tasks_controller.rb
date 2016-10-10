@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
 	before_action :set_project ,only: [:index,:create,:update,:show,:new,:destroy]
+  before_action :authenticate_user!, only: [:show]
   def index
     @tasks = @project.tasks
   end
