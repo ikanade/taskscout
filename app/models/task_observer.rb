@@ -19,7 +19,7 @@ class TaskObserver < ActiveRecord::Observer
 				Pusher.trigger("private-#{follower.id}",
 					'new_notification',notification_body)									
 			    Notification.create(notification_body)
-			   rescue Pusher::HTTPError => e
+			   rescue Pusher::HTTPError,MultiJson::ParseError => e
 			   	retry
 			   end
 			end

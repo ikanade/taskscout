@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   root to: "home#index"
-  devise_for :users, module: :users
+  devise_for :users
   post 'pusher/auth' => 'pusher#auth'
   #get 'message' => 'messages#run'
   resources :users do
