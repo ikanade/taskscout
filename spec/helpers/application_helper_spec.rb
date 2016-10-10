@@ -12,8 +12,18 @@ require 'rails_helper'
 # end
 RSpec.describe ApplicationHelper, type: :helper do
  describe "#due_when" do
-    it "returns the default title" do
-      expect(helper.page_title).to eq("RSpec is your friend")
+    it "returns today for a date object of today" do
+      expect(helper.due_when(Time.now)).to eq("Today")
+    end
+    it "returns tomorrow for a date object of tomorrow" do 
+    	expect(helper.due_when(1.day.from_now)).to eq("Tomorrow")
+    end
+    it "returns day after tomorrow for a date object of day after tomorrow" do 
+    	expect(helper.due_when(Date.tomorrow + 1.days)).to eq("Day after Tomorrow")
+    end
+    it "returns a readable date for a future date" do 
+    	expect(helper.due_when(10.days.from_now)).to eq(10.days.from_now.to_date)
     end
   end
 end
+ 
