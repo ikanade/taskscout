@@ -9,7 +9,7 @@ factory :task do |f|
   f.due_date { Faker::Date.between(Date.today, 1.year.from_now)}
   f.started_at { Date.today} 
   f.taskable_type {["Task","Project"][rand(2)]}
-  association :user_id, factory: :user, strategy: :build
+  association :user, factory: :user, strategy: :build
 
   association :taskable, factory: :project, strategy: :build
 
