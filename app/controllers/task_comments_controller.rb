@@ -23,7 +23,7 @@ class TaskCommentsController < ApplicationController
   	@task = Task.find(params[:task_id])
     @comment = Comment.find(params[:id])
     if @comment.destroy  
-      redirect_to project_task_path(@task.parent_project(),@task)
+      redirect_to ([@task.taskable,@task])
     end
   end
 

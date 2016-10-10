@@ -8,6 +8,7 @@
 				<%= @post.title %>
 			</div>
 			<div class="clearfix"></div>
+			<p>Belongs to Project:<%= link_to @post.project.title, user_project_path(current_user,@post.project)%></p>
 			<%= @post.body %>
 			<div class="divider"></div>
 			<%= render 'comments/index', post:@post%>
