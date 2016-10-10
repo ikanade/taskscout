@@ -1,5 +1,5 @@
 module ApplicationHelper
-	def new_notifications?
+	def new_notifications?   # new notifications displays
 		if user_signed_in?
 			last_checked = session[:last_checked]
 			last_checked ||= current_user.current_sign_in_at 
@@ -9,7 +9,7 @@ module ApplicationHelper
 			return true unless notifications.empty?
 		end
 		false
-	end
+	end            # due date of project and task convert to string
 	def due_when(date)
 		if date.to_date.today?
 			"Today"

@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 ruby "2.3.1"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -38,9 +38,10 @@ gem 'devise'
 gem 'materialize-sass'
 # For Timeline validations
 gem 'validates_timeliness', '~> 4.0'
-
-# Push Notifications
+ # Push Notifications
 gem 'pusher'
+gem 'pusher-fake'
+
 
 gem 'acts_as_follower',
  git:'https://github.com/ishan-amura/acts_as_follower.git',
@@ -67,6 +68,8 @@ group :development do
   gem 'spring'
   gem 'awesome_print', :require => 'ap'
   gem 'quiet_assets'
+
+ 
 end
 
 group :production do 

@@ -13,10 +13,13 @@ class TaskObserver < ActiveRecord::Observer
 					body: "#{task.user.name} got assigned to task: #{task.title}",
 					category: 'Task'
 				}
+				
+ 			unless Rails.env.test?
 				Pusher.trigger("private-#{follower.id}",
-					'new_notification',notification_body)
-
-				Notification.create(notification_body)
+					'new_notification',notification_body)									
+			    Notification.create(notification_body)
+			end
+			
 			end
 			notification_body = {
 					resource_id: task.id,
@@ -25,10 +28,11 @@ class TaskObserver < ActiveRecord::Observer
 					body: "Details - #{task.title}",
 					category: 'Task'
 				}
+			unless Rails.env.test?
 				Pusher.trigger("private-#{task.user_id}",
-					'new_notification',notification_body)
-
-				Notification.create(notification_body)
+				'new_notification',notification_body)
+			Notification.create(notification_body)
+		 	 end
 		end
 		if task.status_changed? && task.status_was
 				task.followers.each do |follower|
@@ -39,12 +43,15 @@ class TaskObserver < ActiveRecord::Observer
 					body: "task: #{task.title} now has status #{task.status}",
 					category: 'Task'
 				}
-				Pusher.trigger("private-#{follower.id}",
-					'new_notification',notification_body)
-
-				Notification.create(notification_body)	
+				unless Rails.env.test?
+					Pusher.trigger("private-#{follower.id}",
+						'new_notification',notification_body)				
+					Notification.create(notification_body)
+				end	
 				end
 			end
+
+			 
 	end
 
 	def due_when(date)

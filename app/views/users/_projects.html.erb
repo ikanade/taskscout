@@ -1,28 +1,28 @@
 <% @projects.each do |project| %>
 	<div class="card">
-		<div class="card-content">
-			<%= render 'shared/progress', resource: project %>
+		<div class="card-content">  <!--progress defines progress of project -->
+			<%= render 'shared/progress', resource: project %> 
 			<div class="card-title left">
 				<%= link_to project.title, user_project_path(current_user,project) %>
-			</div>
+			</div>  <!-- gives list contains members of prject -->
 			<%= render 'projects/members_list', project: project%>
 			<div class="clearfix"></div>
-			<div class="chip">
+			<div class="chip">       <!-- due date convert date in words -->
 					<%= due_when(project.deadline)%>
 				</div>
 			<p class="grey-text">Started by <%= project.creator.name %></p>
 			<p><%= project.description %></p>
 			<div class="row">
-				<div class="col s6">
+				<div class="col s6">    <!-- list of tasks in project -->
 					<%= render 'projects/tasks', project: project %>
 				</div>
-				<div class="col s6">
-					<%= render 'posts/post', project: project%>
+				<div class="col s6">   <!-- Posts of project -->
+					<%= render 'posts/post', project: project %>
 				</div>
 			</div>
 		</div>
 		<div class="card-action">	
-			<% if current_user == project.creator %>
+			<% if current_user == project.creator %>  <!--project can delete by project creator-->
 			<%= link_to 'Delete Project', [project.creator,project],method: :delete, data: {confirm: "Are you sure?"} %>
 			<% end %>
 		</div>

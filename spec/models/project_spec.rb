@@ -1,52 +1,73 @@
 require 'rails_helper'
+  RSpec.describe Project, type: :model do
+   context " Title validation check Project Model" do
+	    it "is invalid without a title" do
+	      FactoryGirl.build(:project, title: nil).should_not be_valid
+	    end
+	    it "is valid with a title" do
+	      FactoryGirl.build(:project, title: "something").should be_valid
+	    end
+	end
+	context "Date validation checks Project Model" do
+	   it "is not valid with date" do
+		   	FactoryGirl.build(:project, started_at: "2016-10-15 10:01:38")
+        FactoryGirl.build(:project, deadline: "2016-09-12 10:01:38").should_not be_valid
+	   end
+	   it "is valid with date" do
+		   	FactoryGirl.build(:project)
+		   	FactoryGirl.build(:project).should be_valid
+	   end
+	   it "is not valid format of date" do
+	   		FactoryGirl.build(:project, started_at: "asdasdasd")
+	   		FactoryGirl.build(:project, deadline: "hubhnjn nnnjnj").should_not be_valid
+ 	   end
+  	   it "is not valid format of date" do
+  	   		FactoryGirl.build(:project, started_at: "12345")
+	   		FactoryGirl.build(:project, deadline: "564787").should_not be_valid  	
+  		end
+    end
+    context "Progress validation checks Project model" do
+    	it "is valid with progress" do
+   			FactoryGirl.build(:project, progress: 25 ).should be_valid  
+ 		end
+  		it "is not valid with progress" do
+   			FactoryGirl.build(:project, progress: 19867 ).should_not be_valid  
+ 		end
+ 		it "is valid with progress" do 
+ 			FactoryGirl.build(:project, progress: "bhbhbh" ).should_not be_valid
+ 		end
+ 	end
+ 	context "Associations " do
+	    it "has many tasks" do
+	      FactoryGirl.create(:project).tasks.length # 0
+        FactoryGirl.create(:project_with_tasks).tasks.length # 5
+        FactoryGirl.create(:project_with_tasks, tasks_count: 15).tasks.length 
+	    end
+	    it "has many members " do
+	      assc = described_class.reflect_on_association(:project_users)
+	      expect(assc.macro).to eq :has_many
+	    end
+	    it "belongs to user" do
+  	    project = FactoryGirl.create(:project)
+  			project.new_record?       
+  			project.creator.new_record? 
+	    end
+	    it "has many posts " do
+	      FactoryGirl.create(:project).posts.length # 0
+        FactoryGirl.create(:project_with_posts).posts.length # 5
+        FactoryGirl.create(:project_with_posts, posts_count: 15).posts.length 
+	    end	    
+  	end
 
-RSpec.describe Project, type: :model do
-  let(:subject) {Project.new(title:"demo", deadline: Time.now + 5.days, started_at: Time.now,
-                 progress: 10,description: "vdvgcv vsdgcbh gdcgvgvb")} 
-  
-  it "is valid with title" do
-   	subject.title = "PIT"
-  	expect(subject).to be_valid
+  	context "Test instance methods project model" do
+  		it "check creator to member of project " do
+  			project = FactoryGirl.create(:project)
+  			expect(project.members.include? (project.creator))
+  		end
+  		it "returns task progress" do
+		      project = FactoryGirl.build(:project)
+		      project.save!
+		      expect(project.progress) 
+    	end 
+  	end
   end
-  it "is not valid without title" do
-   	subject.title = nil
-  	expect(subject).to_not be_valid
-  end
-  it "is valid with date" do
-   	subject.started_at = "2016-09-21 09:42:06"
-   	subject.deadline = "2016-09-26 10:01:38"
-  	expect(subject).to be_valid
-  end
-  it "is not valid deadline" do
-   	subject.started_at = "2016-09-21 09:42:06"
-   	subject.deadline = "2016-09-15 10:01:38"
-  	expect(subject).to_not be_valid
-  end
-  it "is valid progres" do
-   	subject.progress = 20 	
-  	expect(subject).to be_valid
-  end
-  it "is not valid progress" do
-   	subject.progress = 12345	
-  	expect(subject).to_not be_valid
-  end
-  it "is not valid progress" do
-   	subject.progress = "asdf" 	
-  	expect(subject).to_not be_valid
-  end  
-
-  context "Associations" do
-    it "has many tasks" do
-      assc = described_class.reflect_on_association(:tasks)
-      expect(assc.macro).to eq :has_many
-    end
-    it "has many project users" do
-      assc = described_class.reflect_on_association(:project_users)
-      expect(assc.macro).to eq :has_many
-    end
-    it "has many Posts " do
-      assc = described_class.reflect_on_association(:posts)
-      expect(assc.macro).to eq :has_many
-    end
-  end
-end

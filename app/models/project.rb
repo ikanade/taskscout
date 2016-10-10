@@ -9,8 +9,10 @@ class Project < ActiveRecord::Base
   before_save :add_creator_to_members, if: :user_id_changed?
 	validates :title,  presence: true, length: {maximum: 200}	
 	validates :progress, presence: true, numericality: { only_integer: true },
-										 length: {maximum: 3}
+										 inclusion: {in: 0..100}
 	validates_datetime :deadline, after: :started_at, if: :deadline_changed?
+	validates_datetime :deadline
+	validates_datetime :started_at
 	validates :creator, presence: true
 	
 	def add_creator_to_members
@@ -26,5 +28,5 @@ class Project < ActiveRecord::Base
 				end
 			end
     end
-	end
+end
 end

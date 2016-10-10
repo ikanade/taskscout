@@ -8,9 +8,10 @@ class CommentObserver < ActiveRecord::Observer
 					body: "#{comment.body}",
 					category: 'Post'
 				}
-				Pusher.trigger("private-#{follower.id}",
-					'new_notification',notification_body)
-
+				if Rails.env != "testing"
+					Pusher.trigger("private-#{follower.id}",
+						'new_notification',notification_body)
+				end
 				Notification.create(notification_body)	
 		end
 	end

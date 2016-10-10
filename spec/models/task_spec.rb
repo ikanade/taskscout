@@ -1,88 +1,109 @@
 require 'rails_helper'
 
 RSpec.describe Task, type: :model do
-	let(:subject) { Task.new(title:"demo", priority: "ASAP", status: "active",
-					 progress: 12, description: "asd fgh truh uunun", started_at: Time.now, 
-					 due_date: Time.now + 5.days,taskable_type: "Task")} 
-  
-  it "is valid with title" do
-   	subject.title = "PIT"
-  	expect(subject).to be_valid
+  context "Validate title " do
+      it "is valid with title" do
+       	FactoryGirl.build(:task, title: "PIT").should be_valid
+      end
+      it "is not valid without title" do
+       	FactoryGirl.build(:task, title: nil ).should_not be_valid
+      end
   end
-  it "is not valid without title" do
-   	subject.title = nil
-  	expect(subject).to_not be_valid
+  context "Validate priority" do
+    it "is valid with priority" do
+     	FactoryGirl.build(:task, priority: "ASAP" ).should be_valid
+    end
+     it "is valid with priority" do
+     	FactoryGirl.build(:task, priority: 6574).should_not be_valid
+    end
   end
-  it "is valid with priority" do
-   	subject.priority = "ASAP"
-  	expect(subject).to be_valid
+  context "validate status " do 
+      it "is valid with status" do
+       	  FactoryGirl.build(:task, status: "finished").should_not be_valid
+      end
+       it "is valid with status" do
+       	FactoryGirl.build(:task, status: 6754).should_not be_valid
+      end
   end
-   it "is valid with priority" do
-   	subject.priority = 123
-  	expect(subject).to_not be_valid
+  context " validate progress" do
+    it "is valid with progress" do
+     	FactoryGirl.build(:task, progress: 25).should be_valid
+    end
+    it "is valid with progress" do
+     	  FactoryGirl.build(:task, progress: 25677).should_not be_valid
+    end
+     it "is valid with progress" do
+     	  FactoryGirl.build(:task, progress: "cvgbh").should_not be_valid
+    end
   end
-  it "is valid with status" do
-   	subject.status = "finished"
-  	expect(subject).to be_valid
-  end
-   it "is valid with status" do
-   	subject.status = 123
-  	expect(subject).to_not be_valid
-  end
-  it "is valid with progress" do
-   	subject.progress = 25
-  	expect(subject).to be_valid
-  end
-  it "is valid with progress" do
-   	subject.progress = 67532467
-  	expect(subject).to_not be_valid
-  end
-   it "is valid with progress" do
-   	subject.progress = "bhb"
-  	expect(subject).to_not be_valid
-  end
-  it "is valid with date" do
-   	subject.started_at = "2016-09-21 09:42:06"
-   	subject.due_date = "2016-09-26 10:01:38"
-  	expect(subject).to be_valid
-  end
-  it "is not valid due date" do
-   	subject.started_at = "2016-09-21 09:42:06"
-   	subject.due_date = "2016-09-15 10:01:38"
-  	expect(subject).to_not be_valid
-  end
-  it "is not valid format of date" do
-   	subject.started_at = "asdasdasd"
-   	subject.due_date = "hubhnjn nnnjnj"
-  	expect(subject).to_not be_valid
-  end
-  it "is not valid format of date" do
-   	subject.started_at = 12345	
-   	subject.due_date = 23456
-  	expect(subject).to_not be_valid
-  end
+  context "Date validation checks Task Model" do
+     it "is not valid with date" do
+        FactoryGirl.build(:task, started_at: "2016-10-15 10:01:38")
+        FactoryGirl.build(:task, due_date: "2016-09-12 10:01:38").should_not be_valid
+     end
+     it "is valid with date" do
+        FactoryGirl.build(:task)
+        FactoryGirl.build(:task).should be_valid
+     end
+     it "is not valid format of date" do
+        FactoryGirl.build(:task, started_at: "asdasdasd")
+        FactoryGirl.build(:task, due_date: "hubhnjn nnnjnj").should_not be_valid
+     end
+       it "is not valid format of date" do
+          FactoryGirl.build(:task, started_at: "12345")
+        FactoryGirl.build(:task, due_date: "564787").should_not be_valid   
+      end
+    end
 
 
   context "Associations" do
-    it "has many tasks" do
-      assc = described_class.reflect_on_association(:tasks)
-      expect(assc.macro).to eq :has_many
-    end
-    it "has many comments" do
-      assc = described_class.reflect_on_association(:comments)
-      expect(assc.macro).to eq :has_many
-    end
-    it "has many labels " do
-      assc = described_class.reflect_on_association(:labels)
-      expect(assc.macro).to eq :has_many
-    end
-    it "belongs to  usere " do
-      assc = described_class.reflect_on_association(:user)
-      expect(assc.macro).to eq :belongs_to
-    end
-    it "belongs to taskable " do
-      assc = described_class.reflect_on_association(:taskable)
-      expect(assc.macro).to eq :belongs_to
-    end
+      it "has many tasks" do
+        assc = described_class.reflect_on_association(:tasks)
+        expect(assc.macro).to eq :has_many
+      end
+      it "has many comments" do
+        assc = described_class.reflect_on_association(:comments)
+        expect(assc.macro).to eq :has_many
+      end
+      it "has many labels " do
+        assc = described_class.reflect_on_association(:labels)
+        expect(assc.macro).to eq :has_many
+      end
+      it "belongs to  usere " do
+        assc = described_class.reflect_on_association(:user)
+        expect(assc.macro).to eq :belongs_to
+      end
+      it "belongs to taskable " do
+        assc = described_class.reflect_on_association(:taskable)
+        expect(assc.macro).to eq :belongs_to
+      end
+  end
+
+  context "Test instance methods Task model" do 
+    it "returns a Parent project" do
+      task = FactoryGirl.build(:task)
+      parent_task = FactoryGirl.build(:task)
+      task.taskable = parent_task
+      task.parent_project.should == parent_task.taskable
+    end  
+    it "returns project creator as follower" do
+      task = FactoryGirl.build(:task)
+      project = FactoryGirl.create(:project) 
+      follow = FactoryGirl.build(:follow)
+      expect(follow.follower_id) == project.creator.id
+    end 
+    it "returns task progress" do
+      task = FactoryGirl.build(:task, status: "active")
+      task.save!
+      expect(task.progress) 
+    end 
+    it "returns user as follower" do
+      task = FactoryGirl.create(:task)
+      user = FactoryGirl.create(:user, id: 12)
+      user.tasks << task
+      follow = FactoryGirl.build(:follow)
+      task.save!
+      expect(follow.follower_id) == task.user_id
+    end 
   end
 end
