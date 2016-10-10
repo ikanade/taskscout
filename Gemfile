@@ -40,8 +40,6 @@ gem 'materialize-sass'
 gem 'validates_timeliness', '~> 4.0'
  # Push Notifications
 gem 'pusher'
-gem 'pusher-fake'
-
 
 gem 'acts_as_follower',
  git:'https://github.com/ishan-amura/acts_as_follower.git',

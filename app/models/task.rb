@@ -22,7 +22,7 @@ class Task < ActiveRecord::Base
 		return self.taskable if self.taskable.class.name == 'Project'
 		self.taskable.parent_project
 	end
-
+	
 	private
 	def set_user_as_follower
 		self.user.follow(self)
@@ -35,7 +35,7 @@ class Task < ActiveRecord::Base
 	end
 	def set_progress
 		if self.tasks
-			subtasks = self.tasks
+			subtasks  = self.tasks
 			addition = 0
 			subtasks.each do |subtask|
 				unless subtask.progress == 0

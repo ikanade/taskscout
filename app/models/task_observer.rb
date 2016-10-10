@@ -15,9 +15,13 @@ class TaskObserver < ActiveRecord::Observer
 				}
 				
  			unless Rails.env.test?
+				begin
 				Pusher.trigger("private-#{follower.id}",
 					'new_notification',notification_body)									
 			    Notification.create(notification_body)
+			   rescue Pusher::HTTPError => e
+			   	retry
+			   end
 			end
 			
 			end
@@ -29,9 +33,13 @@ class TaskObserver < ActiveRecord::Observer
 					category: 'Task'
 				}
 			unless Rails.env.test?
+				begin 
 				Pusher.trigger("private-#{task.user_id}",
 				'new_notification',notification_body)
 			Notification.create(notification_body)
+				rescue Pusher::HTTPError => e
+			   	retry
+			   end
 		 	 end
 		end
 		if task.status_changed? && task.status_was
@@ -44,9 +52,13 @@ class TaskObserver < ActiveRecord::Observer
 					category: 'Task'
 				}
 				unless Rails.env.test?
+					begin
 					Pusher.trigger("private-#{follower.id}",
 						'new_notification',notification_body)				
 					Notification.create(notification_body)
+					rescue Pusher::HTTPError => e
+			   	retry
+			   end
 				end	
 				end
 			end
