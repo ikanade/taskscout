@@ -1,4 +1,5 @@
 class TaskCommentsController < ApplicationController
+  before_action :authenticate_user!, only: [:show]
   def index
   	@tasks = Task.find(params[:task_id])  
     @comments=@tasks.comments

@@ -1,5 +1,6 @@
 class SubTasksController < ApplicationController
   before_action :set_task
+  before_action :authenticate_user!
   def index
     @subtasks = @task.tasks
   end
