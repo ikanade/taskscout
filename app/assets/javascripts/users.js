@@ -9,3 +9,10 @@ function toggle(what){
 		$('#tasks').removeClass('hide');
 	}
 }
+$(document).on('turbolinks:load', function() {
+	var options = {
+		valueNames: [ 'card-title', 'card-description','due-date' ]
+	};
+	var taskList = new List('tasks', options);
+	var projectList = new List('projects',options);
+});

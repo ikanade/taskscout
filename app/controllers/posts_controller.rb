@@ -18,7 +18,7 @@ class PostsController < ApplicationController
     @project = Project.find(params[:project_id])
     @post = Post.new(post_params)
     if @post.save!
-      redirect_to project_posts_path(@project)
+      redirect_to user_project_path(current_user,@project)
     else
       render 'new'
     end
@@ -28,7 +28,7 @@ class PostsController < ApplicationController
     @project = Project.find(params[:project_id])
     @post = Post.find(params[:id])
     if @post.destroy  
-      redirect_to project_posts_path(@project)
+      redirect_to user_project_path(current_user,@project)
     end
   end
 private
