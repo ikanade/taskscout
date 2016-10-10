@@ -22,12 +22,17 @@ module ApplicationHelper
 		end	
 	end
 	def available_members(resource)
+		result = nil
 		case resource.class.name
 		when "Project"
-			User.all - resource.members
+			result = User.all - resource.members
 		when "Task"
-			resource.parent_project.members - [resource.user]
+			result = resource.parent_project.members - [resource.user]
 		end
+		if result.empty?
+			flash[:notice] = "No available member to assign, add new member to project"
+		end 
+		result 
 	end
 	def belongs_to_url(resource)
 		case resource.taskable.class.name

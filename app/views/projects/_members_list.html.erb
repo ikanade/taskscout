@@ -7,7 +7,7 @@
 	<% end %>
 	<% if current_user == project.creator %>
 	<li class="left">
-		<% if available_members(project).length <= 5 %>
+		<% if available_members(project).length <= 15 %>
 		<button class="dropdown-button no-btn card-title right" data-activates="dropdown-users-<%= project.id %>">
 			<div class="circular-button">
 				<i class="material-icons icon-hover dash-border">person_add</i>

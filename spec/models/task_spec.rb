@@ -69,7 +69,7 @@ RSpec.describe Task, type: :model do
         assc = described_class.reflect_on_association(:labels)
         expect(assc.macro).to eq :has_many
       end
-      it "belongs to  usere " do
+      it "belongs to  users " do
         assc = described_class.reflect_on_association(:user)
         expect(assc.macro).to eq :belongs_to
       end
