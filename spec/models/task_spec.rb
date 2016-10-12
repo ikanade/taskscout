@@ -1,9 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Task, type: :model do
+	before(:each) do
+		@user = FactoryGirl.create(:user)
+		@task = FactoryGirl.create(:task, user_id: @user.id)
+	end
   context "Validate title " do
       it "is valid with title" do
-       	FactoryGirl.build(:task, title: "PIT").should be_valid
+       	FactoryGirl.build(:task, title: "PIT",user_id: @user.id).should be_valid
       end
       it "is not valid without title" do
        	FactoryGirl.build(:task, title: nil ).should_not be_valid
@@ -11,28 +15,28 @@ RSpec.describe Task, type: :model do
   end
   context "Validate priority" do
     it "is valid with priority" do
-     	FactoryGirl.build(:task, priority: "ASAP" ).should be_valid
+     	FactoryGirl.build(:task, priority: "ASAP",user_id: @user.id ).should be_valid
     end
-     it "is valid with priority" do
+     it "is not valid with priority" do
      	FactoryGirl.build(:task, priority: 6574).should_not be_valid
     end
   end
   context "validate status " do 
       it "is valid with status" do
-       	  FactoryGirl.build(:task, status: "finished").should_not be_valid
+       	  FactoryGirl.build(:task, status: "finished",user_id: @user.id).should_not be_valid
       end
-       it "is valid with status" do
+       it "is not valid with status" do
        	FactoryGirl.build(:task, status: 6754).should_not be_valid
       end
   end
   context " validate progress" do
     it "is valid with progress" do
-     	FactoryGirl.build(:task, progress: 25).should be_valid
+     	FactoryGirl.build(:task, progress: 25,user_id: @user.id).should be_valid
     end
-    it "is valid with progress" do
+    it "is not valid with progress" do
      	  FactoryGirl.build(:task, progress: 25677).should_not be_valid
     end
-     it "is valid with progress" do
+     it "is not valid with progress" do
      	  FactoryGirl.build(:task, progress: "cvgbh").should_not be_valid
     end
   end
@@ -43,7 +47,7 @@ RSpec.describe Task, type: :model do
      end
      it "is valid with date" do
         FactoryGirl.build(:task)
-        FactoryGirl.build(:task).should be_valid
+        FactoryGirl.build(:task,user_id: @user.id).should be_valid
      end
      it "is not valid format of date" do
         FactoryGirl.build(:task, started_at: "asdasdasd")
@@ -93,12 +97,17 @@ RSpec.describe Task, type: :model do
       expect(follow.follower_id) == project.creator.id
     end 
     it "returns task progress" do
-      task = FactoryGirl.build(:task, status: "active")
+      task = FactoryGirl.build(:task, status: "active",user_id: @user.id)
       task.save!
       expect(task.progress) 
     end 
+    it "returns task progress on status change" do
+      task = FactoryGirl.build(:task, status: "complete",user_id: @user.id)
+      task.save!
+      expect(task.progress) == 100 
+    end 
     it "returns user as follower" do
-      task = FactoryGirl.create(:task)
+      task = FactoryGirl.create(:task,user_id: @user.id)
       user = FactoryGirl.create(:user, id: 12)
       user.tasks << task
       follow = FactoryGirl.build(:follow)

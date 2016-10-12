@@ -5,7 +5,7 @@ class Task < ActiveRecord::Base
 	has_many :comments, as: :commentable
 	has_many :labels, as: :labelable
 	acts_as_followable
-	after_save :set_user_as_follower , if: :user_id_changed?
+	after_save :set_user_as_follower, if: :user_id_changed?
 	after_create :set_project_creator_as_follower
 	after_find :set_progress
 	after_find :set_progess_on_status_change
@@ -16,7 +16,7 @@ class Task < ActiveRecord::Base
 	validates :status, presence: true, inclusion: { in: %w(complete active inactive none) }
 	validates :progress, presence: true ,
 	numericality: { only_integer: true }, length: {maximum: 3}
-	validates :user, presence: true
+	validates :user_id, presence: true
 
 	def parent_project
 		return self.taskable if self.taskable.class.name == 'Project'

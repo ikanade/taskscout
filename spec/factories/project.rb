@@ -6,7 +6,6 @@ FactoryGirl.define do
 	  f.description { Faker::Lorem.paragraph }
 	  f.progress {Faker::Number.between(0,100)}
 	  f.started_at { Date.today} 
-	  f.user_id {Faker::Number.number(2)}
  	  association :creator, factory: :user, strategy: :build
 
  	  factory :project_with_posts do	  		#has_many relation  	

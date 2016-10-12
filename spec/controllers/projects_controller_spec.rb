@@ -2,17 +2,17 @@
 
   RSpec.describe ProjectsController, type: :controller do
      before(:each) do
-        @user = FactoryGirl.attributes_for(:user)
+     	byebug
+        @user = FactoryGirl.create(:user)
+        sign_in @user
         @project = FactoryGirl.attributes_for(:project)
      end
     
     describe "#new" do
-      it "redirects to the show page upon save" do      	  
-          get :create, user_id: @user
-          response.should redirect_to user_projects_path(@user, @project)
+      it "redirects to the show page upon save" do
+      	byebug
+         get :new
+         expect(response.status).to eq(200)
       end
     end
-
-    
-
   end

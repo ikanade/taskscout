@@ -14,6 +14,7 @@ class Project < ActiveRecord::Base
 	validates_datetime :deadline
 	validates_datetime :started_at
 	validates :creator, presence: true
+	#validates :user_id, presence: true
 	
 	def add_creator_to_members
 		self.members << self.creator
