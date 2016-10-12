@@ -34,6 +34,9 @@ RSpec.describe ApplicationHelper, type: :helper do
     it "check available members for project" do 
       expect(helper.available_members(@project)).to eq([@user])
     end
+    it "check available members for project" do 
+      expect(helper.available_members(@task)).to eq([@task.taskable.users])
+    end
     
   end
 end
