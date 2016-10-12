@@ -4,16 +4,16 @@ RSpec.describe Label, type: :model do
   let(:subject) {Label.new(name:"jku", color: "red", labelable_type: "Task")} 
   
   it "is valid with name" do
-    FactoryGirl.build(:label, name: "hbhb").should be_valid
+    build(:label, name: "hbhb").should be_valid
   end
   it "is not valid with name" do
-    FactoryGirl.build(:label, name: nil ).should_not be_valid
+    build(:label, name: nil ).should_not be_valid
   end
   it "is valid with color" do
-    FactoryGirl.build(:label, color: "blue")
+    build(:label, color: "blue")
   end
   it "is not valid with color" do
-    FactoryGirl.build(:label, color:nil).should_not be_valid
+    build(:label, color:nil).should_not be_valid
   end
 
   context "Associations" do

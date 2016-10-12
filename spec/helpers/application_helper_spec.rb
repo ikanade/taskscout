@@ -7,6 +7,7 @@ RSpec.describe ApplicationHelper, type: :helper do
 		@project = create(:project,user_id: @user)
 		@task = create(:task,user_id:@user.id,taskable: @project)
 		@subtask = create(:task,user_id:@user.id,taskable: @task)
+    @notification = create(:notification,recipient_id: @user.id, resource_id: @project.id)
 	end 
  describe "#due_when" do
     it "returns today for a date object of today" do
