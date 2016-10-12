@@ -21,27 +21,15 @@
         null,
         null,
         1,
-<<<<<<< HEAD
-        36,
+        38,
         null,
         1,
-        26,
-        26,
-        26,
-        26,
-        24,
-        24,
-=======
-        0,
-        null,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
->>>>>>> 7e9b47935bbff25e4fe1c2852c87fa021568c26b
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
         null,
         null,
         null,
@@ -70,41 +58,25 @@
         1,
         null,
         1,
-        0,
-        0,
+        2,
+        1,
         null,
         null,
         1,
         1,
-<<<<<<< HEAD
-        26,
-        null,
-        1,
-        26,
-        26,
-        26,
-        null,
+        28,
         null,
         1,
         28,
         28,
         28,
-        28,
-=======
-        0,
-        null,
-        1,
-        0,
-        0,
-        0,
         null,
         null,
         1,
-        0,
-        0,
-        0,
-        0,
->>>>>>> 7e9b47935bbff25e4fe1c2852c87fa021568c26b
+        30,
+        30,
+        30,
+        30,
         0,
         0,
         0,
@@ -113,13 +85,8 @@
         null,
         null,
         1,
-<<<<<<< HEAD
-        28,
-        3,
-=======
-        0,
-        0,
->>>>>>> 7e9b47935bbff25e4fe1c2852c87fa021568c26b
+        30,
+        7,
         null,
         null,
         null
@@ -127,11 +94,7 @@
       "/home/amura/Desktop/pull-it-together/app/models/task_observer.rb": [
         1,
         1,
-<<<<<<< HEAD
-        27,
-=======
-        0,
->>>>>>> 7e9b47935bbff25e4fe1c2852c87fa021568c26b
+        29,
         0,
         0,
         0,
@@ -173,26 +136,16 @@
         null,
         null,
         null,
-<<<<<<< HEAD
-        27,
-        18,
-        36,
-=======
-        0,
-        0,
-        0,
->>>>>>> 7e9b47935bbff25e4fe1c2852c87fa021568c26b
+        29,
+        24,
+        48,
         null,
         null,
         null,
         null,
         null,
         null,
-<<<<<<< HEAD
-        36,
-=======
-        0,
->>>>>>> 7e9b47935bbff25e4fe1c2852c87fa021568c26b
+        48,
         0,
         0,
         null,
@@ -208,25 +161,14 @@
         null,
         null,
         1,
-<<<<<<< HEAD
-        36,
+        48,
         0,
-        36,
+        48,
         0,
-        36,
-        0,
-        null,
-        36,
-=======
-        0,
-        0,
-        0,
-        0,
-        0,
+        48,
         0,
         null,
-        0,
->>>>>>> 7e9b47935bbff25e4fe1c2852c87fa021568c26b
+        48,
         null,
         null,
         null
@@ -280,11 +222,7 @@
         1,
         null,
         1,
-<<<<<<< HEAD
         29,
-=======
-        0,
->>>>>>> 7e9b47935bbff25e4fe1c2852c87fa021568c26b
         null,
         null
       ],
@@ -308,19 +246,11 @@
         1,
         null,
         1,
-<<<<<<< HEAD
-        95,
+        111,
         null,
         1,
         null,
         2,
-=======
-        0,
-        null,
-        1,
-        null,
-        0,
->>>>>>> 7e9b47935bbff25e4fe1c2852c87fa021568c26b
         null,
         null
       ],
@@ -338,14 +268,14 @@
         0,
         null,
         1,
-        4,
-        1,
-        3,
-        1,
-        2,
-        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
         null,
-        1,
+        0,
         null,
         null,
         1,
@@ -415,7 +345,6 @@
         1,
         null
       ],
-<<<<<<< HEAD
       "/home/amura/Desktop/pull-it-together/app/models/label.rb": [
         1,
         1,
@@ -427,7 +356,6 @@
         1,
         1,
         1,
-        null,
         null
       ],
       "/home/amura/Desktop/pull-it-together/app/models/project_user.rb": [
@@ -455,8 +383,6 @@
         null
       ],
       "/home/amura/Desktop/pull-it-together/app/controllers/projects_controller.rb": [
-=======
-      "/home/ishan/Train/pull-it-together/app/controllers/sub_tasks_controller.rb": [
         0,
         0,
         0,
@@ -475,7 +401,6 @@
         0,
         0,
         0,
->>>>>>> 7e9b47935bbff25e4fe1c2852c87fa021568c26b
         0,
         0,
         0,
@@ -494,54 +419,6 @@
         0,
         0,
         0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "/home/ishan/Train/pull-it-together/app/controllers/follows_controller.rb": [
-        0,
-        0,
-        0,
-        0,
-<<<<<<< HEAD
-        0
-      ],
-      "/home/amura/Desktop/pull-it-together/app/controllers/tasks_controller.rb": [
-=======
->>>>>>> 7e9b47935bbff25e4fe1c2852c87fa021568c26b
         0,
         0,
         0,
@@ -565,7 +442,7 @@
         0,
         0
       ],
-      "/home/ishan/Train/pull-it-together/app/controllers/tasks_controller.rb": [
+      "/home/amura/Desktop/pull-it-together/app/controllers/tasks_controller.rb": [
         0,
         0,
         0,
@@ -603,11 +480,6 @@
         0,
         0,
         0,
-<<<<<<< HEAD
-        0
-      ],
-      "/home/amura/Desktop/pull-it-together/app/controllers/home_controller.rb": [
-=======
         0,
         0,
         0,
@@ -631,8 +503,7 @@
         0,
         0
       ],
-      "/home/ishan/Train/pull-it-together/app/controllers/users_controller.rb": [
->>>>>>> 7e9b47935bbff25e4fe1c2852c87fa021568c26b
+      "/home/amura/Desktop/pull-it-together/app/controllers/home_controller.rb": [
         0,
         0,
         0,
@@ -651,14 +522,6 @@
         0,
         0,
         0,
-<<<<<<< HEAD
-=======
-        0,
-        0,
-        0
-      ],
-      "/home/ishan/Train/pull-it-together/app/controllers/posts_controller.rb": [
->>>>>>> 7e9b47935bbff25e4fe1c2852c87fa021568c26b
         0,
         0,
         0,
@@ -672,23 +535,6 @@
         0,
         0,
         0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-<<<<<<< HEAD
-        0,
-        0
-      ],
-      "/home/amura/Desktop/pull-it-together/app/controllers/pusher_controller.rb": [
-=======
->>>>>>> 7e9b47935bbff25e4fe1c2852c87fa021568c26b
         0,
         0,
         0,
@@ -700,13 +546,13 @@
         0,
         0,
         0,
-<<<<<<< HEAD
         0
       ],
-      "/home/amura/Desktop/pull-it-together/app/controllers/users_controller.rb": [
+      "/home/amura/Desktop/pull-it-together/app/controllers/pusher_controller.rb": [
         0,
         0,
-=======
+        0,
+        0,
         0,
         0,
         0,
@@ -716,8 +562,9 @@
         0,
         0
       ],
-      "/home/ishan/Train/pull-it-together/app/controllers/application_controller.rb": [
->>>>>>> 7e9b47935bbff25e4fe1c2852c87fa021568c26b
+      "/home/amura/Desktop/pull-it-together/app/controllers/users_controller.rb": [
+        0,
+        0,
         0,
         0,
         0,
@@ -735,7 +582,6 @@
         0,
         0
       ],
-<<<<<<< HEAD
       "/home/amura/Desktop/pull-it-together/app/controllers/follows_controller.rb": [
         0,
         0,
@@ -756,9 +602,6 @@
         0,
         0,
         0,
-=======
-      "/home/ishan/Train/pull-it-together/app/controllers/home_controller.rb": [
->>>>>>> 7e9b47935bbff25e4fe1c2852c87fa021568c26b
         0,
         0,
         0,
@@ -767,24 +610,7 @@
         0,
         0
       ],
-<<<<<<< HEAD
       "/home/amura/Desktop/pull-it-together/app/controllers/application_controller.rb": [
-=======
-      "/home/ishan/Train/pull-it-together/app/controllers/notifications_controller.rb": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
->>>>>>> 7e9b47935bbff25e4fe1c2852c87fa021568c26b
         0,
         0,
         0,
@@ -802,11 +628,7 @@
         0,
         0
       ],
-<<<<<<< HEAD
       "/home/amura/Desktop/pull-it-together/app/controllers/project_users_controller.rb": [
-=======
-      "/home/ishan/Train/pull-it-together/app/controllers/projects_controller.rb": [
->>>>>>> 7e9b47935bbff25e4fe1c2852c87fa021568c26b
         0,
         0,
         0,
@@ -834,39 +656,6 @@
         0,
         0,
         0,
-<<<<<<< HEAD
-=======
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
->>>>>>> 7e9b47935bbff25e4fe1c2852c87fa021568c26b
         0
       ],
       "/home/amura/Desktop/pull-it-together/app/controllers/comments_controller.rb": [
@@ -1067,166 +856,8 @@
         0,
         0,
         0
-      ],
-      "/home/ishan/Train/pull-it-together/app/controllers/comments_controller.rb": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "/home/ishan/Train/pull-it-together/app/controllers/project_users_controller.rb": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "/home/ishan/Train/pull-it-together/app/controllers/task_comments_controller.rb": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "/home/ishan/Train/pull-it-together/app/models/label.rb": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "/home/ishan/Train/pull-it-together/app/models/follow.rb": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "/home/ishan/Train/pull-it-together/app/models/project_user.rb": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "/home/ishan/Train/pull-it-together/app/models/notification.rb": [
-        0,
-        0,
-        0,
-        0,
-        0
       ]
     },
-<<<<<<< HEAD
-    "timestamp": 1476108430
-=======
-    "timestamp": 1476108162
->>>>>>> 7e9b47935bbff25e4fe1c2852c87fa021568c26b
+    "timestamp": 1476248938
   }
 }

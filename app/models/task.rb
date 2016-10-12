@@ -5,7 +5,7 @@ class Task < ActiveRecord::Base
 	has_many :comments, as: :commentable
 	has_many :labels, as: :labelable
 	acts_as_followable
-	after_save :set_user_as_follower , if: :user_id_changed?
+	after_save :set_user_as_follower, if: :user_id_changed?
 	after_create :set_project_creator_as_follower
 	after_find :set_progress
 	after_find :set_progess_on_status_change

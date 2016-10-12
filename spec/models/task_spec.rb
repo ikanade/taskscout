@@ -101,6 +101,11 @@ RSpec.describe Task, type: :model do
       task.save!
       expect(task.progress) 
     end 
+    it "returns task progress on status change" do
+      task = FactoryGirl.build(:task, status: "complete",user_id: @user.id)
+      task.save!
+      expect(task.progress) == 100 
+    end 
     it "returns user as follower" do
       task = FactoryGirl.create(:task,user_id: @user.id)
       user = FactoryGirl.create(:user, id: 12)
