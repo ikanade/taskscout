@@ -118,5 +118,21 @@ RSpec.describe Task, type: :model do
       task.save!
       expect(follow.follower_id) == task.user_id
     end 
+    it "after save due when return date in string format " do      
+         @task.due_when("2016-10-13 09:02:00")
+         expect("Tomorrow")
+      end
+      it "after save due when return date in string format " do      
+         @task.due_when("2016-10-12 09:02:00")
+         expect("Today")
+      end
+      it "after save due when return date in string format " do      
+         @task.due_when("2016-10-14 09:02:00")
+         expect("Day after tomorrow")
+      end
+      it "after save due when return date in date format " do      
+         @task.due_when("2016-10-15 09:02:00")
+         expect("2016-10-15 09:02:00")
+      end
   end
 end
