@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Task, type: :model do
 	before(:each) do
 		@user = FactoryGirl.create(:user)
+    @project = FactoryGirl.create(:project)
 		@task = FactoryGirl.create(:task, user_id: @user.id)
 	end
   context "Validate title " do
@@ -23,7 +24,10 @@ RSpec.describe Task, type: :model do
   end
   context "validate status " do 
       it "is valid with status" do
-       	  FactoryGirl.build(:task, status: "finished",user_id: @user.id).should_not be_valid
+       	  FactoryGirl.build(:task, status: "active",user_id: @user.id).should be_valid
+      end
+      it "is not valid with status" do
+          FactoryGirl.build(:task, status: "finished",user_id: @user.id).should_not be_valid
       end
        it "is not valid with status" do
        	FactoryGirl.build(:task, status: 6754).should_not be_valid
@@ -39,11 +43,14 @@ RSpec.describe Task, type: :model do
      it "is not valid with progress" do
      	  FactoryGirl.build(:task, progress: "cvgbh").should_not be_valid
     end
+    it "is not valid with progress" do
+        FactoryGirl.build(:task, progress: "123nhj").should_not be_valid
+    end
   end
   context "Date validation checks Task Model" do
      it "is not valid with date" do
         FactoryGirl.build(:task, started_at: "2016-10-15 10:01:38")
-        FactoryGirl.build(:task, due_date: "2016-09-12 10:01:38").should_not be_valid
+        FactoryGirl.build(:task, due_date: "2016-09-30 10:01:38").should_not be_valid
      end
      it "is valid with date" do
         FactoryGirl.build(:task)
@@ -84,17 +91,14 @@ RSpec.describe Task, type: :model do
   end
 
   context "Test instance methods Task model" do 
-    it "returns a Parent project" do
-      task = FactoryGirl.build(:task)
+    it "returns a Parent project" do     
       parent_task = FactoryGirl.build(:task)
-      task.taskable = parent_task
-      task.parent_project.should == parent_task.taskable
+      @task.taskable = parent_task
+      @task.parent_project.should == parent_task.taskable
     end  
-    it "returns project creator as follower" do
-      task = FactoryGirl.build(:task)
-      project = FactoryGirl.create(:project) 
+    it "returns project creator as follower" do 
       follow = FactoryGirl.build(:follow)
-      expect(follow.follower_id) == project.creator.id
+      expect(follow.follower_id) == @project.creator.id
     end 
     it "returns task progress" do
       task = FactoryGirl.build(:task, status: "active",user_id: @user.id)

@@ -11,6 +11,8 @@ factory :task do |f|
   f.taskable_type {["Task","Project"][rand(2)]}
   association :user, factory: :user, strategy: :build
 
+  
+  #f.taskable_type {["Task","Project"][rand(2)]} 
   association :taskable, factory: :project, strategy: :build
 
   factory :task_taskable do
@@ -20,6 +22,11 @@ factory :task do |f|
   trait :subtask_task do
 		association :taskable, factory: :task, strategy: :build
   end
+  before(:create) do
+      ActiveRecord::Base.observers.disable :task_observer
+  end
+
+        
   #factory :task_taskable do
   #  association :taskable, factory: :task, strategy: :build
   #end
