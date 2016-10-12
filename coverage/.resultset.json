@@ -21,15 +21,15 @@
         null,
         null,
         1,
-        74,
+        12,
         null,
         1,
-        35,
-        35,
-        35,
-        35,
-        34,
-        34,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
         null,
         null,
         null,
@@ -58,25 +58,25 @@
         1,
         null,
         1,
-        2,
-        1,
+        0,
+        0,
         null,
         null,
         1,
         1,
-        35,
+        6,
         null,
         1,
-        35,
-        35,
-        35,
+        6,
+        6,
+        6,
         null,
         null,
         1,
-        37,
-        37,
-        37,
-        37,
+        6,
+        6,
+        6,
+        6,
         0,
         0,
         0,
@@ -85,8 +85,8 @@
         null,
         null,
         1,
-        37,
-        7,
+        6,
+        3,
         null,
         null,
         null
@@ -94,7 +94,7 @@
       "/home/amura/Desktop/pull-it-together/app/models/task_observer.rb": [
         1,
         1,
-        1,
+        2,
         0,
         0,
         0,
@@ -136,7 +136,7 @@
         null,
         null,
         null,
-        1,
+        2,
         0,
         0,
         null,
@@ -222,7 +222,7 @@
         1,
         null,
         1,
-        29,
+        0,
         null,
         null
       ],
@@ -246,11 +246,11 @@
         1,
         null,
         1,
-        77,
+        12,
         null,
         1,
         null,
-        2,
+        0,
         null,
         null
       ],
@@ -294,6 +294,7 @@
         1,
         0,
         null,
+        0,
         0,
         null,
         0,
@@ -345,19 +346,6 @@
         1,
         null
       ],
-      "/home/amura/Desktop/pull-it-together/app/models/label.rb": [
-        1,
-        1,
-        1,
-        1,
-        null
-      ],
-      "/home/amura/Desktop/pull-it-together/app/models/notification.rb": [
-        1,
-        1,
-        1,
-        null
-      ],
       "/home/amura/Desktop/pull-it-together/app/models/project_user.rb": [
         1,
         1,
@@ -379,6 +367,19 @@
         null,
         null,
         null
+      ],
+      "/home/amura/Desktop/pull-it-together/app/models/notification.rb": [
+        1,
+        1,
+        1,
+        null
+      ],
+      "/home/amura/Desktop/pull-it-together/app/models/label.rb": [
+        0,
+        0,
+        0,
+        0,
+        0
       ],
       "/home/amura/Desktop/pull-it-together/app/controllers/projects_controller.rb": [
         0,
@@ -575,9 +576,6 @@
         0,
         0,
         0,
-        0,
-        0,
-        0,
         0
       ],
       "/home/amura/Desktop/pull-it-together/app/controllers/follows_controller.rb": [
@@ -657,8 +655,6 @@
         0
       ],
       "/home/amura/Desktop/pull-it-together/app/controllers/comments_controller.rb": [
-        0,
-        0,
         0,
         0,
         0,
@@ -856,6 +852,6 @@
         0
       ]
     },
-    "timestamp": 1476255488
+    "timestamp": 1476258917
   }
 }
