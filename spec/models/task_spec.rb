@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Task, type: :model do
 	before(:each) do
 		@user = FactoryGirl.create(:user)
-    @project = FactoryGirl.create(:project)
+    @project = FactoryGirl.create(:project,user_id: @user.id)
 		@task = FactoryGirl.create(:task, user_id: @user.id)
 	end
   context "Validate title " do
@@ -111,28 +111,12 @@ RSpec.describe Task, type: :model do
       expect(task.progress) == 100 
     end 
     it "returns user as follower" do
-      task = FactoryGirl.create(:task,user_id: @user.id)
-      user = FactoryGirl.create(:user, id: 12)
-      user.tasks << task
+      task = FactoryGirl.create(:task,user_id: @user.id,taskable: @project)
+      @user.tasks << task
       follow = FactoryGirl.build(:follow)
-      task.save!
+      task.save
       expect(follow.follower_id) == task.user_id
     end 
-    it "after save due when return date in string format " do      
-         @task.due_when("2016-10-13 09:02:00")
-         expect("Tomorrow")
-      end
-      it "after save due when return date in string format " do      
-         @task.due_when("2016-10-12 09:02:00")
-         expect("Today")
-      end
-      it "after save due when return date in string format " do      
-         @task.due_when("2016-10-14 09:02:00")
-         expect("Day after tomorrow")
-      end
-      it "after save due when return date in date format " do      
-         @task.due_when("2016-10-15 09:02:00")
-         expect("2016-10-15 09:02:00")
-      end
+    
   end
 end
