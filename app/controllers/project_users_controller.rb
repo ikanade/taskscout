@@ -5,12 +5,6 @@ class ProjectUsersController < ApplicationController
   	@users = User.all - @project.members
   end
 
-  def index
-    @project = Project.find(params[:id])
-    @task = @project.tasks
-    @users = @project.users
-  end
-
   def create
   	@project_user = ProjectUser.new()
   	@project_user.project_id = params[:id]
