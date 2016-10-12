@@ -21,6 +21,7 @@
         null,
         null,
         1,
+<<<<<<< HEAD
         38,
         null,
         1,
@@ -30,6 +31,17 @@
         28,
         28,
         28,
+=======
+        10,
+        null,
+        1,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+>>>>>>> 911e4168342f40e798dfd8eed3b2b07d8e62c5ef
         null,
         null,
         null,
@@ -64,6 +76,7 @@
         null,
         1,
         1,
+<<<<<<< HEAD
         28,
         null,
         1,
@@ -77,6 +90,21 @@
         30,
         30,
         30,
+=======
+        5,
+        null,
+        1,
+        5,
+        5,
+        5,
+        null,
+        null,
+        1,
+        5,
+        5,
+        5,
+        5,
+>>>>>>> 911e4168342f40e798dfd8eed3b2b07d8e62c5ef
         0,
         0,
         0,
@@ -85,8 +113,13 @@
         null,
         null,
         1,
+<<<<<<< HEAD
         30,
         7,
+=======
+        5,
+        3,
+>>>>>>> 911e4168342f40e798dfd8eed3b2b07d8e62c5ef
         null,
         null,
         null
@@ -94,7 +127,11 @@
       "/home/amura/Desktop/pull-it-together/app/models/task_observer.rb": [
         1,
         1,
+<<<<<<< HEAD
         29,
+=======
+        5,
+>>>>>>> 911e4168342f40e798dfd8eed3b2b07d8e62c5ef
         0,
         0,
         0,
@@ -136,16 +173,26 @@
         null,
         null,
         null,
+<<<<<<< HEAD
         29,
         24,
         48,
+=======
+        5,
+        5,
+        10,
+>>>>>>> 911e4168342f40e798dfd8eed3b2b07d8e62c5ef
         null,
         null,
         null,
         null,
         null,
         null,
+<<<<<<< HEAD
         48,
+=======
+        10,
+>>>>>>> 911e4168342f40e798dfd8eed3b2b07d8e62c5ef
         0,
         0,
         null,
@@ -161,6 +208,7 @@
         null,
         null,
         1,
+<<<<<<< HEAD
         48,
         0,
         48,
@@ -169,6 +217,16 @@
         0,
         null,
         48,
+=======
+        10,
+        0,
+        10,
+        0,
+        10,
+        0,
+        null,
+        10,
+>>>>>>> 911e4168342f40e798dfd8eed3b2b07d8e62c5ef
         null,
         null,
         null
@@ -246,7 +304,11 @@
         1,
         null,
         1,
+<<<<<<< HEAD
         111,
+=======
+        20,
+>>>>>>> 911e4168342f40e798dfd8eed3b2b07d8e62c5ef
         null,
         1,
         null,
@@ -292,9 +354,9 @@
         0,
         null,
         1,
-        0,
+        1,
         null,
-        0,
+        1,
         null,
         0,
         null,
@@ -382,7 +444,35 @@
         null,
         null
       ],
+<<<<<<< HEAD
       "/home/amura/Desktop/pull-it-together/app/controllers/projects_controller.rb": [
+=======
+      "/home/ishan/Train/pull-it-together/app/models/project_user.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        null
+      ],
+      "/home/ishan/Train/pull-it-together/app/models/follow.rb": [
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        1,
+        0,
+        null,
+        null,
+        null
+      ],
+      "/home/ishan/Train/pull-it-together/app/controllers/sub_tasks_controller.rb": [
+>>>>>>> 911e4168342f40e798dfd8eed3b2b07d8e62c5ef
         0,
         0,
         0,
@@ -833,6 +923,7 @@
         0,
         0,
         0,
+<<<<<<< HEAD
         0,
         0,
         0,
@@ -851,6 +942,11 @@
         0,
         0,
         0,
+=======
+        0
+      ],
+      "/home/ishan/Train/pull-it-together/app/models/notification.rb": [
+>>>>>>> 911e4168342f40e798dfd8eed3b2b07d8e62c5ef
         0,
         0,
         0,
@@ -858,6 +954,10 @@
         0
       ]
     },
+<<<<<<< HEAD
     "timestamp": 1476248938
+=======
+    "timestamp": 1476113814
+>>>>>>> 911e4168342f40e798dfd8eed3b2b07d8e62c5ef
   }
 }

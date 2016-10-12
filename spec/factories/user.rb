@@ -16,9 +16,9 @@ FactoryGirl.define do
 	  	transient do
         	tasks_count 5
       	end	  
-	  	after(:create) do |user, evaluator|
-       		 create_list(:post, evaluator.tasks_count, user: user)
-    	end
+	  	#after(:create) do |user, evaluator|
+      # 		 create_list(:post, evaluator.tasks_count, user: user)
+    	#end
       end 
 	end
 end

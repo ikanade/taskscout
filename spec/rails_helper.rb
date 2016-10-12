@@ -26,8 +26,11 @@ require 'devise'
 # Checks for pending migration and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
+Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 RSpec.configure do |config|
+	config.include Rails.application.routes.url_helpers
+	Rails.application.routes.default_url_options[:host] = "localhost:3000" 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
@@ -36,6 +39,8 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.include Devise::Test::ControllerHelpers, :type => :controller
   config.include Devise::Test::ControllerHelpers, :type => :view
+  config.include Devise::Test::ControllerHelpers, :type => :helper
+  config.include Extras, :type => :helper
   config.include Warden::Test::Helpers
   Warden.test_mode!
   config.after(:each) do
@@ -65,3 +70,4 @@ RSpec.configure do |config|
   # config.include Devise::Test::ControllerHelpers, type: :view
 
 end
+
