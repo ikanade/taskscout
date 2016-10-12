@@ -19,4 +19,4 @@
 # Ignore byebug history
 .byebug_history
 # Ignore all coverage
-coverage
+/coverage

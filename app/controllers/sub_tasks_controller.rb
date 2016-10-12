@@ -10,16 +10,15 @@ class SubTasksController < ApplicationController
     @project = @subtask.parent_project()
     if @subtask.user
     	@available_members = @project.members - [@subtask.user]
-    else
-    	@available_members ||= @project.members
   	end
+    @available_members ||= @project.members
   end
 
   def create
     @subtask = @task.tasks.new(task_params)
     @subtask.user = current_user
-    if @subtask.save!
-      redirect_to task_task_path(@task,@subtask)
+    if @subtask.save
+      redirect_to ([@task,@subtask])
     else
       render 'new'
     end
