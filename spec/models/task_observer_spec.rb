@@ -37,6 +37,7 @@ RSpec.describe TaskObserver, type: :model do
          @task.due_when
          expect("2016-10-15 09:02:00")
       end
+
     end
 
 end

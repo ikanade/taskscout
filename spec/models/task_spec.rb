@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Task, type: :model do
 	before(:each) do
 		@user = FactoryGirl.create(:user)
-    @project = FactoryGirl.create(:project)
+    @project = FactoryGirl.create(:project,user_id: @user.id)
 		@task = FactoryGirl.create(:task, user_id: @user.id)
 	end
   context "Validate title " do
@@ -111,12 +111,12 @@ RSpec.describe Task, type: :model do
       expect(task.progress) == 100 
     end 
     it "returns user as follower" do
-      task = FactoryGirl.create(:task,user_id: @user.id)
-      user = FactoryGirl.create(:user, id: 12)
-      user.tasks << task
+      task = FactoryGirl.create(:task,user_id: @user.id,taskable: @project)
+      @user.tasks << task
       follow = FactoryGirl.build(:follow)
-      task.save!
+      task.save
       expect(follow.follower_id) == task.user_id
     end 
+    
   end
 end

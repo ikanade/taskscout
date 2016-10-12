@@ -46,7 +46,7 @@ RSpec.describe User, type: :model do
        user = FactoryGirl.create(:user)
        task1 = FactoryGirl.create(:task, user: user, due_date: "2016-10-17 10:01:38",status: "none")
        task2 = FactoryGirl.create(:task, user: user, due_date: "2016-10-15 10:01:38",status: "active")
-       user.tasks.should == [task2, task1]
+       user.tasks_due_soon.should == [task2, task1]
     end
   end
 end
