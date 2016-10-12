@@ -50,4 +50,15 @@ class Task < ActiveRecord::Base
 			self.progress = 100 
 		end
 	end
+	def due_when
+		if self.date.to_date.today?
+			"Today"
+		elsif self.date.to_date == Date.tomorrow
+			"Tomorrow"
+		elsif self.date.to_date == (Date.tomorrow + 1.days)
+			"Day after tomorrow"
+		else
+			self.date.to_date
+		end	
+	end
 end
