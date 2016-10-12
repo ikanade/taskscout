@@ -58,6 +58,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'simplecov', require: false
+  gem 'pusher-fake'
 end
 
 group :development do

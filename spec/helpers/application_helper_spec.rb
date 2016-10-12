@@ -15,7 +15,6 @@ RSpec.describe ApplicationHelper, type: :helper do
 		@user = login_user
 		@project = FactoryGirl.create(:project,user_id: @user)
 		@task = FactoryGirl.create(:task,:project_task,user_id:@user.id)
-		print @task.taskable.inspect
 		@subtask = FactoryGirl.build(:task,user_id:@user.id)
 		@subtask.taskable = @task
 	end 
