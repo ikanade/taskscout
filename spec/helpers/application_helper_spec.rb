@@ -5,8 +5,8 @@ RSpec.describe ApplicationHelper, type: :helper do
 		@user = create(:user)
 		login_user @user
 		@project = create(:project,user_id: @user)
-		@task = create(:task_alternate,:project_task,user_id:@user.id,taskable: @project)
-		@subtask = create(:task_alternate,:subtask_task,user_id:@user.id,taskable: @task)
+		@task = create(:task,user_id:@user.id,taskable: @project)
+		@subtask = create(:task,user_id:@user.id,taskable: @task)
 	end 
  describe "#due_when" do
     it "returns today for a date object of today" do
