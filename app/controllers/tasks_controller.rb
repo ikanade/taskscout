@@ -18,7 +18,7 @@ class TasksController < ApplicationController
   def create
   	@task = @project.tasks.new(task_params)
     @task.user = current_user
-  	if @task.save!
+  	if @task.save
   		redirect_to user_project_path(current_user,@project)
   	else
   		render 'new'
