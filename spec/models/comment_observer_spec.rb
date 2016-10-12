@@ -11,6 +11,7 @@ RSpec.describe CommentObserver, type: :observer do
       it "should invoke aftersave for comment and raise exception once" do 
       	@times_called = 0
       	allow(Notification).to receive(:create) do 
+      		@times_called +=1
       		raise Pusher::HTTPError.new("error") if @times_called == 1
       	end   
       	@comment.body = "sometext"
