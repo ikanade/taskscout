@@ -11,6 +11,14 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe ApplicationHelper, type: :helper do
+	before(:each) do 
+		@user = login_user
+		@project = FactoryGirl.create(:project,user_id: @user)
+		@task = FactoryGirl.create(:task,:project_task,user_id:@user.id)
+		print @task.taskable.inspect
+		@subtask = FactoryGirl.build(:task,user_id:@user.id)
+		@subtask.taskable = @task
+	end 
  describe "#due_when" do
     it "returns today for a date object of today" do
       expect(helper.due_when(Time.now)).to eq("Today")
@@ -24,6 +32,11 @@ RSpec.describe ApplicationHelper, type: :helper do
     it "returns a readable date for a future date" do 
     	expect(helper.due_when(10.days.from_now)).to eq(10.days.from_now.to_date)
     end
+  end
+  describe "#belongs_to_url" do 
+  	it "returns path to project for the task" do 
+  		expect(helper.belongs_to_url(@task)).to eq(url_for([@user,@project]))
+  	end
   end
 end
  
