@@ -37,7 +37,6 @@ module ApplicationHelper
 	def belongs_to_url(resource)
 		case resource.taskable.class.name
 		when "Project"
-			print current_user.inspect
 			url_for([current_user,resource.taskable])
 		when "Task"
 			url_for([resource.taskable.taskable,resource.taskable])

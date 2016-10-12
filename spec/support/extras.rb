@@ -1,12 +1,16 @@
 module Extras
-	def login_user
+	def login_user(user = double('user'), scope = :user)
 		Warden.test_mode!
-		user = FactoryGirl.create(:user)
-		login_as user, :scope => :user
 		user.confirmed_at = Time.now
 		user.confirm
 		user.save
-		user
+		login_as user, :scope => :user
+		current_user = "current_#{scope}".to_sym
+    if user.nil?
+      allow(helper).to receive(current_user).and_return(nil)
+    else
+      allow(helper).to receive(current_user).and_return(user)
+    end
 	end
 	def login_with(user = double('user'), scope = :user)
     current_user = "current_#{scope}".to_sym
