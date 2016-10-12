@@ -13,8 +13,6 @@ class TaskObserver < ActiveRecord::Observer
 					body: "#{task.user.name} got assigned",
 					category: 'Task'
 				}
-				
- 			#unless Rails.env.test?
 				begin
 				Pusher.trigger("private-#{follower.id}",
 					'new_notification',notification_body)									
@@ -22,7 +20,6 @@ class TaskObserver < ActiveRecord::Observer
 			   rescue Pusher::HTTPError,MultiJson::ParseError => e
 			   	retry
 			   end
-			#end
 			
 			end
 			notification_body = {

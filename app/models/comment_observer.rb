@@ -8,7 +8,6 @@ class CommentObserver < ActiveRecord::Observer
 				body: "#{comment.body}",
 				category: 'Post'
 			}
-			unless Rails.env.test?
 				begin
 					Pusher.trigger("private-#{follower.id}",
 						'new_notification',notification_body)
@@ -16,7 +15,6 @@ class CommentObserver < ActiveRecord::Observer
 				rescue Pusher::HTTPError => e
 					retry
 				end	
-			end
 		end
 	end
 end

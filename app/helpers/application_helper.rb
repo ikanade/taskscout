@@ -29,7 +29,7 @@ module ApplicationHelper
 		when "Task"
 			result = resource.parent_project.members - [resource.user]
 		end
-		if result.empty?
+		if result.nil? or result.empty?
 			flash[:notice] = "No available member to assign, add new member to project"
 		end 
 		result 

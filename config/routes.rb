@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   resources :tasks, only: [] do 
     resources :tasks, controller: :sub_tasks 
   end
-  resources :notifications
+  resources :notifications, only: [:create,:index]
   get 'projects/:id/users/new' => 'project_users#new', as: :new_project_user
   post 'projects/:id/users/:user_id' => 'project_users#create', as: :add_project_user
   get 'projects/:id/users(.:format)' => 'project_users#index', as: :all_project_users

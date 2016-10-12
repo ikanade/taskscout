@@ -4,7 +4,7 @@ module Extras
 		user.confirmed_at = Time.now
 		user.confirm
 		user.save
-		login_as user, :scope => :user
+		sign_in user, scope: :user
 		current_user = "current_#{scope}".to_sym
     if user.nil?
       allow(helper).to receive(current_user).and_return(nil)

@@ -17,8 +17,7 @@ class NotificationsController < ApplicationController
 			 	body: notification.body })
 				redirect_to user_path(current_user)
     else
-      @user = User.find(params[:notification][:recipient_id])
-      render :action => 'users/show'
+      redirect_to user_path(current_user)
     end
   end
 

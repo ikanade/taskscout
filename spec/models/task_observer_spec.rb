@@ -2,13 +2,14 @@ require 'rails_helper'
 
 RSpec.describe TaskObserver, type: :model do
 	before(:each) do
-		@user = FactoryGirl.create(:user)
-    	@project = FactoryGirl.create(:project)
-		@task = FactoryGirl.create(:task, user_id: @user.id)
+		@user = create(:user)
+		login_as @user
+    @project = create(:project)
+		@task = create(:task, user_id: @user.id)
 		@taskobserver = TaskObserver.instance
-		@notification = FactoryGirl.create(:notification, recipient_id: @user.id,resource_id:@task.id)
+		@notification = create(:notification, recipient_id: @user.id,resource_id:@task.id)
 	end
-	 describe "Insatnce methods" do
+	 describe "instance methods" do
       it "after save notification created if user id changed " do      
          @taskobserver.after_save(@task)
          expect(@notification)
@@ -37,7 +38,17 @@ RSpec.describe TaskObserver, type: :model do
          @task.due_when
          expect("2016-10-15 09:02:00")
       end
+      it "should notify about assignee change" do 
+      	@task.user = create(:user)
+      	@task.followers.last.id = -1
+      	@times_called = 0
+      	allow(Notification).to receive(:create) do 
+      		@times_called +=  1
+      		raise MultiJson::ParseError.new("error") if @times_called == 1
+      	end
+      	@task.save
 
+      end
     end
 
 end

@@ -2,22 +2,19 @@ require 'rails_helper'
 
 RSpec.describe CommentObserver, type: :observer do
 	before(:each) do
-		@user = FactoryGirl.create(:user)
-    	#@project = FactoryGirl.create(:project)
-		@comment = FactoryGirl.create(:comment, user_id: @user.id)
-		@commentobserver = CommentObserver.instance
-		@follow = FactoryGirl.build(:follow)
-		@notification = FactoryGirl.create(:notification, recipient_id: @user.id,resource_id:@comment.id)
+		@user = create(:user)
+    @project = create(:project,user_id: @user.id)
+    @post = create(:post,project_id: @project.id, user_id: @user.id)
+		@comment = create(:comment, user_id: @user.id, commentable:@post)
 	end
-	 describe "Insatnce methods" do
-      it "after save notification created if user id changed " do      
-         @commentobserver.after_save(@comment)
-         expect(@notification)
-      end
-      it "after save notification created if user id changed " do      
-         @commentobserver.after_save(@comment)	         
-         expect(Rails.env.development?) == Pusher.trigger("private-#{@follow.follower.id}",
-					'new_notification',@notification)
+	 describe "instance methods" do
+      it "should invoke aftersave for comment and raise exception once" do 
+      	@times_called = 0
+      	allow(Notification).to receive(:create) do 
+      		raise Pusher::HTTPError.new("error") if @times_called == 1
+      	end   
+      	@comment.body = "sometext"
+      	@comment.save
       end
   	end
 end

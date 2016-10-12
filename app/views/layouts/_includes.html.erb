@@ -2,13 +2,7 @@
 	<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
 	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %> 
 	<script type="text/javascript">
-		<% if defined?(PusherFake) %>
-    // Test environment.
-    //
-    // Note: Ensure output is not HTML escaped, such as with the raw helper in Rails.
-    var instance = <%= PusherFake.javascript %>;
-    <% else %>
-    // Other environments, such as production.
+
     	<% if user_signed_in? %>
     		Pusher_config.init(
     			<%= current_user.id %>,

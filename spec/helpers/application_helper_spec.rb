@@ -32,12 +32,21 @@ RSpec.describe ApplicationHelper, type: :helper do
   end
   describe "#available members" do 
     it "check available members for project" do 
-      expect(helper.available_members(@project)).to eq([@user])
+      expect(helper.available_members(@project)).to_not include(@project.members)
     end
-    it "check available members for project" do 
-      expect(helper.available_members(@task)).to eq([@task.taskable])
+    it "check available members for task" do 
+      expect(helper.available_members(@task)).to eq(@task.taskable.members - [@task.user])
     end
-    
+    it "check available members is nil" do 
+    	expect(helper.available_members(nil)).to be_nil
+    end
   end
+  describe "#new_notifications?" do
+  	it "check if notifications are there when user is signed in" do 
+  		@notification = create(:notification, recipient: @user)
+  		session[:last_checked] = 1.days.from_now
+  		expect(helper.new_notifications?).to be false
+  	end
+	end
 end
  
