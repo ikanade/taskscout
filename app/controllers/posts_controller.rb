@@ -17,7 +17,7 @@ class PostsController < ApplicationController
   def create
     @project = Project.find(params[:project_id])
     @post = Post.new(post_params)
-    if @post.save!
+    if @post.save
       redirect_to user_project_path(current_user,@project)
     else
       render 'new'
