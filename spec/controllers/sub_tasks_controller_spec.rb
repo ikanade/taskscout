@@ -1,18 +1,30 @@
 require 'rails_helper'
 
 RSpec.describe SubTasksController, type: :controller do
-
+	before(:each) do 
+		@user = create(:user)
+		login_with @user
+		@project = create(:project,user_id: @user)
+		@task = create(:task_alternate,:project_task,user_id:@user.id,taskable: @project)
+		@subtask = create(:task,user_id:@user.id,taskable: @task)
+	end
   describe "GET #index" do
     it "returns http success" do
-      get :index
+      get :index,task_id: @task.id
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe "GET #create" do
+  describe "POST #create" do
     it "returns http success" do
-      get :create
-      expect(response).to have_http_status(:success)
+      post :create,{
+				task:{
+					title:"bahbbasda",
+					description:"samdoamsod",
+					due_date:10.days.from_now,
+					started_at: Time.now },
+				task_id:@task.id }
+      expect(response).to redirect_to([@task,@subtask])
     end
   end
 

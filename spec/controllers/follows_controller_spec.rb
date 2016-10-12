@@ -1,7 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe FollowsController, type: :controller do
-
+	before(:each) do 
+		@user = create(:user)
+		@post = create(:post,user_id:@user.id)
+		@task = create(:task,user_id:@user.id)
+		login_with @user
+	end
   describe "GET #index" do
     it "returns http success" do
       get :index
@@ -9,46 +14,31 @@ RSpec.describe FollowsController, type: :controller do
     end
   end
 
-  describe "GET #show" do
+  describe "POST #post" do
     it "returns http success" do
-      get :show
-      expect(response).to have_http_status(:success)
+      post :post, post_id: @post.id
+      expect(response).to redirect_to(follows_path)
     end
   end
 
-  describe "GET #new" do
+  describe "POST #task" do
     it "returns http success" do
-      get :new
-      expect(response).to have_http_status(:success)
+      post :task, task_id: @task.id
+      expect(response).to redirect_to(follows_path)
     end
   end
 
-  describe "GET #create" do
+  describe "DELETE #unfollow_post" do
     it "returns http success" do
-      get :create
-      expect(response).to have_http_status(:success)
+      delete :unfollow_post, post_id: @post.id
+      expect(response).to redirect_to(follows_path)
     end
   end
 
-  describe "GET #edit" do
+  describe "DELETE #unfollow_task" do
     it "returns http success" do
-      get :edit
-      expect(response).to have_http_status(:success)
+      delete :unfollow_task, task_id: @task.id
+      expect(response).to redirect_to(follows_path)
     end
   end
-
-  describe "GET #update" do
-    it "returns http success" do
-      get :update
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET #delete" do
-    it "returns http success" do
-      get :delete
-      expect(response).to have_http_status(:success)
-    end
-  end
-
 end
