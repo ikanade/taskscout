@@ -30,5 +30,11 @@ RSpec.describe ApplicationHelper, type: :helper do
   		expect(helper.belongs_to_url(@subtask)).to eq(url_for([@project,@task]))
   	end
   end
+  describe "#available members" do 
+    it "check available members for project" do 
+      expect(helper.available_members(@project)).to eq([@user])
+    end
+    
+  end
 end
  
