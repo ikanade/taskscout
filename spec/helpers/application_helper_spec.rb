@@ -7,6 +7,7 @@ RSpec.describe ApplicationHelper, type: :helper do
 		@project = create(:project,user_id: @user)
 		@task = create(:task,user_id:@user.id,taskable: @project)
 		@subtask = create(:task,user_id:@user.id,taskable: @task)
+    @notification = create(:notification,recipient_id: @user.id, resource_id: @project.id)
 	end 
  describe "#due_when" do
     it "returns today for a date object of today" do
@@ -33,11 +34,19 @@ RSpec.describe ApplicationHelper, type: :helper do
   describe "#available members" do 
     it "check available members for project" do 
       expect(helper.available_members(@project)).to eq([@user])
-    end
-    it "check available members for project" do 
-      expect(helper.available_members(@task)).to eq([@task.taskable])
-    end
-    
+    end   
+  end
+  describe "#new_notifications?" do 
+    it "check new notifications" do 
+      logout @user
+      expect(helper.new_notifications?) == false
+    end 
+     it "check new notifications" do      
+      expect(helper.new_notifications?) == true
+    end 
+    it "check new notifications" do      
+      expect(helper.new_notifications?)
+    end   
   end
 end
  

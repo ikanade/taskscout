@@ -3,10 +3,10 @@ require 'rails_helper'
 RSpec.describe Comment, type: :model do
   
   it "is valid with body" do
-    FactoryGirl.build(:comment, body: "PIT bdhh nnjn jdncjn").should be_valid
+    build(:comment, body: "PIT bdhh nnjn jdncjn").should be_valid
   end
   it "is not valid with body" do
-    FactoryGirl.build(:comment, body: nil).should_not be_valid
+    build(:comment, body: nil).should_not be_valid
   end
   context "Associations" do
     it " belongs to user" do

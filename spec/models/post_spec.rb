@@ -2,19 +2,19 @@ require 'rails_helper'
 
 RSpec.describe Post, type: :model do
 	before(:each) do
-		@user = FactoryGirl.create(:user)
-		@post = FactoryGirl.create(:post, user_id: @user.id)
+		@user = create(:user)
+		@post = create(:post, user_id: @user.id)
 	end
 
   context "validation checks " do
     it "is valid with title" do
-      FactoryGirl.build(:post, title: "gh jk jn", user_id: @user.id).should be_valid
+      build(:post, title: "gh jk jn", user_id: @user.id).should be_valid
     end
     it "is not valid without title" do
-      FactoryGirl.build(:post, title: nil).should_not be_valid
+      build(:post, title: nil).should_not be_valid
     end
     it "is valid with body" do
-      FactoryGirl.build(:post, body: "gh jk jn cdscs",user_id: @user.id).should be_valid
+      build(:post, body: "gh jk jn cdscs",user_id: @user.id).should be_valid
     end
   end
   context "Associations" do
@@ -34,10 +34,10 @@ RSpec.describe Post, type: :model do
 
   context " Test instance methods " do  
     it "returns user as follower" do
-      post = FactoryGirl.create(:post,user_id: @user.id)
-      user = FactoryGirl.create(:user, id: 13)
+      post = create(:post,user_id: @user.id)
+      user = create(:user, id: 13)
       user.posts << post
-      follow = FactoryGirl.build(:follow)
+      follow = build(:follow)
       expect(follow.follower_id) == post.user_id
     end 
   end  

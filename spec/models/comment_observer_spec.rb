@@ -2,12 +2,12 @@ require 'rails_helper'
 
 RSpec.describe CommentObserver, type: :observer do
 	before(:each) do
-		@user = FactoryGirl.create(:user)
-    	#@project = FactoryGirl.create(:project)
-		@comment = FactoryGirl.create(:comment, user_id: @user.id)
+		@user = create(:user)
+    	#@project = create(:project)
+		@comment = create(:comment, user_id: @user.id)
 		@commentobserver = CommentObserver.instance
-		@follow = FactoryGirl.build(:follow)
-		@notification = FactoryGirl.create(:notification, recipient_id: @user.id,resource_id:@comment.id)
+		@follow = build(:follow)
+		@notification = create(:notification, recipient_id: @user.id,resource_id:@comment.id)
 	end
 	 describe "Insatnce methods" do
       it "after save notification created if user id changed " do      
