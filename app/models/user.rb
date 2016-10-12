@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   def set_initials
 		self.initials = self.name.split(' ').first[0] + self.name.split(' ').last[0]
   end
-  def tasks
+  def tasks_due_soon
   	Task.where('user_id = ? AND due_date >= ?',id,Time.now)
   	.where.not(status:"complete").order(:due_date)
   end
