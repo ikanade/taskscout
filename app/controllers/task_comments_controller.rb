@@ -1,21 +1,18 @@
 class TaskCommentsController < ApplicationController
-  before_action :authenticate_user!, only: [:show]
-  def index
-  	@tasks = Task.find(params[:task_id])  
-    @comments=@tasks.comments
-  end
+  before_action :authenticate_user!, only: [:create,:destroy]
 
   def create
   	@task = Task.find(params[:task_id])
     @comment = @task.comments.new(comment_params)
     @comment.user = current_user
-    if @comment.save!
+    if @comment.save
       respond_to do |format|
       	format.html { redirect_to([@task.taskable,@task]) }
       	format.js {}
       end
     else
-      render 'new'
+    	flash[:notice] = "Invalid comment"
+      redirect_to([@task.taskable,@task])
     end 
   end
 
@@ -29,6 +26,6 @@ class TaskCommentsController < ApplicationController
 
   private
    def comment_params
-      params.require(:comment).permit(:body,:id)
+      params.require(:comment).permit(:body)
    end
 end

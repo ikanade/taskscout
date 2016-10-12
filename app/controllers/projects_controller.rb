@@ -18,7 +18,7 @@ class ProjectsController < ApplicationController
   def create
   	@project = Project.new(project_params)
   	@project.creator = current_user
-  	if @project.save!
+  	if @project.save
   		flash[:success] = "Project Created"
   		redirect_to user_project_path(current_user,@project)
   	else
@@ -52,7 +52,6 @@ class ProjectsController < ApplicationController
   	deadline = data[:deadline] +" "+Time.now.strftime("%H:%M:%S %z")
   	data.store(:deadline,deadline)
   	data.store(:user_id,params[:user_id])
-  	print data
   	data
   end
 end
