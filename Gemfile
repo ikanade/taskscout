@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-ruby "2.3.1"
+ruby "2.4.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
@@ -54,7 +54,7 @@ group :development, :test do
 	gem 'sqlite3'
 	# RSpec for tdd
 	gem 'rspec-rails', '>= 3.1'
-  
+
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'simplecov', require: false
@@ -69,10 +69,10 @@ group :development do
   gem 'awesome_print', :require => 'ap'
   gem 'quiet_assets'
 
- 
+
 end
 
-group :production do 
+group :production do
 	gem 'pg'
 	gem 'therubyracer', platforms: :ruby
 	gem 'rails_12factor'

@@ -1,10 +1,11 @@
-# Pull It Together
-A Project Management System
+# TaskScout
+A Project and task Management System
 
 Live app - https://pitpmt.herokuapp.com/
 
 ## Overview
-A used and abused approach at Project Management. Enables a user to complete a Project with the help of task management.
+An easy to use open source task management tool for small and medium sized teams.
+Albeit this was built to learn ruby and rails, this particular repo can be extended to suit your needs.
 
 ## Specifications
 1.User Management
@@ -19,41 +20,41 @@ A used and abused approach at Project Management. Enables a user to complete a P
     2. Adding people on a project
     3. Create Objectives , Assign Moderators for Objectives .
 
-3.Task Management 
-    
+3.Task Management
+
     1. Creation of tasks, Sub-tasks
     2. Assigning and Reassigning of Tasks to members
     3. Tasks can have followers and labels
     4. Label based task searching
     5. Tasks have priority and due date.
-    
-4.Notifications 
+
+4.Notifications
 
     1. User gets notification for current tasks.
     2. Users can follow a task or a post
     3. User gets notification for the tasks he follow’s
-    
-5.Time-Line  
+
+5.Time-Line
 
     1. Two types of timeline , (project and user)
     2. Project Timeline shows project related progress
     3. User timeline shows their task related progress and updates.
-    
-6.Discussions 
+
+6.Discussions
 
     1. Users can leave comments on tasks
     2. Users can leave comments on Post.
 
 ## Model Schema (draft 1)
-Users 
+Users
 
-    id: integer 
+    id: integer
     name: string
     email: string
     password_digest: string
 
 
-Projects 
+Projects
 
     id: integer
     title: string
@@ -86,7 +87,7 @@ Tasks (Polymorphic)
     taskable_id: integer   foreign_key => project.id
     user_id: integer 			 foreign_key => user.id
 
-labels 
+labels
 
     id: integer
     name: string
@@ -112,12 +113,12 @@ Comments (Polymorphic)
     body: integer
     user_id: integer  foreign_key => user.id
     commentable_type: string
-    commentable_id: integer 
+    commentable_id: integer
 
 Follows (polymorphic)
 
     id: integer
-    followable_type: string  
+    followable_type: string
     followable_id: integer	foreign_key => task.id
     follower_id: integer	foreign_key => user.id
 
@@ -129,7 +130,7 @@ Notifications
     body: text
     created_at: timestamp
 
-## Relations 
+## Relations
 >- one User can have many Projects
 >- one Project can have many Users
 >- one User can have many tasks
