@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 ruby "2.4.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.6'
+gem 'rails', '4.2.8'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -55,7 +55,7 @@ group :development, :test do
 	# RSpec for tdd
 	gem 'rspec-rails', '>= 3.1'
 
-  gem 'factory_girl_rails'
+  gem "factory_bot_rails"
   gem 'faker'
   gem 'simplecov', require: false
   gem 'pusher-fake'

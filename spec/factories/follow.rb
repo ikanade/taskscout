@@ -1,5 +1,5 @@
 require 'faker'
-FactoryGirl.define do
+FactoryBot.define do
 	factory :follow do |f|  
 	  
 	 

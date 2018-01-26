@@ -1,5 +1,5 @@
 require 'faker'
-FactoryGirl.define do
+FactoryBot.define do
 	factory :task do |f|
 		f.title { Faker::Name.name }
 		f.description { Faker::Lorem.paragraph }

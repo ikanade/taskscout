@@ -1,5 +1,5 @@
 require 'faker'
-FactoryGirl.define do
+FactoryBot.define do
 	factory :project do |f|
 	  f.title { Faker::Name.name }
 	  f.deadline { Faker::Date.between(Date.today + 1.day, 1.year.from_now)}

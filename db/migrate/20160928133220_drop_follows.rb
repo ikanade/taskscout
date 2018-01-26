@@ -1,5 +1,5 @@
 class DropFollows < ActiveRecord::Migration
   def change
-  	drop_table :follows
+  	#drop_table :follows
   end
 end

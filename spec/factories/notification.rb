@@ -1,5 +1,5 @@
 require 'faker'
-FactoryGirl.define do
+FactoryBot.define do
 factory :notification do |f|
 	f.subject { Faker::Name.name }
 	f.body { Faker::Lorem.paragraph }
