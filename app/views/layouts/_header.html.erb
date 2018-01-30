@@ -1,7 +1,7 @@
 <nav>
     <div class="nav-wrapper cyan darken-2">
     <% if user_signed_in? -%>
-    <%= link_to 'Pull-It-Together',user_path(current_user),class:"brand-logo",style:"padding-left:1%;" %>
+    <%= link_to 'TaskScout',user_path(current_user),class:"brand-logo",style:"padding-left:1%;" %>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
       	<li>
       		<%= link_to(notifications_path) do %>
@@ -17,11 +17,11 @@
 					<% end %>
       	</li>
       	<li><%= link_to 'New Project', new_user_project_path(current_user)%></li>
-       
+
         <a class="dropdown-button no-btn card-title right" data-activates="dropdown2"><span  class="user"><%= current_user.initials %></span><i class="material-icons small right">arrow_drop_down</i></a>
       </ul>
     <% else %>
-    <%= link_to 'Pull-It-Together',root_path,class:"brand-logo",style:"padding-left:1%;" %>
+    <%= link_to 'TaskScout',root_path,class:"brand-logo",style:"padding-left:1%;" %>
     <% end %>
     </div>
 </nav>
