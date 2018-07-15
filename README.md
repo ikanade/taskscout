@@ -1,7 +1,7 @@
 # TaskScout
 A Project and task Management System
 
-Live app - https://pitpmt.herokuapp.com/
+Live app - https://taskscout.herokuapp.com/
 
 ## Overview
 An easy to use open source task management tool for small and medium sized teams.
